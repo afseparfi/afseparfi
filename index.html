@@ -60,12 +60,13 @@
 			<h4 ng-if="autoQuery.length > 0">Search Results</h4>
 			<ul class="autos" ng-controller="EPAController">
 			  <li ng-repeat="auto in ratings | filter: autoQuery | limitTo: 10">			    
-			    <p><span>{{auto.make}} {{auto.model}}</span> {{auto.comb08}} mpg 
+			    <p><span>{{auto.makeModel}}</span> {{auto.comb08}} mpg 
 <!-- 			    <i ng-if="auto.smartsay == 'Yes'" title="EPA SmartWay Certification" class="glyphicon glyphicon-star-empty"></i> -->
 <!-- 			    <i ng-if="auto.smartsay == 'Elite'" title="EPA SmartWay Elite Certification" class="glyphicon glyphicon-star"></i> -->
 			    </p>
 			  </li>
 			</ul>
+
 		</div>
 		<!-- /.container -->
 	

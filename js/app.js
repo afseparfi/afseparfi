@@ -6,7 +6,7 @@
 		 $scope.ratings = $firebaseArray(ref);
 		 var list = $firebaseArray(ref);
 		 $scope.ratings.$loaded().then(function(data) {
-			 
+
 			 //reverse list to show highest mpg on top
 		     $scope.ratings.reverse();
 		     //store locally to avoid database hit
