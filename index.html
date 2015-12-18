@@ -57,7 +57,7 @@
 			</div>
 			<div class="clearfix"></div>
 			<h4 ng-if="autoQuery == null || autoQuery.length <= 0">Top Vehicles by MPG</h4>
-			<h4 ng-if="autoQuery.length > 0">Search Result</h4>
+			<h4 ng-if="autoQuery.length > 0">Search Results</h4>
 			<ul class="autos" ng-controller="EPAController">
 			  <li ng-repeat="auto in ratings | filter: autoQuery | limitTo: 10">			    
 			    <p><span>{{auto.model}}</span> {{auto.cmbmpg}} mpg 
