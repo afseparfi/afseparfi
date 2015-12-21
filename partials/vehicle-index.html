@@ -1,0 +1,77 @@
+<div class="container" >
+	<div class="row">
+	  <img width="100%" src="http://www.fueleconomy.gov/feg/images/home/hero/2016-guide-hero.jpg" />
+	</div>
+	<br/>
+	<div class="col-md-12">
+	 <form class="form">
+	    <div class="form-group">
+	      <label class="sr-only" for="carSearch">Search Vehicles</label>
+	      <input type="text" class="form-control" id="carSearch" placeholder="Search Vehicles" ng-model="autoQuery">
+	    </div>
+	  </form>
+	</div>
+	<div class="clearfix"></div>
+	<h4 ng-if="autoQuery.length > 0">Search Results</h4>
+	<ul ng-if="autoQuery.length > 0" class="autos" ng-controller="VehicleListController">
+	  <li ng-repeat="auto in ratings | filter: autoQuery | limitTo: 10">          
+	    <p><a ng-href="#/vehicles/{{auto.$id}}"><span>{{auto.makeModel}}</span> {{auto.comb08}} mpg</a>
+	    </p>
+	  </li>
+	</ul>
+	<br/>
+  
+  <div ng-if="autoQuery == null || autoQuery.length <= 0" >
+	  <div class="row">
+	    <div class="col-xs-6">
+	      <select ng-model="make1" class="form-control" ng-options="auto.make for auto in ratings | unique:'auto.make'">
+	      <option value="">Make</option>
+	      </select>
+	    </div>
+	    <div class="col-xs-6">
+	      <select ng-model="model1" class="form-control" ng-options="auto.model for auto in ratings | filterBy: ['make']: make1"">
+	      <option value="">Model</option>
+	      </select>
+	    </div>
+	  </div>  
+	    <div class="row">
+	    <div class="col-xs-6">
+	      <select ng-model="make2" class="form-control" ng-options="auto.make for auto in ratings | unique:'auto.make'">
+	      <option value="">Make</option>
+	      </select>
+	    </div>
+	    <div class="col-xs-6">
+	      <select ng-model="model2" class="form-control" ng-options="auto.model for auto in ratings | filterBy: ['make']: make2"">
+	      <option value="">Model</option>
+	      </select>
+	    </div>
+	  </div> 
+	    <div class="row">
+	    <div class="col-xs-6">
+	      <select ng-model="make3" class="form-control" ng-options="auto.make for auto in ratings | unique:'auto.make'">
+	      <option value="">Make</option>
+	      </select>
+	    </div>
+	    <div class="col-xs-6">
+	      <select ng-model="model3" class="form-control" ng-options="auto.model for auto in ratings | filterBy: ['make']: make3"">
+	      <option value="">Model</option>
+	      </select>
+	    </div>
+	  </div> 
+	  <button>Compare</button>
+	  <br/>
+		<div class="row well">
+		  <h2>Top Picks for 2016</h2>
+		  <div class="col-md-6">
+		    <div class="row"><img src="http://www.fueleconomy.gov/feg/photos/2015_Chevy_Spark_EV.jpg"></div>
+		    <div class="row"><img src="http://www.fueleconomy.gov/feg/photos/2015_VW_e-Golf.jpg"></div>
+			</div>
+			<div class="col-md-6">
+			 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin et viverra justo commodo. Proin </p>
+			 <a href="#/vehicles">See Vehicles &raquo;</a>
+			</div>
+		</div>
+	</div>
+	
+</div>
+

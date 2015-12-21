@@ -1,0 +1,9 @@
+<div class="container" >
+	<h4>Top Vehicles by MPG</h4>
+	<ul class="autos" ng-controller="VehicleListController">
+	  <li ng-repeat="auto in ratings | limitTo: 10">          
+	    <p><a ng-href="#/vehicles/{{auto.$id}}"><span>{{auto.makeModel}}</span> {{auto.comb08}} mpg</a>
+	    </p>
+	  </li>
+	</ul>
+</div>

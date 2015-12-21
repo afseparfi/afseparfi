@@ -1,19 +1,25 @@
- var app = angular.module("epa", ["firebase"]);
- app.controller("EPAController", function($scope, $firebaseArray, $window) {
-	 $scope.ratings = JSON.parse($window.localStorage.getItem("eparatings")) ||  [] ;
-	 if ($scope.ratings.length == 0) {
-		 var ref = new Firebase("https://dazzling-fire-2583.firebaseio.com/ratings");	 
-		 $scope.ratings = $firebaseArray(ref);
-		 var list = $firebaseArray(ref);
-		 $scope.ratings.$loaded().then(function(data) {
+var afseparfiApp = angular.module("afseparfiApp", [
+    "ngRoute",    
+    "firebase",
+    "afseparfiControllers"
+]);
 
-			 //reverse list to show highest mpg on top
-		     $scope.ratings.reverse();
-		     //store locally to avoid database hit
-		     $window.localStorage.setItem("eparatings", JSON.stringify($scope.ratings));
-		   })
-		   .catch(function(error) {
-		     console.log("Error:", error);
-		   });
-	 }
- });
+afseparfiApp.config(['$routeProvider',
+  function($routeProvider) {
+	$routeProvider.
+		when('/vehicles', {
+			templateUrl: 'partials/vehicle-list.html',
+			controller: 'VehicleListController'
+		}).
+		when('/vehicles/:vehicleId', {
+			templateUrl: 'partials/vehicle-detail.html',
+			controller: 'VehicleDetailController'
+		}).
+		when('/vehicle-index', {
+			templateUrl: 'partials/vehicle-index.html',
+			controller: 'VehicleIndexController'
+		}).
+		otherwise({
+	        redirectTo: '/vehicle-index'
+	      });
+}]);

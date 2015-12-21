@@ -1,18 +1,25 @@
 CACHE MANIFEST
 #REV 4
 
+index.html
+partials/vehicle-detail.html
+partials/vehicle-index.html
+partials/vehicle-list.html
+
 css/style.css
 css/bootstrap.min.css
 css/bootstrap-theme.min.css
 
 
 js/app.js
+js/controllers.js
 js/angularfire.min.js
 js/angular.min.js
 js/firebase.js
 js/angularfire.min.js
 js/jquery.min.js
 js/bootstrap.min.js
+js/angular-filter.min.js
 
 
 fonts/glyphicons-halflings-regular.woff2

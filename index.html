@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:ng="http://angularjs.org" ng-app="epa" class="ng-scope" manifest="cache.manifest">
+<html lang="en" xmlns:ng="http://angularjs.org" ng-app=afseparfiApp class="ng-scope"> <!--  manifest="cache.manifest" -->
 	<head>
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -24,12 +24,12 @@
 							class="icon-bar"></span> <span class="icon-bar"></span> <span
 							class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand" href="#">2016 MPG Lookup</a>
+					<a class="navbar-brand" href="#/vehicle-index">2016 MPG Lookup</a>
 				</div>
 				
 				<div id="navbar" class="collapse navbar-collapse">
 					<ul class="nav navbar-nav">
-						<li class="active"><a href="#">Home</a></li>
+						<li class="active"><a href="#/vehicle-index">Home</a></li>
 						<li><a href="https://fueleconomy.gov">FuelEconomy.gov</a></li>
 						<li ><a href="https://github.com/afseparfi/afseparfi"><i class="glyphicon glyphicon-cloud" aria-hidden="true">&nbsp;</i>Fork on Github</a>
 	
@@ -39,39 +39,14 @@
 			</div>
 		</nav>
 	  
-		<div class="container" >
-			
-			<div class="row">
-				<h1 class="text-center">2016 MPG Lookup</h1>
-				<p class="lead text-center">Quickly find the MPG for 2016 Vehicles</p>
-			</div>
-
-      <div class="col-md-12">
-	     <form class="form-inline">
-		      <div class="form-group">
-		        <label class="sr-only" for="carSearch">Search Vehicles</label>
-		        <input type="text" class="form-control" id="carSearch" placeholder="Search Vehicles" ng-model="autoQuery">
-		      </div>
-<!-- 		      <button type="submit" class="btn btn-primary">Search</button> -->
-		    </form>
-			</div>
-			<div class="clearfix"></div>
-			<h4 ng-if="autoQuery == null || autoQuery.length <= 0">Top Vehicles by MPG</h4>
-			<h4 ng-if="autoQuery.length > 0">Search Results</h4>
-			<ul class="autos" ng-controller="EPAController">
-			  <li ng-repeat="auto in ratings | filter: autoQuery | limitTo: 10">			    
-			    <p><span>{{auto.makeModel}}</span> {{auto.comb08}} mpg 
-<!-- 			    <i ng-if="auto.smartsay == 'Yes'" title="EPA SmartWay Certification" class="glyphicon glyphicon-star-empty"></i> -->
-<!-- 			    <i ng-if="auto.smartsay == 'Elite'" title="EPA SmartWay Elite Certification" class="glyphicon glyphicon-star"></i> -->
-			    </p>
-			  </li>
-			</ul>
-
-		</div>
-		<!-- /.container -->
+	  <div ng-view></div>
+		
+      
 	
 	  <!-- AngularJS -->
     <script src="js/angular.min.js"></script>
+    <script src="js/angular-route.min.js"></script>
+    <script src="js/angular-filter.min.js"></script>    
     <!-- Firebase -->
     <script src="js/firebase.js"></script>
     <!-- AngularFire -->
@@ -82,5 +57,6 @@
 		<script	src="js/bootstrap.min.js"></script>
 		<!-- App -->
     <script src="js/app.js"></script>
+    <script src="js/controllers.js"></script>
 	</body>
 </html>
