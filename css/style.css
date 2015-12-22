@@ -19,7 +19,31 @@ button, .btn, .btn-default {
 .highlight-row {
 	background-color: #E4EBED;
 }
+
+.hero {
+	margin: auto;
+	display: block;
+	max-width:100%;
+}
+
+.light-text {
+	color: #5aa1b0;
+}
+
+footer .small-text {
+    font-size: 7pt;
+}
+
+.logo-header img{
+	margin: auto;
+  display: block;
+  max-width:100%;
+}
 /** CUSTOMIZED NAVBAR STYLES **/
+
+.navbar {
+    margin-bottom: 0px;
+}
 .navbar-default {
   background-color: #0678bc;
   border-color: #0678bc;

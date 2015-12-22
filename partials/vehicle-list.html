@@ -1,7 +1,7 @@
 <div class="container" >
 	<h4>Top Vehicles by MPG</h4>
 	<ol class="autos" data-ng-controller="VehicleListController">
-	  <li data-ng-repeat="auto in ratings | limitTo: 10">          
+	  <li data-ng-repeat="auto in ratings | limitTo: 5">          
 	    <p><a data-ng-href="#/vehicles/{{auto.$id}}"><span>{{auto.makeModel}} {{auto.trany}}</span> {{auto.comb08}} mpg</a>
 	    </p>
 	  </li>

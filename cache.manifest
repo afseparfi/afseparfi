@@ -22,6 +22,12 @@ js/jquery.min.js
 js/bootstrap.min.js
 js/angular-filter.min.js
 
+images/facebook.png
+images/twitter.png
+images/instagram.png
+images/linkedin.png
+images/heroimage.png
+
 
 fonts/glyphicons-halflings-regular.woff2
 fonts/glyphicons-halflings-regular.woff
