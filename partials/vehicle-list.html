@@ -8,7 +8,7 @@
   <br clear="all">
 
 	<div data-ng-controller="VehicleListController">
-	  <div class="row clearfix" data-ng-repeat="auto in ratings | limitTo: 5 | reverse">
+	  <div class="row well clearfix" data-ng-repeat="auto in ratings | limitTo: 5 | reverse">
 	    <div class="top-vehicle-info">
 	       <p class="lead"><a data-ng-href="#/vehicles/{{auto.$id}}">{{auto.makeModel}}</a></p> 
 	       <p>Comb. MPG {{auto.comb08}}</p>
