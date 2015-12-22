@@ -2,7 +2,7 @@ var afseparfiControllers = angular.module('afseparfiControllers', []);
 
 afseparfiControllers.controller("VehicleIndexController", ['$scope', '$firebaseArray', '$window', '$filter',
   function($scope, $firebaseArray, $window, $filter) {
-	//TODO move to service
+	
 	$scope.ratings = JSON.parse($window.localStorage.getItem("eparatings")) ||  [] ;
 	$scope.compare = {};
 	$scope.vehicleModels1 = [];
@@ -22,7 +22,7 @@ afseparfiControllers.controller("VehicleIndexController", ['$scope', '$firebaseA
 		$scope.vehicleMakes = distinct;
 	}
 	
-	
+	//TODO move to service
 	if ($scope.ratings.length == 0) {
 		var ref = new Firebase("https://dazzling-fire-2583.firebaseio.com/ratings");	 
 		$scope.ratings = $firebaseArray(ref);
@@ -62,24 +62,66 @@ afseparfiControllers.controller("VehicleIndexController", ['$scope', '$firebaseA
 }]);
 
 
-afseparfiControllers.controller("VehicleListController", ['$scope', '$firebaseArray', '$window',
-  function($scope, $firebaseArray, $window) {
+afseparfiControllers.controller("VehicleListController", ['$scope', '$firebaseArray', '$window', '$filter',
+  function($scope, $firebaseArray, $window, $filter) {
+	$scope.chartData = {'series':[[0]],'labels':['']};
+	$scope.chartOptions = {
+		reverseData: true,
+		horizontalBars: true,
+		onlyInteger: true,
+		axisX: {
+		    showGrid: false,
+		    labelInterpolationFnc: function(value) {
+		      return value + ' mpg';
+		    }
+		},
+		axisY: {
+			offset: 120
+		}
+	};
+	
+	$scope.chartEvents = {
+			draw: function eventHandler(context) {
+				var max = 125;
+				if(context.type === 'bar') {
+				    context.element.attr({
+				      //this coloration would be based on range of bar values. higher would be green, lower would be red
+//				      style: 'stroke: hsl(' + Math.floor(Chartist.getMultiValue(context.value) / max * 100) + ', 50%, 50%);'
+				    	
+				      //instead of using color ranges, use random colors to get some variation in the charts
+				      style: 'stroke: hsl(' + Math.floor((Math.random() * 360) + 1) + ', 50%, 50%);'
+				    });
+				}
+			}
+	};
+	
+
 	//TODO move to service
 	$scope.ratings = JSON.parse($window.localStorage.getItem("eparatings")) ||  [] ;
 	if ($scope.ratings.length == 0) {
 		var ref = new Firebase("https://dazzling-fire-2583.firebaseio.com/ratings");	 
 		$scope.ratings = $firebaseArray(ref);
 		$scope.ratings.$loaded().then(function(data) {
-			//reverse list to show highest mpg on top
-		    $scope.ratings.reverse();
-		    //store locally to avoid database hit
 		    $window.localStorage.setItem("eparatings", JSON.stringify($scope.ratings));
-//                                                        		    this.value("dataArray", $scope.ratings);
-//                                                        		    console.error(this.dataArray);
+		    buildChartData();
 		})
 		.catch(function(error) {
 			console.log("Error:", error);
 		});
+	} else {
+		buildChartData();
+	}
+	
+	function buildChartData() {
+		var topRatings;
+		if ($scope.ratings.length > 0) {
+			topRatings = $filter('limitTo')($scope.ratings, 5);
+		}
+		
+		for( var i = 0; i < topRatings.length; i++ ){
+			$scope.chartData.labels.push(topRatings[i].makeModel);
+			$scope.chartData.series[0].push(topRatings[i].comb08);
+		}
 	}
 }]);
 

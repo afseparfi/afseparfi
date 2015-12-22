@@ -1,6 +1,7 @@
 var afseparfiApp = angular.module("afseparfiApp", [
     "ngRoute",
     "angular.filter",
+    "angular-chartist",
     "firebase",
     "afseparfiControllers"
 ]);

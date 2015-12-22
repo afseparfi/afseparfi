@@ -1,9 +1,22 @@
 <div class="container" >
-	<h4>Top Vehicles by MPG</h4>
-	<ol class="autos" data-ng-controller="VehicleListController">
-	  <li data-ng-repeat="auto in ratings | limitTo: 5">          
-	    <p><a data-ng-href="#/vehicles/{{auto.$id}}"><span>{{auto.makeModel}} {{auto.trany}}</span> {{auto.comb08}} mpg</a>
-	    </p>
-	  </li>
-	</ol>
+	<h4>2016 Top Five Most Efficient Vehicles</h4>
+	<p>
+	Vehicles are ranked by their EPA combined city/highway rating. All-Electric vehicle (EV) fuel economy is given in Miles Per Gallon equivalent (MPGe), where 33.7 kWh = 1 gallon of gasoline. Plug-in hybrid Vehicles (PHEV) are ranked by their combined gas/electricity rating.
+	</p>
+	
+  <chartist class="ct-chart ct-minor-seventh" chartist-data="chartData" chartist-chart-type="Bar" chartist-events="chartEvents" chartist-chart-options="chartOptions"></chartist>
+  <br clear="all">
+
+	<div data-ng-controller="VehicleListController">
+	  <div class="row clearfix" data-ng-repeat="auto in ratings | limitTo: 5 | reverse">
+	    <div class="top-vehicle-info">
+	       <p class="lead"><a data-ng-href="#/vehicles/{{auto.$id}}">{{auto.makeModel}}</a></p> 
+	       <p>Comb. MPG {{auto.comb08}}</p>
+	       <p>{{auto.trany}}</p>	        
+	       <p>City/Hwy {{auto.city08}}/{{auto.highway08}}</p>	     
+	    </div>
+	    <br clear="all">
+	  </div>
+	</div>
+	
 </div>

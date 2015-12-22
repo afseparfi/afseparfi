@@ -40,8 +40,12 @@ footer .small-text {
   max-width:100%;
 }
 
-* {
+input, button {
     border-radius: 0px !important;
+}
+
+.ct-label {
+	color: #222a2e
 }
 
 /** CUSTOMIZED NAVBAR STYLES **/
