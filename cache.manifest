@@ -5,6 +5,7 @@ index.html
 partials/vehicle-detail.html
 partials/vehicle-index.html
 partials/vehicle-list.html
+partials/vehicle-compare.html
 
 css/style.css
 css/bootstrap.min.css

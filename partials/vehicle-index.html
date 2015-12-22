@@ -2,7 +2,9 @@
 	<div class="row">
 	  <img width="100%" src="http://www.fueleconomy.gov/feg/images/home/hero/2016-guide-hero.jpg" />
 	</div>
-	<br/>
+	<h4>Find and Compare Miles Per Gallon (MPG) and Greenhouse Gas (GHG) Ratings</h4>
+	
+	<h5>Search For A Vehicle</h5>
 	<div class="col-md-12">
 	 <form class="form">
 	    <div class="form-group">
@@ -11,7 +13,7 @@
 	    </div>
 	  </form>
 	</div>
-	<div class="clearfix"></div>
+	
 	<h4 data-ng-if="autoQuery.length > 0">Search Results</h4>
 	<ul data-ng-if="autoQuery.length > 0" class="autos" >
 	  <li data-ng-repeat="auto in ratings | filter: autoQuery | limitTo: 10 | orderBy: auto.model">          
@@ -22,6 +24,7 @@
 	<br/>
   
   <div data-ng-if="autoQuery == null || autoQuery.length <= 0" >
+    <h5>Compare Ratings for up to Three Vehicles</h5>
 	  <div class="row">
 	    <div class="col-xs-6 form-group">
 	      <select data-ng-model="compare.vehicleMake1" class="form-control" data-ng-options="make for make in vehicleMakes" data-ng-change="getModelOptions(1)">
@@ -67,14 +70,14 @@
 	  
 	  <br/>
 		<div class="row well">
-		  <h2 class="text-center">Top Picks for 2016</h2>
+		  <h4 class="text-center">2016 Top Five Most Efficient Vehicles</h4>
 		  <div class="col-md-6">
 		    <img class="center-block" src="http://www.fueleconomy.gov/feg/photos/2015_Chevy_Spark_EV.jpg">
 		    <img class="center-block" src="http://www.fueleconomy.gov/feg/photos/2015_VW_e-Golf.jpg">
 			</div>
 			<div class="col-md-6">
 			 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin et viverra justo commodo. Proin </p>
-			 <a href="#/vehicles">See Vehicles &raquo;</a>
+			 <a class="btn btn-default" href="#/vehicles">SEE ALL FIVE</a>
 			</div>
 		</div>
 	</div>
