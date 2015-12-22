@@ -23,6 +23,7 @@ js/jquery.min.js
 js/bootstrap.min.js
 js/angular-filter.min.js
 js/angular-chartist.min.js
+js/angular-route.min.js
 js/chartist.min.js
 
 images/facebook.png
