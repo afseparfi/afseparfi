@@ -1,5 +1,5 @@
 CACHE MANIFEST
-#REV 11
+#REV 12
 
 index.html
 partials/vehicle-detail.html
@@ -30,6 +30,7 @@ images/twitter.png
 images/instagram.png
 images/linkedin.png
 images/heroimage.png
+images/logo-header.png
 
 
 fonts/glyphicons-halflings-regular.woff2
