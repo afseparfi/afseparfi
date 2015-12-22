@@ -39,6 +39,11 @@ footer .small-text {
   display: block;
   max-width:100%;
 }
+
+* {
+    border-radius: 0px !important;
+}
+
 /** CUSTOMIZED NAVBAR STYLES **/
 
 .navbar {
