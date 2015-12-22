@@ -1,5 +1,5 @@
 CACHE MANIFEST
-#REV 9
+#REV 10
 
 index.html
 partials/vehicle-detail.html
@@ -10,6 +10,7 @@ partials/vehicle-compare.html
 css/style.css
 css/bootstrap.min.css
 css/bootstrap-theme.min.css
+css/chartist.min.css
 
 
 js/app.js
@@ -21,6 +22,8 @@ js/angularfire.min.js
 js/jquery.min.js
 js/bootstrap.min.js
 js/angular-filter.min.js
+js/angular-chartist.min.js
+js/chartist.min.js
 
 images/facebook.png
 images/twitter.png
