@@ -2,9 +2,6 @@ var afseparfiControllers = angular.module('afseparfiControllers', []);
 
 afseparfiControllers.controller("VehicleIndexController", ['$scope', '$firebaseArray', '$window', '$filter',
   function($scope, $firebaseArray, $window, $filter) {
-	//TODO REMOVE WHEN WE GO LIVE. Added this here for mobile clients to be able to clear data
-	$window.localStorage.removeItem("eparatings");
-
 	//TODO move to service
 	$scope.ratings = JSON.parse($window.localStorage.getItem("eparatings")) ||  [] ;
 	$scope.compare = {};
