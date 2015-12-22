@@ -1,9 +1,28 @@
-var afseparfiControllers = angular.module('afseparfiControllers', ['angular.filter']);
+var afseparfiControllers = angular.module('afseparfiControllers', []);
 
-afseparfiControllers.controller("VehicleIndexController", ['$scope', '$firebaseArray', '$window',
-  function($scope, $firebaseArray, $window) {
+afseparfiControllers.controller("VehicleIndexController", ['$scope', '$firebaseArray', '$window', '$filter',
+  function($scope, $firebaseArray, $window, $filter) {
 	//TODO move to service
 	$scope.ratings = JSON.parse($window.localStorage.getItem("eparatings")) ||  [] ;
+	$scope.compare = {};
+	$scope.vehicleModels1 = [];
+	$scope.vehicleModels2 = [];
+	$scope.vehicleModels3 = [];
+	
+	//TODO fix usage of angular-filter.js instead of doing this manually
+	function filterMakes() {
+		var unique = {};
+		var distinct = [];
+		for( var i in $scope.ratings ){
+			if( typeof(unique[$scope.ratings[i].make]) == "undefined"){
+				distinct.push($scope.ratings[i].make);
+			}
+			unique[$scope.ratings[i].make] = 0;
+		}
+		$scope.vehicleMakes = distinct;
+	}
+	
+	
 	if ($scope.ratings.length == 0) {
 		var ref = new Firebase("https://dazzling-fire-2583.firebaseio.com/ratings");	 
 		$scope.ratings = $firebaseArray(ref);
@@ -12,22 +31,33 @@ afseparfiControllers.controller("VehicleIndexController", ['$scope', '$firebaseA
 		    $scope.ratings.reverse();
 		    //store locally to avoid database hit
 		    $window.localStorage.setItem("eparatings", JSON.stringify($scope.ratings));
+		    filterMakes();
 		})
 		.catch(function(error) {
 			console.log("Error:", error);
 		});
 	} else {
-		//TODO fix usage of angular-filter.js instead of doing this manually
-//		var unique = {};
-//		var distinct = [];
-//		for( var i in $scope.ratings ){
-//			if( typeof(unique[$scope.ratings[i].make]) == "undefined"){
-//				distinct.push($scope.ratings[i].make);
-//			}
-//			unique[$scope.ratings[i].make] = 0;
-//		}
-//		$scope.vehicleMakes = distinct;
+		filterMakes();
 	}
+
+	$scope.getModelOptions = function(modelIndex) {
+		
+		switch (modelIndex) {
+			case 1:
+				$scope.vehicleModels1 = $.grep($scope.ratings, function(e){ return e.make == $scope.compare.vehicleMake1; });
+				$scope.vehicleModels1 = $filter('orderBy')($scope.vehicleModels1, 'model');
+				break;
+			case 2:
+				$scope.vehicleModels2 = $.grep($scope.ratings, function(e){ return e.make == $scope.compare.vehicleMake2; });
+				$scope.vehicleModels2 = $filter('orderBy')($scope.vehicleModels2, 'model');
+				break;
+			case 3:
+				$scope.vehicleModels3 = $.grep($scope.ratings, function(e){ return e.make == $scope.compare.vehicleMake3; });
+				$scope.vehicleModels3 = $filter('orderBy')($scope.vehicleModels3, 'model');
+				break;
+		}
+	}
+	
 	
 }]);
 
