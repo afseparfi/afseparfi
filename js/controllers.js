@@ -136,10 +136,74 @@ afseparfiControllers.controller("VehicleDetailController", ['$scope', '$routePar
 	if ($scope.ratings.length == 0) {
 		var ref = new Firebase("https://dazzling-fire-2583.firebaseio.com/ratings/" + vehicleId);	
 		$scope.thisVehicle = $firebaseObject(ref);
+		buildChartsData();
 	} else {
 //		var searchVehicles = $.grep($scope.ratings, function(e){ return e.$id == vehicleId; });
 		$scope.thisVehicle = $scope.ratings.reduce(function(a, b){
 			return (a.$id==vehicleId && a) || (b.$id == vehicleId && b)
 		});
+		buildChartsData();
+	}
+	
+	function buildChartsData() {
+		var count = 0;
+		var combSum = 0;
+		var citySum = 0;
+		var hwySum = 0;
+		var allCitySum = 0;
+		var allHwySum = 0;
+		var allCombSum = 0;
+		for( var i in $scope.ratings ){
+			if($scope.ratings[i].VClass == $scope.thisVehicle.VClass){
+				combSum += $scope.ratings[i].comb08;
+				citySum += $scope.ratings[i].city08;
+				hwySum += $scope.ratings[i].highway08;
+				count++;
+			}
+			
+			allCombSum += $scope.ratings[i].comb08;
+			allCitySum += $scope.ratings[i].city08;
+			allHwySum += $scope.ratings[i].highway08;
+		}
+		var vehicleClassAverageCity = citySum / count;
+		var vehicleClassAverageHwy = hwySum / count;
+		var vehicleClassAverageComb = combSum / count;
+		var allAverageCity = allCitySum / $scope.ratings.length;
+		var allAverageHwy = allHwySum / $scope.ratings.length;
+		var allAverageComb = allCombSum / $scope.ratings.length;
+		
+		$scope.cityChartData = {'series':[[$scope.thisVehicle.city08, vehicleClassAverageCity, allAverageCity]],'labels': [$scope.thisVehicle.makeModel, 'All ' + $scope.thisVehicle.VClass, 'All MPG Data']};
+		$scope.hwyChartData = {'series':[[$scope.thisVehicle.highway08, vehicleClassAverageHwy, allAverageHwy]],'labels': [$scope.thisVehicle.makeModel, 'All ' + $scope.thisVehicle.VClass, 'All MPG Data']};
+		$scope.combChartData = {'series':[[$scope.thisVehicle.comb08, vehicleClassAverageComb, allAverageComb]],'labels': [$scope.thisVehicle.makeModel, 'All ' + $scope.thisVehicle.VClass, 'All MPG Data']};
+		
+		$scope.chartOptions = {
+			reverseData: true,
+			horizontalBars: true,
+			onlyInteger: true,
+			axisX: {
+			    showGrid: false,
+			    labelInterpolationFnc: function(value) {
+			      return value + ' mpg';
+			    }
+			},
+			axisY: {
+				offset: 120
+			}
+		};
+		
+		$scope.chartEvents = {
+				draw: function eventHandler(context) {
+					var max = 125;
+					if(context.type === 'bar') {
+					    context.element.attr({
+					      //this coloration would be based on range of bar values. higher would be green, lower would be red
+//					      style: 'stroke: hsl(' + Math.floor(Chartist.getMultiValue(context.value) / max * 100) + ', 50%, 50%);'
+					    	
+					      //instead of using color ranges, use random colors to get some variation in the charts
+					      style: 'stroke: hsl(' + Math.floor((Math.random() * 360) + 1) + ', 50%, 50%);'
+					    });
+					}
+				}
+		};
 	}
 }]);

@@ -20,6 +20,11 @@ button, .btn, .btn-default {
 	background-color: #E4EBED;
 }
 
+.info-row {
+  background-color: #F7F7F7;
+}
+
+
 .hero {
 	margin: auto;
 	display: block;
@@ -34,10 +39,17 @@ footer .small-text {
     font-size: 7pt;
 }
 
-.logo-header img{
-	margin: auto;
-  display: block;
-  max-width:100%;
+.mpgLabel {
+	font-size: 2em;
+}
+
+.mpgLabelSup {
+	line-height: 2em;
+  vertical-align: top;
+  font-weight: bold;
+/*   position: absolute; */
+/*   right: -50px; */
+/*   top: 0px; */
 }
 
 input, button {
