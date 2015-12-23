@@ -17,6 +17,14 @@ afseparfiApp.config(['$routeProvider',
 			templateUrl: 'partials/vehicle-detail.html',
 			controller: 'VehicleDetailController'
 		}).
+		when('/compare/:vehicleOne/to/:vehicleTwo', {
+			templateUrl: 'partials/vehicle-compare.html',
+			controller: 'VehicleCompareController'
+		}).
+		when('/compare/:vehicleOne/to/:vehicleTwo/and/:vehicleThree', {
+			templateUrl: 'partials/vehicle-compare.html',
+			controller: 'VehicleCompareController'
+		}).
 		when('/vehicle-index', {
 			templateUrl: 'partials/vehicle-index.html',
 			controller: 'VehicleIndexController'

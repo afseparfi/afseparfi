@@ -1,3 +1,44 @@
-<div class="container">
-  <h2>Compare Vehicles</h2>
+<div class="container" >
+  <div data-ng-if="compare3" class="row highlight-row">
+    <div class="col-xs-4">
+      <img class="img-responsive" src="images/default-vehicle.png">
+      <p>{{vehicle1.makeModel}}</p>
+    </div>
+    <div class="col-xs-4">
+      <img class="img-responsive" src="images/default-vehicle.png">
+      <p>{{vehicle2.makeModel}}</p>
+    </div>
+    <div class="col-xs-4">
+      <img class="img-responsive" src="images/default-vehicle.png">
+      <p>{{vehicle3.makeModel}}</p>
+    </div>
+  </div>
+  <div data-ng-if="compare3 == false" class="row highlight-row">
+    <div class="col-xs-6">
+      <img class="img-responsive" src="images/default-vehicle.png">
+      <p>{{vehicle1.makeModel}}</p>
+    </div>
+    <div class="col-xs-6">
+      <img class="img-responsive" src="images/default-vehicle.png">
+      <p>{{vehicle2.makeModel}}</p>
+    </div>
+  </div>
+
+  <div class="row info-row">
+    <div class="col-xs-12">
+      <h2 class="text-center">MPG COMPARISONS</h2>
+      <h6 class="text-center">City</h6>
+      <chartist class="ct-chart ct-double-octave" chartist-data="cityChartData" chartist-chart-type="Bar" chartist-events="chartEvents" chartist-chart-options="chartOptions"></chartist>
+      <h6 class="text-center">Highway</h6>
+      <chartist class="ct-chart ct-double-octave" chartist-data="hwyChartData" chartist-chart-type="Bar" chartist-events="chartEvents" chartist-chart-options="chartOptions"></chartist>
+      <h6 class="text-center">Combined</h6>
+      <chartist class="ct-chart ct-double-octave" chartist-data="combChartData" chartist-chart-type="Bar" chartist-events="chartEvents" chartist-chart-options="chartOptions"></chartist>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+      <h2 class="text-center">GHG COMPARISONS</h2>
+      <chartist class="ct-chart ct-double-octave" chartist-data="ghgChartData" chartist-chart-type="Bar" chartist-events="chartEvents" chartist-chart-options="ghgChartOptions"></chartist>      
+    </div>
+  </div>
 </div>
