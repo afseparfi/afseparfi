@@ -173,7 +173,7 @@ afseparfiControllers.controller("VehicleDetailController", ['$scope', '$routePar
 			allGhgSum += $scope.ratings[i].ghgScore;
 		}
 		
-		console.table($scope.similarVehicles);
+//		console.table($scope.similarVehicles);
 		var vehicleClassAverageCity = citySum / count;
 		var vehicleClassAverageHwy = hwySum / count;
 		var vehicleClassAverageComb = combSum / count;
