@@ -25,6 +25,10 @@ afseparfiApp.config(['$routeProvider',
 			templateUrl: 'partials/vehicle-compare.html',
 			controller: 'VehicleCompareController'
 		}).
+		when('/understand-epa-labels', {
+			templateUrl: 'partials/epa-label.html',
+			controller: 'VehicleIndexController'
+		}).
 		when('/vehicle-index', {
 			templateUrl: 'partials/vehicle-index.html',
 			controller: 'VehicleIndexController'

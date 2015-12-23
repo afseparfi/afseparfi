@@ -1,7 +1,7 @@
 var afseparfiControllers = angular.module('afseparfiControllers', []);
 
-afseparfiControllers.controller("VehicleIndexController", ['$scope', '$firebaseArray', '$window', '$filter',
-  function($scope, $firebaseArray, $window, $filter) {
+afseparfiControllers.controller("VehicleIndexController", ['$scope', '$firebaseArray', '$window', '$filter', '$location',
+  function($scope, $firebaseArray, $window, $filter, $location) {
 	
 	$scope.ratings = JSON.parse($window.localStorage.getItem("eparatings")) ||  [] ;
 	$scope.compare = {};
@@ -58,6 +58,19 @@ afseparfiControllers.controller("VehicleIndexController", ['$scope', '$firebaseA
 		}
 	}
 	
+	$scope.compareVehicles = function() {
+		if ($scope.compare.vehicleModel1 && $scope.compare.vehicleModel2 && $scope.compare.vehicleModel3) {
+			$location.path('/compare/' + $scope.compare.vehicleModel1.$id + '/to/' + $scope.compare.vehicleModel2.$id + '/and/' + $scope.compare.vehicleModel3.$id);
+		} else if ($scope.compare.vehicleModel1 && $scope.compare.vehicleModel2 && !$scope.compare.vehicleModel3) {
+			$location.path('/compare/' + $scope.compare.vehicleModel1.$id + '/to/' + $scope.compare.vehicleModel2.$id);
+		} else if ($scope.compare.vehicleModel1 && $scope.compare.vehicleModel3  && !$scope.compare.vehicleModel2){
+			$location.path('/compare/' + $scope.compare.vehicleModel1.$id + '/to/' + $scope.compare.vehicleModel3.$id);
+		} else if($scope.compare.vehicleModel2 && $scope.compare.vehicleModel3  && !$scope.compare.vehicleModel1) {
+			$location.path('/compare/' + $scope.compare.vehicleModel2.$id + '/to/' + $scope.compare.vehicleModel3.$id);
+		} else {
+			alert("Please select at least two options");
+		}		
+	}
 	
 }]);
 

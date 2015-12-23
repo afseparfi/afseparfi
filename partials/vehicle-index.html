@@ -1,11 +1,10 @@
-
 <div class="row visible-xs-block">
   <img class="hero img-responsive" src="images/heroimage.png" />
 </div>
 <div class="row hidden-xs">
    <img class="hero-desktop img-responsive" src="images/heroimage-desktop.png" />
  </div>
-<div class="container" data-ng-controller="VehicleIndexController">
+<div class="container">
 	<h4 class="text-center">Find and Compare Miles Per Gallon (MPG) and Greenhouse Gas (GHG) Ratings</h4>
 	<div class="clearfix col-xs-12 col-md-6 col-md-offset-3">
 	  <div class="form-group">
@@ -69,7 +68,7 @@
     <br clear="all"/>
     <div class="row">
 	    <div class="form-group">
-	      <button class="btn btn-default col-xs-8 col-xs-offset-2 col-md-6 col-md-offset-3" >Compare</button>
+	      <button class="btn btn-default col-xs-8 col-xs-offset-2 col-md-6 col-md-offset-3" data-ng-click="compareVehicles()">Compare</button>
 	    </div>
     </div>
 	  
