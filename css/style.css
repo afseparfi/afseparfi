@@ -39,16 +39,33 @@ footer .small-text {
     font-size: 7pt;
 }
 
-.mpgLabel {
+.fuel-economy-label img {
+	padding-top: 10px;
+}
+.fuel-economy-label .mpgLabel {
 	font-size: 2em;
+	font-weight: bold;
 }
 
-.mpgLabelSup {
-	line-height: 2em;
+.fuel-economy-label .mpgLabelSup {
+	line-height: 2.3em;
   vertical-align: top;
   font-weight: bold;
 }
 
+.fuel-economy-label .cityMpg {
+	top: -65px;
+  right: 50px;
+}
+
+.fuel-economy-label .hwyMpg {
+	top: -65px;
+  right: 20px;
+}
+
+.margin-top-zero {
+	margin-top: 0;
+}
 hr {
 	padding: 0;
   margin: 0;
@@ -60,6 +77,14 @@ input, button {
 
 .ct-label {
 	color: #222a2e
+}
+
+.relative {
+	position: relative;
+}
+
+.absolute {
+	position: absolute;
 }
 
 /** CUSTOMIZED NAVBAR STYLES **/

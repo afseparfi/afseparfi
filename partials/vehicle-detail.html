@@ -12,21 +12,21 @@
     </div>
   </div>
 
-  <div class="row info-row">
+  <div class="row info-row fuel-economy-label">
     <h2 class="text-center">Miles Per Gallon (MPG)</h2>
-    <div class="panel panel-info info-row col-xs-offset-1 col-xs-10 col-md-offset-3 col-md-6">
+    <div class="panel panel-info info-row col-xs-offset-1 col-xs-10 col-md-offset-4 col-md-4">
       <div class="panel-body">
 		    <h5 class="text-center"><strong>Fuel Economy</strong></h5>
 		    <div class="row">
 		      <div class="col-xs-2"><img src="images/fuel-pump.png"></div>
 		      <div class="col-xs-6">
-		      <h1><span class="mpgLabel">{{thisVehicle.comb08}}</span><sup class="mpgLabelSup">mpg</sup></h1>
+		      <h1 class="margin-top-zero"><span class="mpgLabel">{{thisVehicle.comb08}}</span><sup class="mpgLabelSup">mpg</sup></h1>
 		      <p class="text-nowrap">combined city/hwy</p>
 		      </div>
 		    </div>
-		    <div class="row">
-		      <div class="col-xs-offset-7 col-xs-2"><h5><strong>{{thisVehicle.comb08}}</strong></h5>city</div>
-		      <div class="col-xs-2"><h5><strong>{{thisVehicle.highway08}}</strong></h5>highway</div>
+		    <div class="row relative">
+		      <div class="col-xs-offset-7 col-xs-2 absolute cityMpg"><h5><strong>{{thisVehicle.comb08}}</strong></h5>city</div>
+		      <div class="col-xs-2 absolute hwyMpg"><h5><strong>{{thisVehicle.highway08}}</strong></h5>highway</div>
 		    </div>
 		  </div>
     </div>
