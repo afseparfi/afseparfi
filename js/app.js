@@ -3,7 +3,8 @@ var afseparfiApp = angular.module("afseparfiApp", [
     "angular.filter",
     "angular-chartist",
     "firebase",
-    "afseparfiControllers"
+    "afseparfiControllers",
+    "afseparfiServices"
 ]);
 
 afseparfiApp.config(['$routeProvider',

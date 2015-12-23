@@ -1,17 +1,13 @@
 var afseparfiControllers = angular.module('afseparfiControllers', []);
 
-afseparfiControllers.controller("VehicleIndexController", ['$scope', '$firebaseArray', '$window', '$filter', '$location',
-  function($scope, $firebaseArray, $window, $filter, $location) {
+afseparfiControllers.controller("VehicleIndexController", ['$scope', '$firebaseArray', '$window', '$filter', '$location', 'vehicleDataService',
+  function($scope, $firebaseArray, $window, $filter, $location, vehicleDataService) {
+	$scope.ratings = [];
 	
-	$scope.ratings = JSON.parse($window.localStorage.getItem("eparatings")) ||  [] ;
-	$scope.compare = {};
-	$scope.vehicleModels1 = [];
-	$scope.vehicleModels2 = [];
-	$scope.vehicleModels3 = [];
-	
-	//TODO fix usage of angular-filter.js instead of doing this manually
-	function filterMakes() {
-		var unique = {};
+	vehicleDataService.getData().then(function(data){
+      $scope.ratings = data;
+      //TODO fix usage of angular-filter.js instead of doing this manually
+      var unique = {};
 		var distinct = [];
 		for( var i in $scope.ratings ){
 			if( typeof(unique[$scope.ratings[i].make]) == "undefined"){
@@ -20,26 +16,15 @@ afseparfiControllers.controller("VehicleIndexController", ['$scope', '$firebaseA
 			unique[$scope.ratings[i].make] = 0;
 		}
 		$scope.vehicleMakes = distinct;
-	}
+    });
 	
-	//TODO move to service
-	if ($scope.ratings.length == 0) {
-		var ref = new Firebase("https://dazzling-fire-2583.firebaseio.com/ratings");	 
-		$scope.ratings = $firebaseArray(ref);
-		$scope.ratings.$loaded().then(function(data) {
-			//reverse list to show highest mpg on top
-		    $scope.ratings.reverse();
-		    //store locally to avoid database hit
-		    $window.localStorage.setItem("eparatings", JSON.stringify($scope.ratings));
-		    filterMakes();
-		})
-		.catch(function(error) {
-			console.log("Error:", error);
-		});
-	} else {
-		filterMakes();
-	}
-
+	$scope.compare = {};
+	$scope.vehicleModels1 = [];
+	$scope.vehicleModels2 = [];
+	$scope.vehicleModels3 = [];
+	
+	
+	
 	$scope.getModelOptions = function(modelIndex) {
 		
 		switch (modelIndex) {
@@ -75,8 +60,8 @@ afseparfiControllers.controller("VehicleIndexController", ['$scope', '$firebaseA
 }]);
 
 
-afseparfiControllers.controller("VehicleListController", ['$scope', '$firebaseArray', '$window', '$filter',
-  function($scope, $firebaseArray, $window, $filter) {
+afseparfiControllers.controller("VehicleListController", ['$scope', '$firebaseArray', 'vehicleDataService', '$filter',
+  function($scope, $firebaseArray, vehicleDataService, $filter) {
 	$scope.chartData = {'series':[[0]],'labels':['']};
 	$scope.chartOptions = {
 		reverseData: true,
@@ -108,24 +93,8 @@ afseparfiControllers.controller("VehicleListController", ['$scope', '$firebaseAr
 			}
 	};
 	
-
-	//TODO move to service
-	$scope.ratings = JSON.parse($window.localStorage.getItem("eparatings")) ||  [] ;
-	if ($scope.ratings.length == 0) {
-		var ref = new Firebase("https://dazzling-fire-2583.firebaseio.com/ratings");	 
-		$scope.ratings = $firebaseArray(ref);
-		$scope.ratings.$loaded().then(function(data) {
-		    $window.localStorage.setItem("eparatings", JSON.stringify($scope.ratings));
-		    buildChartData();
-		})
-		.catch(function(error) {
-			console.log("Error:", error);
-		});
-	} else {
-		buildChartData();
-	}
-	
-	function buildChartData() {
+	vehicleDataService.getData().then(function(data){
+		$scope.ratings = data;
 		var topRatings;
 		if ($scope.ratings.length > 0) {
 			topRatings = $filter('limitTo')($scope.ratings, 5);
@@ -135,31 +104,61 @@ afseparfiControllers.controller("VehicleListController", ['$scope', '$firebaseAr
 			$scope.chartData.labels.push(topRatings[i].makeModel);
 			$scope.chartData.series[0].push(topRatings[i].comb08);
 		}
-	}
+	});
 }]);
 
 
-afseparfiControllers.controller("VehicleDetailController", ['$scope', '$routeParams', '$window', '$firebaseObject',
-  function($scope, $routeParams, $window, $firebaseObject) {
+afseparfiControllers.controller("VehicleDetailController", ['$scope', '$routeParams', 'vehicleDataService', '$firebaseObject',
+  function($scope, $routeParams, vehicleDataService, $firebaseObject) {
 	var vehicleId = $routeParams.vehicleId;
 	$scope.thisVehicle = {};
 	$scope.similarVehicles = [];
+	$scope.chartOptions = {
+		reverseData: true,
+		horizontalBars: true,
+		axisX: {
+		    showGrid: false,
+			onlyInteger: true,
+		    labelInterpolationFnc: function(value) {
+		      return value + ' mpg';
+		    }
+		},
+		axisY: {
+			offset: 120
+		}
+	};
+	$scope.ghgChartOptions = {
+			reverseData: true,
+			horizontalBars: true,
+			axisX: {
+			    showGrid: false,
+				onlyInteger: true
+			},
+			axisY: {
+				offset: 120
+			}
+	};
+	$scope.chartEvents = {
+			draw: function eventHandler(context) {
+				var max = 125;
+				if(context.type === 'bar') {
+				    context.element.attr({
+				      //this coloration would be based on range of bar values. higher would be green, lower would be red
+//					      style: 'stroke: hsl(' + Math.floor(Chartist.getMultiValue(context.value) / max * 100) + ', 50%, 50%);'
+				    	
+				      //instead of using color ranges, use random colors to get some variation in the charts
+				      style: 'stroke: hsl(' + Math.floor((Math.random() * 360) + 1) + ', 50%, 50%);'
+				    });
+				}
+			}
+	};
 	
-	//TODO move to service
-	$scope.ratings = JSON.parse($window.localStorage.getItem("eparatings")) ||  [] ;
-	if ($scope.ratings.length == 0) {
-		var ref = new Firebase("https://dazzling-fire-2583.firebaseio.com/ratings/" + vehicleId);	
-		$scope.thisVehicle = $firebaseObject(ref);
-		buildVehiclesData();
-	} else {
-//		var searchVehicles = $.grep($scope.ratings, function(e){ return e.$id == vehicleId; });
-		$scope.thisVehicle = $scope.ratings.reduce(function(a, b){
-			return (a.$id==vehicleId && a) || (b.$id == vehicleId && b)
-		});
-		buildVehiclesData();
-	}
-	
-	function buildVehiclesData() {
+	vehicleDataService.getData().then(function(data){
+		$scope.ratings = data;
+		//identify this vehicle based on vehicleId
+		$scope.thisVehicle = vehicleDataService.findById(vehicleId);
+		
+		//build data for charts
 		var count = 0;
 		var combSum = 0;
 		var citySum = 0;
@@ -186,7 +185,6 @@ afseparfiControllers.controller("VehicleDetailController", ['$scope', '$routePar
 			allGhgSum += $scope.ratings[i].ghgScore;
 		}
 		
-//		console.table($scope.similarVehicles);
 		var vehicleClassAverageCity = citySum / count;
 		var vehicleClassAverageHwy = hwySum / count;
 		var vehicleClassAverageComb = combSum / count;
@@ -201,91 +199,74 @@ afseparfiControllers.controller("VehicleDetailController", ['$scope', '$routePar
 		$scope.hwyChartData = {'series':[[$scope.thisVehicle.highway08, vehicleClassAverageHwy, allAverageHwy]],'labels': [$scope.thisVehicle.makeModel, 'All ' + $scope.thisVehicle.VClass, 'All MPG Data']};
 		$scope.combChartData = {'series':[[$scope.thisVehicle.comb08, vehicleClassAverageComb, allAverageComb]],'labels': [$scope.thisVehicle.makeModel, 'All ' + $scope.thisVehicle.VClass, 'All MPG Data']};
 		$scope.ghgChartData = {'series':[[$scope.thisVehicle.ghgScore, vehicleClassAverageGhg, allAverageGhg]],'labels': [$scope.thisVehicle.makeModel, 'All ' + $scope.thisVehicle.VClass, 'All GHG Data']};
-		
-		$scope.chartOptions = {
-			reverseData: true,
-			horizontalBars: true,
-			axisX: {
-			    showGrid: false,
-				onlyInteger: true,
-			    labelInterpolationFnc: function(value) {
-			      return value + ' mpg';
-			    }
-			},
-			axisY: {
-				offset: 120
-			}
-		};
-		$scope.ghgChartOptions = {
-				reverseData: true,
-				horizontalBars: true,
-				axisX: {
-				    showGrid: false,
-					onlyInteger: true
-				},
-				axisY: {
-					offset: 120
-				}
-		};
-		$scope.chartEvents = {
-				draw: function eventHandler(context) {
-					var max = 125;
-					if(context.type === 'bar') {
-					    context.element.attr({
-					      //this coloration would be based on range of bar values. higher would be green, lower would be red
-//					      style: 'stroke: hsl(' + Math.floor(Chartist.getMultiValue(context.value) / max * 100) + ', 50%, 50%);'
-					    	
-					      //instead of using color ranges, use random colors to get some variation in the charts
-					      style: 'stroke: hsl(' + Math.floor((Math.random() * 360) + 1) + ', 50%, 50%);'
-					    });
-					}
-				}
-		};
-	}
+
+	});
+
 }]);
 
-afseparfiControllers.controller("VehicleCompareController", ['$scope', '$routeParams', '$window', '$firebaseObject',
-  function($scope, $routeParams, $window, $firebaseObject) {
+afseparfiControllers.controller("VehicleCompareController", ['$scope', '$routeParams', 'vehicleDataService', '$firebaseObject',
+  function($scope, $routeParams, vehicleDataService, $firebaseObject) {
 	var vehicle1Id = $routeParams.vehicleOne;
 	var vehicle2Id = $routeParams.vehicleTwo;
 	var vehicle3Id = $routeParams.vehicleThree;
 	
+	$scope.chartOptions = {
+		reverseData: true,
+		horizontalBars: true,
+		axisX: {
+		    showGrid: false,
+			onlyInteger: true,
+		    labelInterpolationFnc: function(value) {
+		      return value + ' mpg';
+		    }
+		},
+		axisY: {
+			offset: 120
+		}
+	};
+	$scope.ghgChartOptions = {
+			reverseData: true,
+			horizontalBars: true,
+			axisX: {
+			    showGrid: false,
+				onlyInteger: true
+			},
+			axisY: {
+				offset: 120
+			}
+	};
+	$scope.chartEvents = {
+			draw: function eventHandler(context) {
+				var max = 125;
+				if(context.type === 'bar') {
+				    context.element.attr({
+				      //this coloration would be based on range of bar values. higher would be green, lower would be red
+//					      style: 'stroke: hsl(' + Math.floor(Chartist.getMultiValue(context.value) / max * 100) + ', 50%, 50%);'
+				    	
+				      //instead of using color ranges, use random colors to get some variation in the charts
+				      style: 'stroke: hsl(' + Math.floor((Math.random() * 360) + 1) + ', 50%, 50%);'
+				    });
+				}
+			}
+	};
+		
 	$scope.compare3 = (vehicle3Id) ? true : false;
 	
 	$scope.vehicle1 = {};
 	$scope.vehicle2 = {};
 	$scope.vehicle3 = {};
-	$scope.similarVehicles = [];
+//	$scope.similarVehicles = [];
 	
-	//TODO move to service
-	$scope.ratings = JSON.parse($window.localStorage.getItem("eparatings")) ||  [] ;
-	if ($scope.ratings.length == 0) {
-		var ref1 = new Firebase("https://dazzling-fire-2583.firebaseio.com/ratings/" + vehicle1Id);	
-		$scope.vehicle1 = $firebaseObject(ref1);
-		var ref2 = new Firebase("https://dazzling-fire-2583.firebaseio.com/ratings/" + vehicle2Id);	
-		$scope.vehicle2 = $firebaseObject(ref2);
+	vehicleDataService.getData().then(function(data){
+		$scope.ratings = data;
+		//identify the vehicles to be compared by checking routeParam values
+		$scope.vehicle1 = vehicleDataService.findById(vehicle1Id);
+		$scope.vehicle2 = vehicleDataService.findById(vehicle2Id);
 		if ($scope.compare3) {
-			var ref3 = new Firebase("https://dazzling-fire-2583.firebaseio.com/ratings/" + vehicle3Id);	
-			$scope.vehicle2 = $firebaseObject(ref3);
+			$scope.vehicle3 = vehicleDataService.findById(vehicle3Id);
 		}
-		buildVehiclesData();
-	} else {
-		//var searchVehicles = $.grep($scope.ratings, function(e){ return e.$id == vehicleId; });
-		$scope.vehicle1 = $scope.ratings.reduce(function(a, b){
-			return (a.$id==vehicle1Id && a) || (b.$id == vehicle1Id && b)
-		});
-		$scope.vehicle2 = $scope.ratings.reduce(function(a, b){
-			return (a.$id==vehicle2Id && a) || (b.$id == vehicle2Id && b)
-		});
-		if ($scope.compare3) {
-			$scope.vehicle3 = $scope.ratings.reduce(function(a, b){
-				return (a.$id==vehicle3Id && a) || (b.$id == vehicle3Id && b)
-			});
-		}
-		buildVehiclesData();
-	}
-
-	function buildVehiclesData() {
+		
+		//build out charts data
 		var count = 0;
 		var combSum = 0;
 		var citySum = 0;
@@ -296,8 +277,9 @@ afseparfiControllers.controller("VehicleCompareController", ['$scope', '$routePa
 		var ghgSum = 0;
 		var allGhgSum = 0;
 		
+		//loop over vehicle records to calculate comparative chart data
 		for( var i in $scope.ratings ){
-			//only use this if we can compare vehicle classes at this point just using all data
+			//only use this if we can compare vehicle classes. at this point just using all data
 //			if($scope.ratings[i].VClass == $scope.vehicle1.VClass){
 //				combSum += $scope.ratings[i].comb08;
 //				citySum += $scope.ratings[i].city08;
@@ -313,7 +295,6 @@ afseparfiControllers.controller("VehicleCompareController", ['$scope', '$routePa
 			allGhgSum += $scope.ratings[i].ghgScore;
 		}
 		
-	// 	console.table($scope.similarVehicles);
 //		var vehicleClassAverageCity = citySum / count;
 //		var vehicleClassAverageHwy = hwySum / count;
 //		var vehicleClassAverageComb = combSum / count;
@@ -376,5 +357,5 @@ afseparfiControllers.controller("VehicleCompareController", ['$scope', '$routePa
 					}
 				}
   		};
-  	}
+	});
 }]);
