@@ -68,9 +68,9 @@ afseparfiControllers.controller("VehicleListController", ['$scope', '$firebaseAr
 	$scope.chartOptions = {
 		reverseData: true,
 		horizontalBars: true,
-		onlyInteger: true,
 		axisX: {
 		    showGrid: false,
+			onlyInteger: true,
 		    labelInterpolationFnc: function(value) {
 		      return value + ' mpg';
 		    }
@@ -130,22 +130,23 @@ afseparfiControllers.controller("VehicleDetailController", ['$scope', '$routePar
   function($scope, $routeParams, $window, $firebaseObject) {
 	var vehicleId = $routeParams.vehicleId;
 	$scope.thisVehicle = {};
+	$scope.similarVehicles = [];
 	
 	//TODO move to service
 	$scope.ratings = JSON.parse($window.localStorage.getItem("eparatings")) ||  [] ;
 	if ($scope.ratings.length == 0) {
 		var ref = new Firebase("https://dazzling-fire-2583.firebaseio.com/ratings/" + vehicleId);	
 		$scope.thisVehicle = $firebaseObject(ref);
-		buildChartsData();
+		buildVehiclesData();
 	} else {
 //		var searchVehicles = $.grep($scope.ratings, function(e){ return e.$id == vehicleId; });
 		$scope.thisVehicle = $scope.ratings.reduce(function(a, b){
 			return (a.$id==vehicleId && a) || (b.$id == vehicleId && b)
 		});
-		buildChartsData();
+		buildVehiclesData();
 	}
 	
-	function buildChartsData() {
+	function buildVehiclesData() {
 		var count = 0;
 		var combSum = 0;
 		var citySum = 0;
@@ -153,35 +154,47 @@ afseparfiControllers.controller("VehicleDetailController", ['$scope', '$routePar
 		var allCitySum = 0;
 		var allHwySum = 0;
 		var allCombSum = 0;
+		var ghgSum = 0;
+		var allGhgSum = 0;
+		
 		for( var i in $scope.ratings ){
 			if($scope.ratings[i].VClass == $scope.thisVehicle.VClass){
 				combSum += $scope.ratings[i].comb08;
 				citySum += $scope.ratings[i].city08;
 				hwySum += $scope.ratings[i].highway08;
+				ghgSum += $scope.ratings[i].ghgScore;
+				$scope.similarVehicles.push($scope.ratings[i]);
 				count++;
 			}
 			
 			allCombSum += $scope.ratings[i].comb08;
 			allCitySum += $scope.ratings[i].city08;
 			allHwySum += $scope.ratings[i].highway08;
+			allGhgSum += $scope.ratings[i].ghgScore;
 		}
+		
+		console.table($scope.similarVehicles);
 		var vehicleClassAverageCity = citySum / count;
 		var vehicleClassAverageHwy = hwySum / count;
 		var vehicleClassAverageComb = combSum / count;
+		var vehicleClassAverageGhg = ghgSum / count;
+		
 		var allAverageCity = allCitySum / $scope.ratings.length;
 		var allAverageHwy = allHwySum / $scope.ratings.length;
 		var allAverageComb = allCombSum / $scope.ratings.length;
+		var allAverageGhg = allGhgSum / $scope.ratings.length;
 		
 		$scope.cityChartData = {'series':[[$scope.thisVehicle.city08, vehicleClassAverageCity, allAverageCity]],'labels': [$scope.thisVehicle.makeModel, 'All ' + $scope.thisVehicle.VClass, 'All MPG Data']};
 		$scope.hwyChartData = {'series':[[$scope.thisVehicle.highway08, vehicleClassAverageHwy, allAverageHwy]],'labels': [$scope.thisVehicle.makeModel, 'All ' + $scope.thisVehicle.VClass, 'All MPG Data']};
 		$scope.combChartData = {'series':[[$scope.thisVehicle.comb08, vehicleClassAverageComb, allAverageComb]],'labels': [$scope.thisVehicle.makeModel, 'All ' + $scope.thisVehicle.VClass, 'All MPG Data']};
+		$scope.ghgChartData = {'series':[[$scope.thisVehicle.ghgScore, vehicleClassAverageGhg, allAverageGhg]],'labels': [$scope.thisVehicle.makeModel, 'All ' + $scope.thisVehicle.VClass, 'All GHG Data']};
 		
 		$scope.chartOptions = {
 			reverseData: true,
 			horizontalBars: true,
-			onlyInteger: true,
 			axisX: {
 			    showGrid: false,
+				onlyInteger: true,
 			    labelInterpolationFnc: function(value) {
 			      return value + ' mpg';
 			    }
@@ -190,7 +203,17 @@ afseparfiControllers.controller("VehicleDetailController", ['$scope', '$routePar
 				offset: 120
 			}
 		};
-		
+		$scope.ghgChartOptions = {
+				reverseData: true,
+				horizontalBars: true,
+				axisX: {
+				    showGrid: false,
+					onlyInteger: true
+				},
+				axisY: {
+					offset: 120
+				}
+		};
 		$scope.chartEvents = {
 				draw: function eventHandler(context) {
 					var max = 125;
