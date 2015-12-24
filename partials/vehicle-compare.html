@@ -3,19 +3,19 @@
   <div data-ng-if="compare3" class="row highlight-row">
     <div class="col-xs-4">
       <a href="#/vehicles/{{vehicle1.$id}}">
-        <img class="img-responsive" src="images/default-vehicle.png">
+        <img class="img-responsive" data-ng-src="{{getImage(vehicle1.$id)}}">
         <p>{{vehicle1.makeModel}}</p>
       </a>
     </div>
     <div class="col-xs-4">
       <a href="#/vehicles/{{vehicle2.$id}}">
-        <img class="img-responsive" src="images/default-vehicle.png">
+        <img class="img-responsive" data-ng-src="{{getImage(vehicle2.$id)}}">
         <p>{{vehicle2.makeModel}}</p>
       </a>
     </div>
     <div class="col-xs-4">
       <a href="#/vehicles/{{vehicle3.$id}}">
-        <img class="img-responsive" src="images/default-vehicle.png">
+        <img class="img-responsive" data-ng-src="{{getImage(vehicle3.$id)}}">
         <p>{{vehicle3.makeModel}}</p>
       </a>
     </div>
@@ -23,13 +23,13 @@
   <div data-ng-if="compare3 == false" class="row highlight-row">
     <div class="col-xs-6">
       <a href="#/vehicles/{{vehicle1.$id}}">
-        <img class="img-responsive" src="images/default-vehicle.png">
+        <img class="img-responsive" data-ng-src="{{getImage(vehicle1.$id)}}">
         <p>{{vehicle1.makeModel}}</p>
       </a>
     </div>
     <div class="col-xs-6">
       <a href="#/vehicles/{{vehicle2.$id}}">
-        <img class="img-responsive" src="images/default-vehicle.png">
+        <img class="img-responsive" data-ng-src="{{getImage(vehicle2.$id)}}">
         <p>{{vehicle2.makeModel}}</p>
       </a>
     </div>

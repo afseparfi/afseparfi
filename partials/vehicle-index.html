@@ -77,8 +77,13 @@
 		  <h5 class="text-center">2016 TOP FIVE MOST EFFICIENT VEHICLES</h5>
 		  <p class="text-center">Explore the the top five fuel sippers with EPA ratings for the 2016 model year.</p>
 		  <div class="col-xs-12">
-		    <img class="col-xs-offset-1 col-xs-5" src="http://www.fueleconomy.gov/feg/photos/2015_Chevy_Spark_EV.jpg">
-		    <img class="col-xs-offset-1 col-xs-5" src="http://www.fueleconomy.gov/feg/photos/2015_VW_e-Golf.jpg">
+		    <div class="col-xs-offset-1 col-xs-5" data-ng-repeat="auto in ratings | limitTo: 2">
+          <a data-ng-href="#/vehicles/{{auto.$id}}"><img class="img-responsive highlight-image" data-ng-src="{{getImage(auto.$id)}}"></a>
+          <div class="highlight-detail">
+            <p class="text-center"><a data-ng-href="#/vehicles/{{auto.$id}}">{{auto.makeModel}}</a></p>
+            <p class="text-center"><a data-ng-href="#/vehicles/{{auto.$id}}">{{auto.comb08}} Combined</a></p>
+          </div>
+        </div>
 			</div>
 			<div class="text-right">
         <a href="#/vehicles">See All Vehicles &raquo;</a>

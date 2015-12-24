@@ -1,5 +1,5 @@
 <div class="container" >
-	<h4>2016 Top Five Most Efficient Vehicles</h4>
+	<h1>2016 Top Five Most Efficient Vehicles</h1>
 	<p class="lead">
 	Vehicles are ranked by their EPA combined city/highway rating. All-Electric vehicle (EV) fuel economy is given in Miles Per Gallon equivalent (MPGe), where 33.7 kWh = 1 gallon of gasoline. Plug-in hybrid Vehicles (PHEV) are ranked by their combined gas/electricity rating.
 	</p>
@@ -8,12 +8,21 @@
   <br clear="all">
 
 	<div data-ng-controller="VehicleListController">
-	  <div class="row well clearfix" data-ng-repeat="auto in ratings | limitTo: 5 | reverse">
+	  <div class="row clearfix" data-ng-repeat="auto in ratings | limitTo: 5 | reverse">
+      <hr class="dashed-hr" />
 	    <div class="top-vehicle-info">
-	       <p class="lead">#{{5-$index}} <a data-ng-href="#/vehicles/{{auto.$id}}">{{auto.makeModel}}</a></p> 
-	       <p>Comb. MPG {{auto.comb08}}</p>
-	       <p>{{auto.trany}}</p>	        
-	       <p>City/Hwy {{auto.city08}}/{{auto.highway08}}</p>	     
+        <a data-ng-href="#/vehicles/{{auto.$id}}"><img class="center-block well img-responsive" data-ng-src="{{getImage(auto.$id)}}"></a>
+        <div class="row">
+          <div class="col-xs-4 col-md-3">
+            <a data-ng-href="#/vehicles/{{auto.$id}}"><img class="pull-right img-responsive" data-ng-src="images/{{5-$index}}.png"></a>
+          </div>
+          <div class="col-xs-8 col-md-9">
+            <p class="lead"><a data-ng-href="#/vehicles/{{auto.$id}}"><strong>{{auto.makeModel}}</strong></a></p> 
+            <p class="vehicle-info">Comb. MPG {{auto.comb08}}</p>
+            <p class="vehicle-info">{{auto.trany}}</p>         
+            <p class="vehicle-info">City/Hwy {{auto.city08}}/{{auto.highway08}}</p>
+          </div> 
+        </div>        
 	    </div>
 	    <br clear="all">
 	  </div>

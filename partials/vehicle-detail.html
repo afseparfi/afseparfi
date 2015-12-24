@@ -2,7 +2,7 @@
   
   <div class="row highlight-row">
     <div class="col-xs-6">
-      <img class="img-responsive" src="images/default-vehicle.png">
+      <img class="img-responsive" data-ng-src="{{getImage(thisVehicle.$id)}}">
     </div>
     <div class="col-xs-6">
       <h3>{{thisVehicle.makeModel}}</h3>

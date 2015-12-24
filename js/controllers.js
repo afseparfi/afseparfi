@@ -57,6 +57,9 @@ afseparfiControllers.controller("VehicleIndexController", ['$scope', '$filter', 
 		}		
 	}
 	
+	$scope.getImage = function(imageId) {
+		return vehicleDataService.getImage(imageId);
+	}	
 }]);
 
 
@@ -105,6 +108,10 @@ afseparfiControllers.controller("VehicleListController", ['$scope', 'vehicleData
 			$scope.chartData.series[0].push(topRatings[i].comb08);
 		}
 	});
+	
+	$scope.getImage = function(imageId) {
+		return vehicleDataService.getImage(imageId);
+	}	
 }]);
 
 
@@ -153,6 +160,8 @@ afseparfiControllers.controller("VehicleDetailController", ['$scope', '$routePar
 			}
 	};
 	
+	
+	
 	vehicleDataService.getData().then(function(data){
 		$scope.ratings = data;
 		//identify this vehicle based on vehicleId
@@ -200,6 +209,10 @@ afseparfiControllers.controller("VehicleDetailController", ['$scope', '$routePar
 		$scope.combChartData = {'series':[[$scope.thisVehicle.comb08, vehicleClassAverageComb, allAverageComb]],'labels': [$scope.thisVehicle.makeModel, 'All ' + $scope.thisVehicle.VClass, 'All MPG Data']};
 		$scope.ghgChartData = {'series':[[$scope.thisVehicle.ghgScore, vehicleClassAverageGhg, allAverageGhg]],'labels': [$scope.thisVehicle.makeModel, 'All ' + $scope.thisVehicle.VClass, 'All GHG Data']};
 
+		
+		$scope.getImage = function(imageId) {
+			return vehicleDataService.getImage(imageId);
+		}	
 	});
 
 }]);
@@ -250,6 +263,10 @@ afseparfiControllers.controller("VehicleCompareController", ['$scope', '$routePa
 			}
 	};
 		
+	$scope.getImage = function(imageId) {
+		return vehicleDataService.getImage(imageId);
+	}
+	
 	$scope.compare3 = (vehicle3Id) ? true : false;
 	
 	$scope.vehicle1 = {};
