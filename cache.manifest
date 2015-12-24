@@ -16,6 +16,7 @@ css/chartist.min.css
 
 js/app.js
 js/controllers.js
+js/services.js
 js/angularfire.min.js
 js/angular.min.js
 js/firebase.js
