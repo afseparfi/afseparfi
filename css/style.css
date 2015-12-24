@@ -29,7 +29,11 @@ button, .btn, .btn-default {
 	color: white;
 }
 
-.top-vehicle-info {
+.top-vehicle-info, .vehicle-title {
+	color: #0678BC;
+}
+
+dt {
 	color: #0678BC;
 }
 
