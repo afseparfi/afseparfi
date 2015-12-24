@@ -24,13 +24,6 @@ button, .btn, .btn-default {
   background-color: #F7F7F7;
 }
 
-
-.hero {
-	margin: auto;
-	display: block;
-	max-width:100%;
-}
-
 .light-text {
 	color: #5aa1b0;
 }

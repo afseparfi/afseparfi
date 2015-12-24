@@ -28,7 +28,7 @@ afseparfiApp.config(['$routeProvider',
 		}).
 		when('/understand-epa-labels', {
 			templateUrl: 'partials/epa-label.html',
-			controller: 'VehicleIndexController'
+			controller: 'EPALabelController'
 		}).
 		when('/vehicle-index', {
 			templateUrl: 'partials/vehicle-index.html',

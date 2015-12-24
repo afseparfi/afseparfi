@@ -1,3 +1,13 @@
 <div class="container">
-  <img class="img-responsive center-block" src="images/epa-label.png">
+  <h1 class="text-center">Understanding Fuel Economy Labels</h1>
+  <p class="text-center lead">Tap each number to find out more</p>
+  <p class="text-center text-success">{{epaLabelText}}</p>
+  <img class="img-responsive center-block" src="images/epa-label.png" alt="" usemap="#mapEpaLabels">
+  <map id="mapEpaLabels" name="mapEpaLabels">
+    <area shape="rect" coords="44,0,101,52"  data-ng-click="epaLabelText = 'Lorem Ipsum 1'">
+    <area shape="rect" coords="446,4,504,60" data-ng-click="epaLabelText = 'Lorem Ipsum 2'">
+    <area shape="rect" coords="47,443,107,496" data-ng-click="epaLabelText = 'Lorem Ipsum 3'">
+    <area shape="rect" coords="232,431,295,481" data-ng-click="epaLabelText = 'Lorem Ipsum 4'">
+    <area shape="rect" coords="444,458,512,509" data-ng-click="epaLabelText = 'Lorem Ipsum 5'">
+  </map>
 </div>

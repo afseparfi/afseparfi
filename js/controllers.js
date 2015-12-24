@@ -1,7 +1,7 @@
 var afseparfiControllers = angular.module('afseparfiControllers', []);
 
-afseparfiControllers.controller("VehicleIndexController", ['$scope', '$firebaseArray', '$window', '$filter', '$location', 'vehicleDataService',
-  function($scope, $firebaseArray, $window, $filter, $location, vehicleDataService) {
+afseparfiControllers.controller("VehicleIndexController", ['$scope', '$filter', '$location', 'vehicleDataService',
+  function($scope, $filter, $location, vehicleDataService) {
 	$scope.ratings = [];
 	
 	vehicleDataService.getData().then(function(data){
@@ -60,8 +60,8 @@ afseparfiControllers.controller("VehicleIndexController", ['$scope', '$firebaseA
 }]);
 
 
-afseparfiControllers.controller("VehicleListController", ['$scope', '$firebaseArray', 'vehicleDataService', '$filter',
-  function($scope, $firebaseArray, vehicleDataService, $filter) {
+afseparfiControllers.controller("VehicleListController", ['$scope', 'vehicleDataService', '$filter',
+  function($scope, vehicleDataService, $filter) {
 	$scope.chartData = {'series':[[0]],'labels':['']};
 	$scope.chartOptions = {
 		reverseData: true,
@@ -108,8 +108,8 @@ afseparfiControllers.controller("VehicleListController", ['$scope', '$firebaseAr
 }]);
 
 
-afseparfiControllers.controller("VehicleDetailController", ['$scope', '$routeParams', 'vehicleDataService', '$firebaseObject',
-  function($scope, $routeParams, vehicleDataService, $firebaseObject) {
+afseparfiControllers.controller("VehicleDetailController", ['$scope', '$routeParams', 'vehicleDataService',
+  function($scope, $routeParams, vehicleDataService) {
 	var vehicleId = $routeParams.vehicleId;
 	$scope.thisVehicle = {};
 	$scope.similarVehicles = [];
@@ -204,8 +204,8 @@ afseparfiControllers.controller("VehicleDetailController", ['$scope', '$routePar
 
 }]);
 
-afseparfiControllers.controller("VehicleCompareController", ['$scope', '$routeParams', 'vehicleDataService', '$firebaseObject',
-  function($scope, $routeParams, vehicleDataService, $firebaseObject) {
+afseparfiControllers.controller("VehicleCompareController", ['$scope', '$routeParams', 'vehicleDataService',
+  function($scope, $routeParams, vehicleDataService) {
 	var vehicle1Id = $routeParams.vehicleOne;
 	var vehicle2Id = $routeParams.vehicleTwo;
 	var vehicle3Id = $routeParams.vehicleThree;
@@ -357,5 +357,12 @@ afseparfiControllers.controller("VehicleCompareController", ['$scope', '$routePa
 					}
 				}
   		};
+	});
+}]);
+
+afseparfiControllers.controller("EPALabelController", ['$scope',
+  function($scope, $routeParams) {
+	$(document).ready(function() {
+	    $('map').imageMapResize();
 	});
 }]);

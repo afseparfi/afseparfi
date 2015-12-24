@@ -26,6 +26,7 @@ js/angular-filter.min.js
 js/angular-chartist.min.js
 js/angular-route.min.js
 js/chartist.min.js
+js/imageMapResizer.min.js
 
 images/facebook.png
 images/twitter.png
