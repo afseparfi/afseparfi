@@ -10,7 +10,6 @@ views/epa-label.html
 
 styles/style.css
 styles/bootstrap.min.css
-styles/bootstrap-theme.min.css
 styles/chartist.min.css
 
 
