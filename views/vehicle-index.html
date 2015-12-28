@@ -80,7 +80,7 @@
 		    <div class="col-xs-offset-1 col-xs-5" data-ng-repeat="auto in ratings | limitTo: 2">
           <a data-ng-href="#/vehicles/{{auto.$id}}"><img class="img-responsive highlight-image" data-ng-src="{{getImage(auto.$id)}}"></a>
           <div class="highlight-detail">
-            <p class="text-center"><a data-ng-href="#/vehicles/{{auto.$id}}">{{auto.makeModel}}</a></p>
+            <p class="text-center"><a data-ng-href="#/vehicles/{{auto.$id}}">{{auto.make}} <span class="text-nowrap">{{auto.model}}</span></a></p>
             <p class="text-center"><a data-ng-href="#/vehicles/{{auto.$id}}">{{auto.comb08}} Combined</a></p>
           </div>
         </div>
