@@ -11,94 +11,109 @@
       <dt>Fuel Usage:</dt><dd>{{thisVehicle.fuelType1}}</dd>
     </div>
   </div>
+  
+  <!-- Nav tabs -->
+  <ul class="nav nav-tabs nav-justified" role="tablist">
+    <li role="presentation" class="active"><a data-target="#mpgTabContent" aria-controls="mpgTabContent" role="tab" data-toggle="tab">MPG</a></li>
+    <li role="presentation"><a data-target="#ghgTabContent" aria-controls="ghgTabContent" role="tab" data-toggle="tab">GHG</a></li>
+    <li role="presentation"><a data-target="#fuelCostTabContent" aria-controls="fuelCostTabContent" role="tab" data-toggle="tab">FUEL COST</a></li>
+  </ul>
 
-  <div class="row info-row fuel-economy-label">
-    <h2 class="text-center">Miles Per Gallon (MPG)</h2>
-    <div class="panel panel-info info-row col-xs-offset-1 col-xs-10 col-md-offset-4 col-md-4">
-      <div class="panel-body">
-		    <h5 class="text-center"><strong>Fuel Economy</strong></h5>
-		    <div class="row">
-		      <div class="col-xs-2"><img src="images/fuel-pump.png"></div>
-		      <div class="col-xs-6">
-		      <h1 class="margin-top-zero"><span class="mpgLabel">{{thisVehicle.comb08}}</span><sup class="mpgLabelSup">mpg</sup></h1>
-		      <p class="text-nowrap">combined city/hwy</p>
-		      </div>
-		    </div>
-		    <div class="row relative">
-		      <div class="col-xs-offset-7 col-xs-2 absolute cityMpg"><h5><strong>{{thisVehicle.comb08}}</strong></h5>city</div>
-		      <div class="col-xs-2 absolute hwyMpg"><h5><strong>{{thisVehicle.highway08}}</strong></h5>highway</div>
-		    </div>
-		  </div>
-    </div>
-	</div>
-	<hr/>
-  <div class="row info-row">
-    <div class="col-xs-12">
-      <h2 class="text-center">MPG COMPARISONS</h2>
-	    <h6 class="text-center">City</h6>
-	    <chartist class="ct-chart ct-double-octave" chartist-data="cityChartData" chartist-chart-type="Bar" chartist-events="chartEvents" chartist-chart-options="chartOptions"></chartist>
-	    <h6 class="text-center">Highway</h6>
-	    <chartist class="ct-chart ct-double-octave" chartist-data="hwyChartData" chartist-chart-type="Bar" chartist-events="chartEvents" chartist-chart-options="chartOptions"></chartist>
-	    <h6 class="text-center">Combined</h6>
-	    <chartist class="ct-chart ct-double-octave" chartist-data="combChartData" chartist-chart-type="Bar" chartist-events="chartEvents" chartist-chart-options="chartOptions"></chartist>
-    </div>
-	</div>
-	
-	<div class="row clearfix">
-    <h2 class="text-center">GREENHOUSE GAS (GHG)</h2>
-    <div class="panel panel-info col-xs-offset-1 col-xs-10 col-md-offset-3 col-md-6">
-      <div class="panel-body">
-        <h5 class="text-center">Greenhouse Gas Rating <span class="disabled">(tailpipe only)</span></h5>
-        <div class="row">
-          <div class="col-xs-12"><img class="img-responsive center-block" src="images/epaem{{thisVehicle.ghgScore}}.png"></div>
-        </div>        
-      </div>
-    </div>    
-  </div>
-  <div class="row small-text text-center">Compares the tailpipe greenhouse gas emissions to those of other vehicles of the same model year on a scale of 1 (worst) to 10 (best)</div>
-	<hr/>
-	<div class="row">
-    <div class="col-xs-12">
-      <h2 class="text-center">GHG COMPARISONS</h2>
-      <chartist class="ct-chart ct-double-octave" chartist-data="ghgChartData" chartist-chart-type="Bar" chartist-events="chartEvents" chartist-chart-options="ghgChartOptions"></chartist>      
-    </div>
-  </div>
-  
-  <div class="row clearfix annualFuelCost">
-    <h2 class="text-center">ESTIMATED FUEL COST</h2>
-    <div class="panel panel-info col-xs-offset-1 col-xs-10 col-md-offset-4 col-md-4">
-      <div class="panel-body">
-        <h2 class="text-center ">Annual fuel <strong>cost</strong></h2>
-        <div class="row">
-          <h1 class="text-center">${{thisVehicle.fuelCost08}}</h1>
-        </div>        
-      </div>
-    </div>     
-  </div>
-  <div class="row small-text text-center">Annual fuel cost is based on 15,000 miles, 55% city driving, and the price of fuel used by the vehicle.</div>
-  
-  <div class="row clearfix annualFuelSavings">
-    <h2 class="text-center">ESTIMATED FUEL SAVINGS</h2>
-    <div class="panel panel-info col-xs-offset-1 col-xs-10 col-md-offset-4 col-md-4">
-      <div class="panel-body">
-        <h2 class="text-center ">You <strong>save</strong></h2>
-        <div class="row">
-          <h1 class="text-center">${{thisVehicle.youSaveSpend}}</h1>
-        </div>   
-        <div class="row subheading">
-          <h5><strong>in fuel costs</strong><br><strong>over five years</strong><br><small>compared to the average new vehicle</small></h5>  
-             
+  <!-- Tab panes -->
+  <div class="tab-content">
+    <div role="tabpanel" class="tab-pane active" id="mpgTabContent">
+      <div class="row info-row fuel-economy-label">
+        <h2 class="text-center">Miles Per Gallon (MPG)</h2>
+        <div class="panel panel-info info-row col-xs-offset-1 col-xs-10 col-md-offset-4 col-md-4">
+          <div class="panel-body">
+            <h5 class="text-center"><strong>Fuel Economy</strong></h5>
+            <div class="row">
+              <div class="col-xs-2"><img src="images/fuel-pump.png"></div>
+              <div class="col-xs-6">
+              <h1 class="margin-top-zero"><span class="mpgLabel">{{thisVehicle.comb08}}</span><sup class="mpgLabelSup">mpg</sup></h1>
+              <p class="text-nowrap">combined city/hwy</p>
+              </div>
+            </div>
+            <div class="row relative">
+              <div class="col-xs-offset-7 col-xs-2 absolute cityMpg"><h5><strong>{{thisVehicle.comb08}}</strong></h5>city</div>
+              <div class="col-xs-2 absolute hwyMpg"><h5><strong>{{thisVehicle.highway08}}</strong></h5>highway</div>
+            </div>
+          </div>
         </div>
-        
       </div>
-    </div>     
+      <hr/>
+      <div class="row info-row">
+        <div class="col-xs-12">
+          <h2 class="text-center">MPG COMPARISONS</h2>
+          <h6 class="text-center">City</h6>
+          <chartist class="ct-chart ct-double-octave" chartist-data="cityChartData" chartist-chart-type="Bar" chartist-events="chartEvents" chartist-chart-options="chartOptions"></chartist>
+          <h6 class="text-center">Highway</h6>
+          <chartist class="ct-chart ct-double-octave" chartist-data="hwyChartData" chartist-chart-type="Bar" chartist-events="chartEvents" chartist-chart-options="chartOptions"></chartist>
+          <h6 class="text-center">Combined</h6>
+          <chartist class="ct-chart ct-double-octave" chartist-data="combChartData" chartist-chart-type="Bar" chartist-events="chartEvents" chartist-chart-options="chartOptions"></chartist>
+        </div>
+      </div>
+    </div>
+    
+    <div role="tabpanel" class="tab-pane" id="ghgTabContent">
+      <div class="row clearfix">
+        <h2 class="text-center">GREENHOUSE GAS (GHG)</h2>
+        <div class="panel panel-info col-xs-offset-1 col-xs-10 col-md-offset-3 col-md-6">
+          <div class="panel-body">
+            <h5 class="text-center">Greenhouse Gas Rating <span class="disabled">(tailpipe only)</span></h5>
+            <div class="row">
+              <div class="col-xs-12"><img class="img-responsive center-block" src="images/epaem{{thisVehicle.ghgScore}}.png"></div>
+            </div>        
+          </div>
+        </div>    
+      </div>
+      <div class="row small-text text-center">Compares the tailpipe greenhouse gas emissions to those of other vehicles of the same model year on a scale of 1 (worst) to 10 (best)</div>
+      <hr/>
+      <div class="row">
+        <div class="col-xs-12">
+          <h2 class="text-center">GHG COMPARISONS</h2>
+          <chartist class="ct-chart ct-double-octave" chartist-data="ghgChartData" chartist-chart-type="Bar" chartist-events="chartEvents" chartist-chart-options="ghgChartOptions"></chartist>      
+        </div>
+      </div>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="fuelCostTabContent">
+      <div class="row clearfix annualFuelCost">
+        <h2 class="text-center">ESTIMATED FUEL COST</h2>
+        <div class="panel panel-info col-xs-offset-1 col-xs-10 col-md-offset-4 col-md-4">
+          <div class="panel-body">
+            <h2 class="text-center text-nowrap">Annual fuel <strong>cost</strong></h2>
+            <div class="row">
+              <h1 class="text-center">${{thisVehicle.fuelCost08}}</h1>
+            </div>        
+          </div>
+        </div>     
+      </div>
+      <div class="row small-text text-center">Annual fuel cost is based on 15,000 miles, 55% city driving, and the price of fuel used by the vehicle.</div>
+      
+      <div class="row clearfix annualFuelSavings">
+        <h2 class="text-center">ESTIMATED FUEL SAVINGS</h2>
+        <div class="panel panel-info col-xs-offset-1 col-xs-10 col-md-offset-4 col-md-4">
+          <div class="panel-body">
+            <h2 class="text-center ">You <strong>save</strong></h2>
+            <div class="row">
+              <h1 class="text-center">${{thisVehicle.youSaveSpend}}</h1>
+            </div>   
+            <div class="row subheading">
+              <h5><strong>in fuel costs</strong><br><strong>over five years</strong><br><small>compared to the average new vehicle</small></h5>  
+                 
+            </div>
+            
+          </div>
+        </div>     
+      </div>
+      <div class="row small-text text-center col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-3">
+        You save/spend over 5 years compared to an average car ($). 
+        Savings are positive; a greater amount spent yields a negative number. 
+        For dual fuel vehicles, this is the cost savings for gasoline.
+      </div>
+    </div>
   </div>
-  <div class="row small-text text-center col-xs-8 col-xs-offset-2">
-    You save/spend over 5 years compared to an average car ($). 
-    Savings are positive; a greater amount spent yields a negative number. 
-    For dual fuel vehicles, this is the cost savings for gasoline.
-  </div>
-  <hr/>
-  <hr/>
+  
+    <hr/>
   <!-- TODO build out comparison carousel -->
 </div>

@@ -197,4 +197,14 @@ input, button {
     color: #ffffff;
     background-color: #0678bc;
   }
+  
+  .nav-tabs > li, .nav-pills > li {
+	    float:none;
+	    display:inline-block;
+	}
+	
+	.nav-tabs {
+	    text-align:center;
+	}
+	  
 }

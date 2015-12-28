@@ -160,8 +160,6 @@ afseparfiControllers.controller("VehicleDetailController", ['$scope', '$routePar
 			}
 	};
 	
-	
-	
 	vehicleDataService.getData().then(function(data){
 		$scope.ratings = data;
 		//identify this vehicle based on vehicleId
@@ -214,6 +212,17 @@ afseparfiControllers.controller("VehicleDetailController", ['$scope', '$routePar
 			return vehicleDataService.getImage(imageId);
 		}	
 	});
+	
+	//fix charts in hidden divs
+	$(document).ready(function() {
+		$('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+		  //call chartist update to re-render graphs 
+		  $($(e.target).data("target") + " .ct-chart").each(function() {
+			 this.__chartist__.update();
+		  });
+		});
+	});
+	
 
 }]);
 
