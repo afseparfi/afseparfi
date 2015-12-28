@@ -11,7 +11,9 @@ afseparfiControllers.controller("VehicleIndexController", ['$scope', '$filter', 
 		var distinct = [];
 		for( var i in $scope.ratings ){
 			if( typeof(unique[$scope.ratings[i].make]) == "undefined"){
-				distinct.push($scope.ratings[i].make);
+				if (unique[$scope.ratings[i].make] != "") {
+					distinct.push($scope.ratings[i].make);
+				}				
 			}
 			unique[$scope.ratings[i].make] = 0;
 		}
