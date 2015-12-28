@@ -19,9 +19,14 @@ afseparfiServices.factory("vehicleDataService", ['$firebaseArray', '$q', '$windo
 	        var deferred = $q.defer();
 			if (vehicleRatings.length == 0) {
 				 
-				vehicleRatings = $firebaseArray(ref);
-				vehicleRatings.$loaded().then(function(data) {
-				    // store locally to avoid database hit
+				var vehicleRatingsData = $firebaseArray(ref);
+				vehicleRatingsData.$loaded().then(function(data) {
+					
+					if (vehicleRatings.length == 0) {
+						//reverse array to store top fuel efficient vehicles at top
+						vehicleRatings = data.reverse();
+					}
+					// store locally to avoid database hit
 				    $window.localStorage.setItem("eparatings", JSON.stringify(vehicleRatings));
 				    deferred.resolve(data);
 				})

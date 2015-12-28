@@ -98,14 +98,14 @@ afseparfiControllers.controller("VehicleListController", ['$scope', 'vehicleData
 	
 	vehicleDataService.getData().then(function(data){
 		$scope.ratings = data;
-		var topRatings;
+		$scope.topRatings;
 		if ($scope.ratings.length > 0) {
-			topRatings = $filter('limitTo')($scope.ratings, 5);
+			$scope.topRatings = $filter('limitTo')($scope.ratings, 5);
 		}
 		
-		for( var i = 0; i < topRatings.length; i++ ){
-			$scope.chartData.labels.push(topRatings[i].makeModel);
-			$scope.chartData.series[0].push(topRatings[i].comb08);
+		for( var i = 0; i < $scope.topRatings.length; i++ ){
+			$scope.chartData.labels.push($scope.topRatings[i].makeModel);
+			$scope.chartData.series[0].push($scope.topRatings[i].comb08);
 		}
 	});
 	
