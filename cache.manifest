@@ -2,32 +2,32 @@ CACHE MANIFEST
 #REV 16
 
 index.html
-partials/vehicle-detail.html
-partials/vehicle-index.html
-partials/vehicle-list.html
-partials/vehicle-compare.html
-partials/epa-label.html
+views/vehicle-detail.html
+views/vehicle-index.html
+views/vehicle-list.html
+views/vehicle-compare.html
+views/epa-label.html
 
-css/style.css
-css/bootstrap.min.css
-css/bootstrap-theme.min.css
-css/chartist.min.css
+styles/style.css
+styles/bootstrap.min.css
+styles/bootstrap-theme.min.css
+styles/chartist.min.css
 
 
-js/app.js
-js/controllers.js
-js/services.js
-js/angularfire.min.js
-js/angular.min.js
-js/firebase.js
-js/angularfire.min.js
-js/jquery.min.js
-js/bootstrap.min.js
-js/angular-filter.min.js
-js/angular-chartist.min.js
-js/angular-route.min.js
-js/chartist.min.js
-js/imageMapResizer.min.js
+scripts/app.js
+scripts/controllers.js
+scripts/services.js
+scripts/angularfire.min.js
+scripts/angular.min.js
+scripts/firebase.js
+scripts/angularfire.min.js
+scripts/jquery.min.js
+scripts/bootstrap.min.js
+scripts/angular-filter.min.js
+scripts/angular-chartist.min.js
+scripts/angular-route.min.js
+scripts/chartist.min.js
+scripts/imageMapResizer.min.js
 
 images/facebook.png
 images/twitter.png
