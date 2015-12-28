@@ -63,5 +63,42 @@
       <chartist class="ct-chart ct-double-octave" chartist-data="ghgChartData" chartist-chart-type="Bar" chartist-events="chartEvents" chartist-chart-options="ghgChartOptions"></chartist>      
     </div>
   </div>
+  
+  <div class="row clearfix annualFuelCost">
+    <h2 class="text-center">ESTIMATED FUEL COST</h2>
+    <div class="panel panel-info col-xs-offset-1 col-xs-10 col-md-offset-4 col-md-4">
+      <div class="panel-body">
+        <h2 class="text-center ">Annual fuel <strong>cost</strong></h2>
+        <div class="row">
+          <h1 class="text-center">${{thisVehicle.fuelCost08}}</h1>
+        </div>        
+      </div>
+    </div>     
+  </div>
+  <div class="row small-text text-center">Annual fuel cost is based on 15,000 miles, 55% city driving, and the price of fuel used by the vehicle.</div>
+  
+  <div class="row clearfix annualFuelSavings">
+    <h2 class="text-center">ESTIMATED FUEL SAVINGS</h2>
+    <div class="panel panel-info col-xs-offset-1 col-xs-10 col-md-offset-4 col-md-4">
+      <div class="panel-body">
+        <h2 class="text-center ">You <strong>save</strong></h2>
+        <div class="row">
+          <h1 class="text-center">${{thisVehicle.youSaveSpend}}</h1>
+        </div>   
+        <div class="row subheading">
+          <h5><strong>in fuel costs</strong><br><strong>over five years</strong><br><small>compared to the average new vehicle</small></h5>  
+             
+        </div>
+        
+      </div>
+    </div>     
+  </div>
+  <div class="row small-text text-center col-xs-8 col-xs-offset-2">
+    You save/spend over 5 years compared to an average car ($). 
+    Savings are positive; a greater amount spent yields a negative number. 
+    For dual fuel vehicles, this is the cost savings for gasoline.
+  </div>
+  <hr/>
+  <hr/>
   <!-- TODO build out comparison carousel -->
 </div>

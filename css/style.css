@@ -107,6 +107,19 @@ input, button {
 	position: absolute;
 }
 
+.annualFuelCost h1, .annualFuelSavings h1 {
+	margin: 0;
+	font-size: 5em;
+}
+
+.annualFuelCost h2 strong, .annualFuelSavings h2 strong{
+	font-size: 1.7em;
+}
+
+.annualFuelSavings .subheading {
+	margin-left: 8em;
+}
+
 /** CUSTOMIZED NAVBAR STYLES **/
 
 .navbar {
