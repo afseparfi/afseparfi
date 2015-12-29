@@ -31,7 +31,7 @@
     <h5 class="text-center light-text"> - or, compare up to 3 vehicles -</h5>
 	  <div class="row">
 	    <div class="col-xs-5 col-xs-offset-1 col-md-3 col-md-offset-3">
-	      <select data-ng-model="compare.vehicleMake1" class="form-control" data-ng-options="make for make in vehicleMakes" data-ng-change="getModelOptions(1)">
+	      <select data-ng-model="compare.vehicleMake1" class="form-control" data-ng-options="make for make in vehicleMakes | orderBy: make" data-ng-change="getModelOptions(1)">
 	      <option value="">Make</option>
 	      </select>
 	    </div>
@@ -43,7 +43,7 @@
 	  </div>  
 	  <div class="row">
       <div class="col-xs-5 col-xs-offset-1 col-md-3 col-md-offset-3">
-        <select data-ng-model="compare.vehicleMake2" class="form-control" data-ng-options="make for make in vehicleMakes" data-ng-change="getModelOptions(2)">
+        <select data-ng-model="compare.vehicleMake2" class="form-control" data-ng-options="make for make in vehicleMakes | orderBy: make" data-ng-change="getModelOptions(2)">
         <option value="">Make</option>
         </select>
       </div>
@@ -55,7 +55,7 @@
     </div> 
     <div class="row">
       <div class="col-xs-5 col-xs-offset-1 col-md-3 col-md-offset-3">
-        <select data-ng-model="compare.vehicleMake3" class="form-control" data-ng-options="make for make in vehicleMakes" data-ng-change="getModelOptions(3)">
+        <select data-ng-model="compare.vehicleMake3" class="form-control" data-ng-options="make for make in vehicleMakes | orderBy: make" data-ng-change="getModelOptions(3)">
         <option value="">Make</option>
         </select>
       </div>
