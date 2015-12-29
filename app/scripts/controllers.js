@@ -440,50 +440,6 @@ afseparfiControllers.controller("VehicleCompareController", ['$scope', '$routePa
 			$scope.fuelSavingsChartData = {'series':[[$scope.vehicle1.youSaveSpend, $scope.vehicle2.youSaveSpend, allAverageFuelSavings]],'labels': [$scope.vehicle1.makeModel, $scope.vehicle2.makeModel, 'Average Fuel Saving']};
 			$scope.fuelCostsChartData = {'series':[[$scope.vehicle1.fuelCost08, $scope.vehicle2.fuelCost08, allAverageFuelCosts]],'labels': [$scope.vehicle1.makeModel, $scope.vehicle2.makeModel, 'Average Fuel Cost']};
 		}
-<<<<<<< Updated upstream
-=======
-
-
-		$scope.chartOptions = {
-			reverseData: true,
-			horizontalBars: true,
-			axisX: {
-			    showGrid: false,
-				onlyInteger: true,
-			    labelInterpolationFnc: function(value) {
-			      return value + ' mpg';
-			    }
-			},
-			axisY: {
-				offset: 120
-			}
-		};
-		$scope.ghgChartOptions = {
-				reverseData: true,
-				horizontalBars: true,
-				axisX: {
-				    showGrid: false,
-					onlyInteger: true
-				},
-				axisY: {
-					offset: 120
-				}
-		};
-		$scope.chartEvents = {
-			draw: function eventHandler(context) {
-				var max = 125;
-				if(context.type === 'bar') {
-				    context.element.attr({
-				    	//this coloration would be based on range of bar values. higher would be green, lower would be red
-				    	// style: 'stroke: hsl(' + Math.floor(Chartist.getMultiValue(context.value) / max * 100) + ', 50%, 50%);'
-
-				      	//instead of using color ranges, use random colors to get some variation in the charts
-				    		style: 'stroke: hsl(' + Math.floor((Math.random() * 360) + 1) + ', 50%, 50%);'
-					    });
-					}
-				}
-  		};
->>>>>>> Stashed changes
 	});
 }]);
 
