@@ -1,9 +1,9 @@
 var afseparfiControllers = angular.module('afseparfiControllers', []);
 
-afseparfiControllers.controller("VehicleIndexController", ['$scope', '$filter', '$location', 'vehicleDataService',
-  function($scope, $filter, $location, vehicleDataService) {
+afseparfiControllers.controller("VehicleIndexController", ['$scope', '$filter', '$routeParams', '$location', 'vehicleDataService',
+  function($scope, $filter, $routeParams, $location, vehicleDataService) {
 	$scope.ratings = [];
-	
+
 	vehicleDataService.getData().then(function(data){
       $scope.ratings = data;
       //TODO fix usage of angular-filter.js instead of doing this manually
@@ -13,22 +13,22 @@ afseparfiControllers.controller("VehicleIndexController", ['$scope', '$filter', 
 			if( typeof(unique[$scope.ratings[i].make]) == "undefined"){
 				if (unique[$scope.ratings[i].make] != "") {
 					distinct.push($scope.ratings[i].make);
-				}				
+				}
 			}
 			unique[$scope.ratings[i].make] = 0;
 		}
 		$scope.vehicleMakes = distinct;
     });
-	
+
 	$scope.compare = {};
 	$scope.vehicleModels1 = [];
 	$scope.vehicleModels2 = [];
 	$scope.vehicleModels3 = [];
-	
-	
-	
+
+
+
 	$scope.getModelOptions = function(modelIndex) {
-		
+
 		switch (modelIndex) {
 			case 1:
 				$scope.vehicleModels1 = $.grep($scope.ratings, function(e){ return e.make == $scope.compare.vehicleMake1; });
@@ -44,24 +44,28 @@ afseparfiControllers.controller("VehicleIndexController", ['$scope', '$filter', 
 				break;
 		}
 	}
-	
+
 	$scope.compareVehicles = function() {
-		if ($scope.compare.vehicleModel1 && $scope.compare.vehicleModel2 && $scope.compare.vehicleModel3) {
-			$location.path('/compare/' + $scope.compare.vehicleModel1.$id + '/to/' + $scope.compare.vehicleModel2.$id + '/and/' + $scope.compare.vehicleModel3.$id);
-		} else if ($scope.compare.vehicleModel1 && $scope.compare.vehicleModel2 && !$scope.compare.vehicleModel3) {
-			$location.path('/compare/' + $scope.compare.vehicleModel1.$id + '/to/' + $scope.compare.vehicleModel2.$id);
-		} else if ($scope.compare.vehicleModel1 && $scope.compare.vehicleModel3  && !$scope.compare.vehicleModel2){
-			$location.path('/compare/' + $scope.compare.vehicleModel1.$id + '/to/' + $scope.compare.vehicleModel3.$id);
+    var id1 = $scope.compare.vehicleModel1 ? $scope.compare.vehicleModel1.$id : $routeParams.vehicleId;
+
+		if (id1 && $scope.compare.vehicleModel2 && $scope.compare.vehicleModel3) {
+			$location.path('/compare/' + id1 + '/to/' + $scope.compare.vehicleModel2.$id + '/and/' + $scope.compare.vehicleModel3.$id);
+		} else if (id1 && $scope.compare.vehicleModel2 && !$scope.compare.vehicleModel3) {
+			$location.path('/compare/' + id1 + '/to/' + $scope.compare.vehicleModel2.$id);
+		} else if (id1 && $scope.compare.vehicleModel3  && !$scope.compare.vehicleModel2){
+			$location.path('/compare/' + id1 + '/to/' + $scope.compare.vehicleModel3.$id);
 		} else if($scope.compare.vehicleModel2 && $scope.compare.vehicleModel3  && !$scope.compare.vehicleModel1) {
 			$location.path('/compare/' + $scope.compare.vehicleModel2.$id + '/to/' + $scope.compare.vehicleModel3.$id);
+    } else if (id1) {
+      alert("Please select at least one additional make and model for the comparison.");
 		} else {
 			alert("Please select at least two options");
-		}		
+		}
 	}
-	
+
 	$scope.getImage = function(imageId) {
 		return vehicleDataService.getImage(imageId);
-	}	
+	}
 }]);
 
 
@@ -93,7 +97,7 @@ afseparfiControllers.controller("VehicleListController", ['$scope', 'vehicleData
 	    ]
 		
 	};
-	
+
 	$scope.chartEvents = {
 			draw: function eventHandler(context) {
 //				var max = 125;
@@ -101,30 +105,30 @@ afseparfiControllers.controller("VehicleListController", ['$scope', 'vehicleData
 				    context.element.attr({
 				      //this coloration would be based on range of bar values. higher would be green, lower would be red
 //				      style: 'stroke: hsl(' + Math.floor(Chartist.getMultiValue(context.value) / max * 100) + ', 50%, 50%);'
-				    	
+
 				      //instead of using color ranges, use random colors to get some variation in the charts
 				      style: 'stroke: hsl(' + Math.floor((Math.random() * 360) + 1) + ', 50%, 50%);'
 				    });
 				}
 			}
 	};
-	
+
 	vehicleDataService.getData().then(function(data){
 		$scope.ratings = data;
 		$scope.topRatings;
 		if ($scope.ratings.length > 0) {
 			$scope.topRatings = $filter('limitTo')($scope.ratings, 5);
 		}
-		
+
 		for( var i = 0; i < $scope.topRatings.length; i++ ){
 			$scope.chartData.labels.push($scope.topRatings[i].makeModel);
 			$scope.chartData.series[0].push($scope.topRatings[i].comb08);
 		}
 	});
-	
+
 	$scope.getImage = function(imageId) {
 		return vehicleDataService.getImage(imageId);
-	}	
+	}
 }]);
 
 
@@ -187,19 +191,19 @@ afseparfiControllers.controller("VehicleDetailController", ['$scope', '$routePar
 				    context.element.attr({
 				      //this coloration would be based on range of bar values. higher would be green, lower would be red
 //					      style: 'stroke: hsl(' + Math.floor(Chartist.getMultiValue(context.value) / max * 100) + ', 50%, 50%);'
-				    	
+
 				      //instead of using color ranges, use random colors to get some variation in the charts
 				      style: 'stroke: hsl(' + Math.floor((Math.random() * 360) + 1) + ', 50%, 50%);'
 				    });
 				}
 			}
 	};
-	
+
 	vehicleDataService.getData().then(function(data){
 		$scope.ratings = data;
 		//identify this vehicle based on vehicleId
 		$scope.thisVehicle = vehicleDataService.findById(vehicleId);
-		
+
 		//build data for charts
 		var count = 0;
 		var combSum = 0;
@@ -210,8 +214,12 @@ afseparfiControllers.controller("VehicleDetailController", ['$scope', '$routePar
 		var allCombSum = 0;
 		var ghgSum = 0;
 		var allGhgSum = 0;
+<<<<<<< Updated upstream
 		
 		
+=======
+
+>>>>>>> Stashed changes
 		for( var i in $scope.ratings ){
 			if($scope.ratings[i].VClass == $scope.thisVehicle.VClass){
 				combSum += $scope.ratings[i].comb08;
@@ -221,44 +229,44 @@ afseparfiControllers.controller("VehicleDetailController", ['$scope', '$routePar
 				$scope.similarVehicles.push($scope.ratings[i]);
 				count++;
 			}
-			
+
 			allCombSum += $scope.ratings[i].comb08;
 			allCitySum += $scope.ratings[i].city08;
 			allHwySum += $scope.ratings[i].highway08;
 			allGhgSum += $scope.ratings[i].ghgScore;			
 		}
-		
+
 		var vehicleClassAverageCity = citySum / count;
 		var vehicleClassAverageHwy = hwySum / count;
 		var vehicleClassAverageComb = combSum / count;
 		var vehicleClassAverageGhg = ghgSum / count;
-		
+
 		var allAverageCity = allCitySum / $scope.ratings.length;
 		var allAverageHwy = allHwySum / $scope.ratings.length;
 		var allAverageComb = allCombSum / $scope.ratings.length;
 		var allAverageGhg = allGhgSum / $scope.ratings.length;
-		
+
 		$scope.cityChartData = {'series':[[$scope.thisVehicle.city08, vehicleClassAverageCity, allAverageCity]],'labels': [$scope.thisVehicle.makeModel, 'All ' + $scope.thisVehicle.VClass, 'All MPG Data']};
 		$scope.hwyChartData = {'series':[[$scope.thisVehicle.highway08, vehicleClassAverageHwy, allAverageHwy]],'labels': [$scope.thisVehicle.makeModel, 'All ' + $scope.thisVehicle.VClass, 'All MPG Data']};
 		$scope.combChartData = {'series':[[$scope.thisVehicle.comb08, vehicleClassAverageComb, allAverageComb]],'labels': [$scope.thisVehicle.makeModel, 'All ' + $scope.thisVehicle.VClass, 'All MPG Data']};
 		$scope.ghgChartData = {'series':[[$scope.thisVehicle.ghgScore, vehicleClassAverageGhg, allAverageGhg]],'labels': [$scope.thisVehicle.makeModel, 'All ' + $scope.thisVehicle.VClass, 'All GHG Data']};
 
-		
+
 		$scope.getImage = function(imageId) {
 			return vehicleDataService.getImage(imageId);
-		}	
+		}
 	});
-	
+
 	//fix charts in hidden divs
 	$(document).ready(function() {
 		$('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
-		  //call chartist update to re-render graphs 
+		  //call chartist update to re-render graphs
 		  $($(e.target).data("target") + " .ct-chart").each(function() {
 			 this.__chartist__.update();
 		  });
 		});
 	});
-	
+
 
 }]);
 
@@ -267,7 +275,7 @@ afseparfiControllers.controller("VehicleCompareController", ['$scope', '$routePa
 	var vehicle1Id = $routeParams.vehicleOne;
 	var vehicle2Id = $routeParams.vehicleTwo;
 	var vehicle3Id = $routeParams.vehicleThree;
-	
+
 	$scope.chartOptions = {
 		reverseData: true,
 		horizontalBars: true,
@@ -345,25 +353,25 @@ afseparfiControllers.controller("VehicleCompareController", ['$scope', '$routePa
 				    context.element.attr({
 				      //this coloration would be based on range of bar values. higher would be green, lower would be red
 //					      style: 'stroke: hsl(' + Math.floor(Chartist.getMultiValue(context.value) / max * 100) + ', 50%, 50%);'
-				    	
+
 				      //instead of using color ranges, use random colors to get some variation in the charts
 				      style: 'stroke: hsl(' + Math.floor((Math.random() * 360) + 1) + ', 50%, 50%);'
 				    });
 				}
 			}
 	};
-		
+
 	$scope.getImage = function(imageId) {
 		return vehicleDataService.getImage(imageId);
 	}
-	
+
 	$scope.compare3 = (vehicle3Id) ? true : false;
-	
+
 	$scope.vehicle1 = {};
 	$scope.vehicle2 = {};
 	$scope.vehicle3 = {};
 //	$scope.similarVehicles = [];
-	
+
 	vehicleDataService.getData().then(function(data){
 		$scope.ratings = data;
 		//identify the vehicles to be compared by checking routeParam values
@@ -372,7 +380,7 @@ afseparfiControllers.controller("VehicleCompareController", ['$scope', '$routePa
 		if ($scope.compare3) {
 			$scope.vehicle3 = vehicleDataService.findById(vehicle3Id);
 		}
-		
+
 		//build out charts data
 		var count = 0;
 //		var combSum = 0;
@@ -383,9 +391,13 @@ afseparfiControllers.controller("VehicleCompareController", ['$scope', '$routePa
 		var allCombSum = 0;
 //		var ghgSum = 0;
 		var allGhgSum = 0;
+<<<<<<< Updated upstream
 //		var fuelSavingsSum = 0;
 		var allFuelSavings = 0;
 		var allFuelCosts = 0;
+=======
+
+>>>>>>> Stashed changes
 		//loop over vehicle records to calculate comparative chart data
 		for( var i in $scope.ratings ){
 			//only use this if we can compare vehicle classes. at this point just using all data
@@ -398,7 +410,7 @@ afseparfiControllers.controller("VehicleCompareController", ['$scope', '$routePa
 //				$scope.similarVehicles.push($scope.ratings[i]);
 //				count++;
 //			}
-			
+
 			allCombSum += $scope.ratings[i].comb08;
 			allCitySum += $scope.ratings[i].city08;
 			allHwySum += $scope.ratings[i].highway08;
@@ -406,20 +418,24 @@ afseparfiControllers.controller("VehicleCompareController", ['$scope', '$routePa
 			allFuelSavings += $scope.ratings[i].youSaveSpend;
 			allFuelCosts += $scope.ratings[i].fuelCost08;
 		}
-		
+
 //		var vehicleClassAverageCity = citySum / count;
 //		var vehicleClassAverageHwy = hwySum / count;
 //		var vehicleClassAverageComb = combSum / count;
 //		var vehicleClassAverageGhg = ghgSum / count;
-		
+
 		var allAverageCity = allCitySum / $scope.ratings.length;
 		var allAverageHwy = allHwySum / $scope.ratings.length;
 		var allAverageComb = allCombSum / $scope.ratings.length;
 		var allAverageGhg = allGhgSum / $scope.ratings.length;
+<<<<<<< Updated upstream
 //		var vehicleClassAverageFuelSavings = fuelSavingsSum / count;
 		var allAverageFuelSavings = allFuelSavings / $scope.ratings.length;
 		var allAverageFuelCosts = allFuelCosts / $scope.ratings.length;
 		
+=======
+
+>>>>>>> Stashed changes
 		if ($scope.compare3) {
 			$scope.cityChartData = {'series':[[$scope.vehicle1.city08, $scope.vehicle2.city08, $scope.vehicle3.city08, allAverageCity]],'labels': [$scope.vehicle1.makeModel, $scope.vehicle2.makeModel, $scope.vehicle3.makeModel,'All MPG Data']};
 			$scope.hwyChartData = {'series':[[$scope.vehicle1.highway08, $scope.vehicle2.highway08, $scope.vehicle3.highway08,allAverageHwy]],'labels': [$scope.vehicle1.makeModel, $scope.vehicle2.makeModel, $scope.vehicle3.makeModel,'All MPG Data']};
@@ -436,6 +452,50 @@ afseparfiControllers.controller("VehicleCompareController", ['$scope', '$routePa
 			$scope.fuelSavingsChartData = {'series':[[$scope.vehicle1.youSaveSpend, $scope.vehicle2.youSaveSpend, allAverageFuelSavings]],'labels': [$scope.vehicle1.makeModel, $scope.vehicle2.makeModel, 'Average Fuel Saving']};
 			$scope.fuelCostsChartData = {'series':[[$scope.vehicle1.fuelCost08, $scope.vehicle2.fuelCost08, allAverageFuelCosts]],'labels': [$scope.vehicle1.makeModel, $scope.vehicle2.makeModel, 'Average Fuel Cost']};
 		}
+<<<<<<< Updated upstream
+=======
+
+
+		$scope.chartOptions = {
+			reverseData: true,
+			horizontalBars: true,
+			axisX: {
+			    showGrid: false,
+				onlyInteger: true,
+			    labelInterpolationFnc: function(value) {
+			      return value + ' mpg';
+			    }
+			},
+			axisY: {
+				offset: 120
+			}
+		};
+		$scope.ghgChartOptions = {
+				reverseData: true,
+				horizontalBars: true,
+				axisX: {
+				    showGrid: false,
+					onlyInteger: true
+				},
+				axisY: {
+					offset: 120
+				}
+		};
+		$scope.chartEvents = {
+			draw: function eventHandler(context) {
+				var max = 125;
+				if(context.type === 'bar') {
+				    context.element.attr({
+				    	//this coloration would be based on range of bar values. higher would be green, lower would be red
+				    	// style: 'stroke: hsl(' + Math.floor(Chartist.getMultiValue(context.value) / max * 100) + ', 50%, 50%);'
+
+				      	//instead of using color ranges, use random colors to get some variation in the charts
+				    		style: 'stroke: hsl(' + Math.floor((Math.random() * 360) + 1) + ', 50%, 50%);'
+					    });
+					}
+				}
+  		};
+>>>>>>> Stashed changes
 	});
 }]);
 
