@@ -214,12 +214,7 @@ afseparfiControllers.controller("VehicleDetailController", ['$scope', '$routePar
 		var allCombSum = 0;
 		var ghgSum = 0;
 		var allGhgSum = 0;
-<<<<<<< Updated upstream
-		
-		
-=======
 
->>>>>>> Stashed changes
 		for( var i in $scope.ratings ){
 			if($scope.ratings[i].VClass == $scope.thisVehicle.VClass){
 				combSum += $scope.ratings[i].comb08;
@@ -391,13 +386,10 @@ afseparfiControllers.controller("VehicleCompareController", ['$scope', '$routePa
 		var allCombSum = 0;
 //		var ghgSum = 0;
 		var allGhgSum = 0;
-<<<<<<< Updated upstream
 //		var fuelSavingsSum = 0;
 		var allFuelSavings = 0;
 		var allFuelCosts = 0;
-=======
 
->>>>>>> Stashed changes
 		//loop over vehicle records to calculate comparative chart data
 		for( var i in $scope.ratings ){
 			//only use this if we can compare vehicle classes. at this point just using all data
@@ -428,14 +420,10 @@ afseparfiControllers.controller("VehicleCompareController", ['$scope', '$routePa
 		var allAverageHwy = allHwySum / $scope.ratings.length;
 		var allAverageComb = allCombSum / $scope.ratings.length;
 		var allAverageGhg = allGhgSum / $scope.ratings.length;
-<<<<<<< Updated upstream
 //		var vehicleClassAverageFuelSavings = fuelSavingsSum / count;
 		var allAverageFuelSavings = allFuelSavings / $scope.ratings.length;
 		var allAverageFuelCosts = allFuelCosts / $scope.ratings.length;
-		
-=======
 
->>>>>>> Stashed changes
 		if ($scope.compare3) {
 			$scope.cityChartData = {'series':[[$scope.vehicle1.city08, $scope.vehicle2.city08, $scope.vehicle3.city08, allAverageCity]],'labels': [$scope.vehicle1.makeModel, $scope.vehicle2.makeModel, $scope.vehicle3.makeModel,'All MPG Data']};
 			$scope.hwyChartData = {'series':[[$scope.vehicle1.highway08, $scope.vehicle2.highway08, $scope.vehicle3.highway08,allAverageHwy]],'labels': [$scope.vehicle1.makeModel, $scope.vehicle2.makeModel, $scope.vehicle3.makeModel,'All MPG Data']};
