@@ -80,12 +80,23 @@ afseparfiControllers.controller("VehicleListController", ['$scope', 'vehicleData
 		},
 		axisY: {
 			offset: 120
-		}
+		},
+		plugins: [
+	    	Chartist.plugins.ctBarLabels({
+	    		 labelInterpolationFnc: function(text) { 
+	    			 return Math.round(text) + ' mpg' 
+	    		 },
+	    		 labelOffset: {
+	    		        y: 3
+	    	     },
+	    	})
+	    ]
+		
 	};
 	
 	$scope.chartEvents = {
 			draw: function eventHandler(context) {
-				var max = 125;
+//				var max = 125;
 				if(context.type === 'bar') {
 				    context.element.attr({
 				      //this coloration would be based on range of bar values. higher would be green, lower would be red
@@ -134,9 +145,21 @@ afseparfiControllers.controller("VehicleDetailController", ['$scope', '$routePar
 		},
 		axisY: {
 			offset: 120
-		}
+		},
+		plugins: [
+	    	Chartist.plugins.ctBarLabels({
+	    		 labelInterpolationFnc: function(text) { 
+	    			 return Math.round(text) + ' mpg' 
+	    		 },
+	    		 labelOffset: {
+	    		        y: 3
+	    	     },
+	    	})
+	    ]
 	};
 	$scope.ghgChartOptions = {
+			high: 10,
+			low: 0,
 			reverseData: true,
 			horizontalBars: true,
 			axisX: {
@@ -145,11 +168,21 @@ afseparfiControllers.controller("VehicleDetailController", ['$scope', '$routePar
 			},
 			axisY: {
 				offset: 120
-			}
+			},
+			plugins: [
+		    	Chartist.plugins.ctBarLabels({
+		    		 labelInterpolationFnc: function(text) { 
+		    			 return Math.round(text); 
+		    		 },
+		    		 labelOffset: {
+		    		        y: 3
+		    	     },
+		    	})
+		    ]
 	};
 	$scope.chartEvents = {
 			draw: function eventHandler(context) {
-				var max = 125;
+//				var max = 125;
 				if(context.type === 'bar') {
 				    context.element.attr({
 				      //this coloration would be based on range of bar values. higher would be green, lower would be red
@@ -246,7 +279,17 @@ afseparfiControllers.controller("VehicleCompareController", ['$scope', '$routePa
 		},
 		axisY: {
 			offset: 120
-		}
+		},
+		plugins: [
+	    	Chartist.plugins.ctBarLabels({
+	    		 labelInterpolationFnc: function(text) { 
+	    			 return Math.round(text) + ' mpg' 
+	    		 },
+	    		 labelOffset: {
+	    		        y: 3
+	    	     },
+	    	})
+	    ]
 	};
 	$scope.ghgChartOptions = {
 			reverseData: true,
@@ -257,11 +300,22 @@ afseparfiControllers.controller("VehicleCompareController", ['$scope', '$routePa
 			},
 			axisY: {
 				offset: 120
-			}
+			},
+			seriesBarDistance: 35,
+			plugins: [
+		    	Chartist.plugins.ctBarLabels({
+		    		 labelInterpolationFnc: function(text) { 
+		    			 return Math.round(text); 
+		    		 },
+		    		 labelOffset: {
+		    		        y: 3
+		    	     },
+		    	})
+		    ]
 	};
 	$scope.chartEvents = {
 			draw: function eventHandler(context) {
-				var max = 125;
+//				var max = 125;
 				if(context.type === 'bar') {
 				    context.element.attr({
 				      //this coloration would be based on range of bar values. higher would be green, lower would be red
@@ -344,47 +398,6 @@ afseparfiControllers.controller("VehicleCompareController", ['$scope', '$routePa
 			$scope.combChartData = {'series':[[$scope.vehicle1.comb08, $scope.vehicle2.comb08, allAverageComb]],'labels': [$scope.vehicle1.makeModel, $scope.vehicle2.makeModel, 'All MPG Data']};
 			$scope.ghgChartData = {'series':[[$scope.vehicle1.ghgScore, $scope.vehicle2.ghgScore, allAverageGhg]],'labels': [$scope.vehicle1.makeModel, $scope.vehicle2.makeModel, 'All GHG Data']};
 		}
-		
-		
-		$scope.chartOptions = {
-			reverseData: true,
-			horizontalBars: true,
-			axisX: {
-			    showGrid: false,
-				onlyInteger: true,
-			    labelInterpolationFnc: function(value) {
-			      return value + ' mpg';
-			    }
-			},
-			axisY: {
-				offset: 120
-			}
-		};
-		$scope.ghgChartOptions = {
-				reverseData: true,
-				horizontalBars: true,
-				axisX: {
-				    showGrid: false,
-					onlyInteger: true
-				},
-				axisY: {
-					offset: 120
-				}
-		};
-		$scope.chartEvents = {
-			draw: function eventHandler(context) {
-				var max = 125;
-				if(context.type === 'bar') {
-				    context.element.attr({
-				    	//this coloration would be based on range of bar values. higher would be green, lower would be red
-				    	// style: 'stroke: hsl(' + Math.floor(Chartist.getMultiValue(context.value) / max * 100) + ', 50%, 50%);'
-				    	
-				      	//instead of using color ranges, use random colors to get some variation in the charts
-				    		style: 'stroke: hsl(' + Math.floor((Math.random() * 360) + 1) + ', 50%, 50%);'
-					    });
-					}
-				}
-  		};
 	});
 }]);
 
