@@ -37,15 +37,15 @@ afseparfiControllers.controller("VehicleIndexController", ['$scope', '$filter', 
 				$scope.vehicleModels1 = $filter('orderBy')($scope.vehicleModels1, 'model');
 				break;
 			case 2:
-				$scope.vehicleModels2 = $.grep($scope.ratings, function(e){ return e.make == $scope.compare.vehicleMake2; });
+				$scope.vehicleModels2 = $.grep($scope.ratings, function(e){ return e.make === $scope.compare.vehicleMake2; });
 				$scope.vehicleModels2 = $filter('orderBy')($scope.vehicleModels2, 'model');
 				break;
 			case 3:
-				$scope.vehicleModels3 = $.grep($scope.ratings, function(e){ return e.make == $scope.compare.vehicleMake3; });
+				$scope.vehicleModels3 = $.grep($scope.ratings, function(e){ return e.make === $scope.compare.vehicleMake3; });
 				$scope.vehicleModels3 = $filter('orderBy')($scope.vehicleModels3, 'model');
 				break;
 		}
-	}
+	};
 
 	$scope.compareVehicles = function() {
 		if ($scope.compare.vehicleModel1 && $scope.compare.vehicleModel2 && $scope.compare.vehicleModel3) {
@@ -59,11 +59,11 @@ afseparfiControllers.controller("VehicleIndexController", ['$scope', '$filter', 
 		} else {
 			alert("Please select at least two options");
 		}
-	}
+	};
 
 	$scope.getImage = function(imageId) {
 		return vehicleDataService.getImage(imageId);
-	}
+	};
 }]);
 
 
@@ -86,7 +86,7 @@ afseparfiControllers.controller("VehicleListController", ['$scope', 'vehicleData
 		plugins: [
 	    	Chartist.plugins.ctBarLabels({
 	    		 labelInterpolationFnc: function(text) {
-	    			 return Math.round(text) + ' mpg'
+	    			 return Math.round(text) + ' mpg';
 	    		 },
 	    		 labelOffset: {
 	    		        y: 3
@@ -113,7 +113,7 @@ afseparfiControllers.controller("VehicleListController", ['$scope', 'vehicleData
 
 	vehicleDataService.getData().then(function(data){
 		$scope.ratings = data;
-		$scope.topRatings;
+		// $scope.topRatings;
 		if ($scope.ratings.length > 0) {
 			$scope.topRatings = $filter('limitTo')($scope.ratings, 5);
 		}
@@ -126,7 +126,7 @@ afseparfiControllers.controller("VehicleListController", ['$scope', 'vehicleData
 
 	$scope.getImage = function(imageId) {
 		return vehicleDataService.getImage(imageId);
-	}
+	};
 }]);
 
 
@@ -151,7 +151,7 @@ afseparfiControllers.controller("VehicleDetailController", ['$scope', '$routePar
 		plugins: [
 	    	Chartist.plugins.ctBarLabels({
 	    		 labelInterpolationFnc: function(text) {
-	    			 return Math.round(text) + ' mpg'
+	    			 return Math.round(text) + ' mpg';
 	    		 },
 	    		 labelOffset: {
 	    		        y: 3
@@ -214,7 +214,7 @@ afseparfiControllers.controller("VehicleDetailController", ['$scope', '$routePar
 		var allGhgSum = 0;
 
 		for( var i in $scope.ratings ){
-			if($scope.ratings[i].VClass == $scope.thisVehicle.VClass){
+			if($scope.ratings[i].VClass === $scope.thisVehicle.VClass){
 				combSum += $scope.ratings[i].comb08;
 				citySum += $scope.ratings[i].city08;
 				hwySum += $scope.ratings[i].highway08;
@@ -247,7 +247,7 @@ afseparfiControllers.controller("VehicleDetailController", ['$scope', '$routePar
 
 		$scope.getImage = function(imageId) {
 			return vehicleDataService.getImage(imageId);
-		}
+		};
 	});
 
 	//fix charts in hidden divs
@@ -285,7 +285,7 @@ afseparfiControllers.controller("VehicleCompareController", ['$scope', '$routePa
 		plugins: [
 	    	Chartist.plugins.ctBarLabels({
 	    		 labelInterpolationFnc: function(text) {
-	    			 return Math.round(text) + ' mpg'
+	    			 return Math.round(text) + ' mpg';
 	    		 },
 	    		 labelOffset: {
 	    		        y: 3
@@ -332,7 +332,7 @@ afseparfiControllers.controller("VehicleCompareController", ['$scope', '$routePa
 
 	$scope.getImage = function(imageId) {
 		return vehicleDataService.getImage(imageId);
-	}
+	};
 
 	$scope.compare3 = (vehicle3Id) ? true : false;
 
@@ -351,14 +351,14 @@ afseparfiControllers.controller("VehicleCompareController", ['$scope', '$routePa
 		}
 
 		//build out charts data
-		var count = 0;
-		var combSum = 0;
-		var citySum = 0;
-		var hwySum = 0;
+		// var count = 0;
+		// var combSum = 0;
+		// var citySum = 0;
+		// var hwySum = 0;
 		var allCitySum = 0;
 		var allHwySum = 0;
 		var allCombSum = 0;
-		var ghgSum = 0;
+//		var ghgSum = 0;
 		var allGhgSum = 0;
 
 		//loop over vehicle records to calculate comparative chart data

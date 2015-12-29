@@ -1,3 +1,5 @@
+'use strict';
+
 var afseparfiApp = angular.module("afseparfiApp", [
     "ngRoute",
     "angular.filter",

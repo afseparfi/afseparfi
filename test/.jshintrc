@@ -11,11 +11,12 @@
   "strict": true,
   "undef": true,
   "unused": true,
+  "devel": true,
   "globals": {
     "angular": false,
-    "inject": false
+    "inject": false,
+    "$": false,
+    "Chartist": false,
+    "Firebase": false
   }
-}
-"globals": {
-    "$": false
 }
