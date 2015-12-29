@@ -204,12 +204,13 @@ afseparfiControllers.controller("VehicleDetailController", ['$scope', '$routePar
 		var count = 0;
 		var combSum = 0;
 		var citySum = 0;
-		var hwySum = 0;
+		var hwySum = 0;		
 		var allCitySum = 0;
 		var allHwySum = 0;
 		var allCombSum = 0;
 		var ghgSum = 0;
 		var allGhgSum = 0;
+		
 		
 		for( var i in $scope.ratings ){
 			if($scope.ratings[i].VClass == $scope.thisVehicle.VClass){
@@ -224,7 +225,7 @@ afseparfiControllers.controller("VehicleDetailController", ['$scope', '$routePar
 			allCombSum += $scope.ratings[i].comb08;
 			allCitySum += $scope.ratings[i].city08;
 			allHwySum += $scope.ratings[i].highway08;
-			allGhgSum += $scope.ratings[i].ghgScore;
+			allGhgSum += $scope.ratings[i].ghgScore;			
 		}
 		
 		var vehicleClassAverageCity = citySum / count;
@@ -291,6 +292,30 @@ afseparfiControllers.controller("VehicleCompareController", ['$scope', '$routePa
 	    	})
 	    ]
 	};
+	$scope.fuelChartOptions = {
+		reverseData: true,
+		horizontalBars: true,
+		axisX: {
+		    showGrid: false,
+			onlyInteger: true,
+		    labelInterpolationFnc: function(value) {
+		      return '$' + value;
+		    }
+		},
+		axisY: {
+			offset: 120
+		},
+		plugins: [
+	    	Chartist.plugins.ctBarLabels({
+	    		 labelInterpolationFnc: function(text) { 
+	    			 return '$' + Math.round(text)
+	    		 },
+	    		 labelOffset: {
+	    		        y: 3
+	    	     },
+	    	})
+	    ]
+	};
 	$scope.ghgChartOptions = {
 			reverseData: true,
 			horizontalBars: true,
@@ -350,15 +375,17 @@ afseparfiControllers.controller("VehicleCompareController", ['$scope', '$routePa
 		
 		//build out charts data
 		var count = 0;
-		var combSum = 0;
-		var citySum = 0;
-		var hwySum = 0;
+//		var combSum = 0;
+//		var citySum = 0;
+//		var hwySum = 0;
 		var allCitySum = 0;
 		var allHwySum = 0;
 		var allCombSum = 0;
-		var ghgSum = 0;
+//		var ghgSum = 0;
 		var allGhgSum = 0;
-		
+//		var fuelSavingsSum = 0;
+		var allFuelSavings = 0;
+		var allFuelCosts = 0;
 		//loop over vehicle records to calculate comparative chart data
 		for( var i in $scope.ratings ){
 			//only use this if we can compare vehicle classes. at this point just using all data
@@ -367,6 +394,7 @@ afseparfiControllers.controller("VehicleCompareController", ['$scope', '$routePa
 //				citySum += $scope.ratings[i].city08;
 //				hwySum += $scope.ratings[i].highway08;
 //				ghgSum += $scope.ratings[i].ghgScore;
+//				fuelSavingsSum += $scope.ratings[i].youSaveSpend;
 //				$scope.similarVehicles.push($scope.ratings[i]);
 //				count++;
 //			}
@@ -375,6 +403,8 @@ afseparfiControllers.controller("VehicleCompareController", ['$scope', '$routePa
 			allCitySum += $scope.ratings[i].city08;
 			allHwySum += $scope.ratings[i].highway08;
 			allGhgSum += $scope.ratings[i].ghgScore;
+			allFuelSavings += $scope.ratings[i].youSaveSpend;
+			allFuelCosts += $scope.ratings[i].fuelCost08;
 		}
 		
 //		var vehicleClassAverageCity = citySum / count;
@@ -386,17 +416,25 @@ afseparfiControllers.controller("VehicleCompareController", ['$scope', '$routePa
 		var allAverageHwy = allHwySum / $scope.ratings.length;
 		var allAverageComb = allCombSum / $scope.ratings.length;
 		var allAverageGhg = allGhgSum / $scope.ratings.length;
+//		var vehicleClassAverageFuelSavings = fuelSavingsSum / count;
+		var allAverageFuelSavings = allFuelSavings / $scope.ratings.length;
+		var allAverageFuelCosts = allFuelCosts / $scope.ratings.length;
 		
 		if ($scope.compare3) {
 			$scope.cityChartData = {'series':[[$scope.vehicle1.city08, $scope.vehicle2.city08, $scope.vehicle3.city08, allAverageCity]],'labels': [$scope.vehicle1.makeModel, $scope.vehicle2.makeModel, $scope.vehicle3.makeModel,'All MPG Data']};
 			$scope.hwyChartData = {'series':[[$scope.vehicle1.highway08, $scope.vehicle2.highway08, $scope.vehicle3.highway08,allAverageHwy]],'labels': [$scope.vehicle1.makeModel, $scope.vehicle2.makeModel, $scope.vehicle3.makeModel,'All MPG Data']};
 			$scope.combChartData = {'series':[[$scope.vehicle1.comb08, $scope.vehicle2.comb08, $scope.vehicle3.comb08,allAverageComb]],'labels': [$scope.vehicle1.makeModel, $scope.vehicle2.makeModel, $scope.vehicle3.makeModel,'All MPG Data']};
 			$scope.ghgChartData = {'series':[[$scope.vehicle1.ghgScore, $scope.vehicle2.ghgScore, $scope.vehicle3.ghgScore,allAverageGhg]],'labels': [$scope.vehicle1.makeModel, $scope.vehicle2.makeModel, $scope.vehicle3.makeModel,'All GHG Data']};
+			$scope.fuelSavingsChartData = {'series':[[$scope.vehicle1.youSaveSpend, $scope.vehicle2.youSaveSpend, $scope.vehicle3.youSaveSpend, allAverageFuelSavings]],'labels': [$scope.vehicle1.makeModel, $scope.vehicle2.makeModel, $scope.vehicle3.makeModel,'Average Fuel Saving']};
+			$scope.fuelCostsChartData = {'series':[[$scope.vehicle1.fuelCost08, $scope.vehicle2.fuelCost08, $scope.vehicle3.fuelCost08, allAverageFuelCosts]],'labels': [$scope.vehicle1.makeModel, $scope.vehicle2.makeModel, $scope.vehicle3.makeModel,'Average Fuel Cost']};
+
 		} else {
 			$scope.cityChartData = {'series':[[$scope.vehicle1.city08, $scope.vehicle2.city08, allAverageCity]],'labels': [$scope.vehicle1.makeModel, $scope.vehicle2.makeModel, 'All MPG Data']};
 			$scope.hwyChartData = {'series':[[$scope.vehicle1.highway08, $scope.vehicle2.highway08, allAverageHwy]],'labels': [$scope.vehicle1.makeModel, $scope.vehicle2.makeModel, 'All MPG Data']};
 			$scope.combChartData = {'series':[[$scope.vehicle1.comb08, $scope.vehicle2.comb08, allAverageComb]],'labels': [$scope.vehicle1.makeModel, $scope.vehicle2.makeModel, 'All MPG Data']};
 			$scope.ghgChartData = {'series':[[$scope.vehicle1.ghgScore, $scope.vehicle2.ghgScore, allAverageGhg]],'labels': [$scope.vehicle1.makeModel, $scope.vehicle2.makeModel, 'All GHG Data']};
+			$scope.fuelSavingsChartData = {'series':[[$scope.vehicle1.youSaveSpend, $scope.vehicle2.youSaveSpend, allAverageFuelSavings]],'labels': [$scope.vehicle1.makeModel, $scope.vehicle2.makeModel, 'Average Fuel Saving']};
+			$scope.fuelCostsChartData = {'series':[[$scope.vehicle1.fuelCost08, $scope.vehicle2.fuelCost08, allAverageFuelCosts]],'labels': [$scope.vehicle1.makeModel, $scope.vehicle2.makeModel, 'Average Fuel Cost']};
 		}
 	});
 }]);
