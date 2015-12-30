@@ -8,14 +8,19 @@ This repo serves as an RFI response for the EPA. It is a working prototype based
 
 The team identified open-source, reusable frameworks as the basic underpinning of the site to allow the creation of both application and infrastructure as quickly as possible while ensuring a good-quality product and environment.  The fuel economy app is based on the following technologies:
 
+### Website Implementation
+
 <table>
     <tr>
-        <td align="center" colspan="2">
+        <td align="center">
             <br>
             <a href="http://www.w3schools.com/html/">
             <img src="http://www.w3.org/html/logo/badge/html5-badge-h-connectivity-css3-device-storage.png" width="250" height="64" alt="HTML5 Powered with Connectivity / Realtime, CSS3 / Styling, Device Access, and Offline &amp; Storage" title="HTML5 Powered with Connectivity / Realtime, CSS3 / Styling, Device Access, and Offline &amp; Storage">
             </a>
             <br><br>
+        </td>
+        <td>
+        TBD
         </td>
     </tr>
     <tr>
@@ -26,12 +31,20 @@ The team identified open-source, reusable frameworks as the basic underpinning o
             </a>
             <br><br>
         </td>
+        <td>
+        TBD
+        </td>
+    </tr>
+    <tr>
         <td align="center">
             <br>
             <a href="http://getbootstrap.com/">
                 <img src="http://getbootstrap.com/assets/brand/bootstrap-solid.svg" width=100 alt="Bootstrap UI" title="Bootstrap">
             </a>
             <br><br>
+        </td>
+        <td>
+        TBD
         </td>
     </tr>
     <tr>
@@ -42,6 +55,11 @@ The team identified open-source, reusable frameworks as the basic underpinning o
             </a>
             <br><br>
         </td>
+        <td>
+        TBD
+        </td>
+    </tr>
+    <tr>
         <td align="center">
             <br>
             <a href="https://www.firebase.com/docs/web/libraries/angular/">
@@ -49,10 +67,15 @@ The team identified open-source, reusable frameworks as the basic underpinning o
             </a>
             <br><br>
         </td>
+        <td>
+        TBD
+        </td>
     </tr>
 </table>
 
 These technologies allow for the rapid creation of **_single-page application_** with dynamic response and a mobile-responsive design.
+
+### DevOps Infrastructure
 
 The following technologies provided reusable components which allowed for the easy and fast creation of a DevOps infrastructure to build, test and deploy the code baseline:
 
@@ -67,7 +90,7 @@ The following technologies provided reusable components which allowed for the ea
             <br><br>
         </td>
         <td>
-        GitHub provided the Git-based public code repository and code-sharing infrastructure that allow the team, distributed across multiple locations, to seemlessly interact and construct the website
+        GitHub provides the Git-based public code repository and code-sharing infrastructure that allows the team, distributed across multiple locations, to seamlessly interact and construct the website in a shared manner.
         </td>
         </tr><tr>
         <td align="center">
@@ -78,7 +101,7 @@ The following technologies provided reusable components which allowed for the ea
             <br>
         </td>
         <td>
-        Travis-CI provided the continuous integration environment which monitored the GitHub repository
+        Travis-CI provides the continuous integration environment, monitoring the afseparfi master branch, executing Grunt build, test and deploy tasks each time a developer commits changes.
         </td>
         </tr><tr>
         <td align="center">
@@ -89,7 +112,7 @@ The following technologies provided reusable components which allowed for the ea
             <br><br>
         </td>
         <td>
-        TBD
+        Yeoman provides the AngularJS web application framework for the prototype site, creating all of the necessary Grunt, Bower and AngularJS files and settings to work from.  A simple "yo angular", answer a few questions and the initial (empty) site can be up and running in minutes.
         </td>
         </tr><tr>
         <td align="center">
@@ -100,7 +123,7 @@ The following technologies provided reusable components which allowed for the ea
             <br><br>
         </td>
         <td>
-        TBD
+        Grunt executes a series of actions against the web site code baseline, allowing developers to check code quality, perform unit tests, host local web server copies for debugging and development and create distributions for deployment.<br><br>For the purposes of this project, Grunt runs jshint, test and build targets on Travis-CI.
         </td>
         </tr><tr>
         <td>
@@ -111,7 +134,7 @@ The following technologies provided reusable components which allowed for the ea
             <br><br>
         </td>
         <td>
-        TBD
+        Bower manages the package dependencies for this AngularJS application.  This include AngularJS, Firebase, Bootstrap and JQuery.  Bower, injects into index.html references to all listed dependencies via a Grunt task, ensuring that specific versions of these packages are used across the entire project.
         </td>
         </tr><tr>
         <td>
@@ -122,7 +145,7 @@ The following technologies provided reusable components which allowed for the ea
             <br><br>
         </td>
         <td>
-        TBD
+        JSHint ensures that the JavaScript code written meets the necessary level of quality for the project.  Simple and common JavaScript mistakes are caught and best practices are enforced before the code is ever deployed.
         </td>
         </tr><tr>
     </tr>
@@ -158,7 +181,7 @@ Help the service go to market and iterate and improve on it after its release.
 
 ## CI/Testing/Deployment
 
-
+TBD
 
 ## Team/Effort Expended
 
