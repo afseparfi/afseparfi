@@ -165,6 +165,8 @@ Frame the problem and existing experience by gaining a full understanding of the
 
 <a href="https://www.youtube.com/watch?v=jTeDlUynA4I">User Interviews</a>
 
+[![user interviews](http://img.youtube.com/vi/jTeDlUynA4I/0.jpg)](http://www.youtube.com/watch?v=jTeDlUynA4I "User Interviews")
+
 ### Describe
 Define the service by synthesizing research and producing high level concepts, including differentiating ideas and key indicators for success
 
@@ -212,7 +214,7 @@ One of the useful features of GitHub is that any files checked into a branch nam
 
 ## Agile Methodology
 
-Our lean, cross-functional team worked collaboratively every day to iterate on concepts for the prototype. We incorporated feedback from users, teammates, and feedback loops as we developed the prototype. Through the agile process, we worked efficiently to create a resource that helps users research the environmental impact and value of purchasing a new car. 
+Our lean, cross-functional team worked collaboratively every day to iterate on concepts for the prototype. We incorporated feedback from users, teammates, and feedback loops as we developed the prototype. Through the agile process, we worked efficiently to create a resource that helps users research the environmental impact and value of purchasing a new car.
 
 
 ## Contacts
