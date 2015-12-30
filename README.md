@@ -130,9 +130,10 @@ The following technologies provided reusable components which allowed for the ea
 
 
 ## Site Design Approach
-![alt img](https://raw.githubusercontent.com/afseparfi/afseparfi/master/docs/process_circles.jpg)
+
 We follow a five phased approach beginning with Discovery. Through user research, we interviewed several consumers in the market for a new car. We captured their needs and wants, key factors in making a purchase decision, trusted tools and resources to educate themselves, as well as their understanding of and interest in fuel economy. We conducted a detailed analysis of the current fueleconomy.gov site, as well as a competitive analysis to understand that landscape. These findings informed our approach to how we prioritize our users and their goals, phase 2. During the Describe phase, we created personas to represent these stakeholders. By understanding the user and the available data, we developed user flows that supported researching fuel economy and vehicle comparison. The team sketched new design iterations supporting user flows including browsing and searching, detailed research and comparison. We mapped out specific touchpoints and finalized our service vision and positioning statements. During Phase 3, Design, we were then able to iterate on wireframes and develop mock ups.  They focused on an MVP with a user experience that educates about fuel economy combining the website, the data and were visually reinforced by using elements of the environment label. By adding specific detailed views of the label along with matching live data visualizations as the user interacts with the app, our approach was to give the user an understanding of fuel economy data, how the ratings labels displays it, and how it might impact their overall buying decision . By using a responsive design, the site is a tool for research on any media, from mobile to desktop. We developed a visual language for the site that reflected a clean, environmentally friendly, and fresh design elements that would represent the user and that resonated the existing EPA branding. Tech components were applied and a working prototype was developed during Phase 4, Develop. Testing, reusable components, and a distributed coding model were key factors during this phase. Phase 5, Release focuses on metrics and measurement, refinement to the initial release to ensure the experience is maximized, enhanced, and relevant for the target users. 
 
+![alt img](https://raw.githubusercontent.com/afseparfi/afseparfi/master/docs/infographic.jpg)
 
 ### Discover
 Frame the problem and existing experience by gaining a full understanding of the context and potential constraints 
@@ -141,6 +142,8 @@ Frame the problem and existing experience by gaining a full understanding of the
 
 ### Describe
 Define the service by synthesizing research and producing high level concepts, including differentiating ideas and key indicators for success
+
+![alt img](https://raw.githubusercontent.com/afseparfi/afseparfi/master/docs/user_flow.png)
 
 ### Design
 Bring the service to life by conceiving, prototyping, evaluating, and refining the service experience 
