@@ -156,12 +156,12 @@ The flow of code from initial authoring through testing, quality review and depl
 
 ## Site Design Approach
 
-We follow a five phased approach beginning with Discovery. Through user research, we interviewed several consumers in the market for a new car. We captured their needs and wants, key factors in making a purchase decision, trusted tools and resources to educate themselves, as well as their understanding of and interest in fuel economy. We conducted a detailed analysis of the current fueleconomy.gov site, as well as a competitive analysis to understand that landscape. These findings informed our approach to how we prioritize our users and their goals, phase 2. During the Describe phase, we created personas to represent these stakeholders. By understanding the user and the available data, we developed user flows that supported researching fuel economy and vehicle comparison. The team sketched new design iterations supporting user flows including browsing and searching, detailed research and comparison. We mapped out specific touchpoints and finalized our service vision and positioning statements. During Phase 3, Design, we were then able to iterate on wireframes and develop mock ups.  They focused on an MVP with a user experience that educates about fuel economy combining the website, the data and were visually reinforced by using elements of the environment label. By adding specific detailed views of the label along with matching live data visualizations as the user interacts with the app, our approach was to give the user an understanding of fuel economy data, how the ratings labels displays it, and how it might impact their overall buying decision . By using a responsive design, the site is a tool for research on any media, from mobile to desktop. We developed a visual language for the site that reflected a clean, environmentally friendly, and fresh design elements that would represent the user and that resonated the existing EPA branding. Tech components were applied and a working prototype was developed during Phase 4, Develop. Testing, reusable components, and a distributed coding model were key factors during this phase. Phase 5, Release focuses on metrics and measurement, refinement to the initial release to ensure the experience is maximized, enhanced, and relevant for the target users. 
+We follow a five phased approach beginning with Discovery. Through user research, we interviewed several consumers in the market for a new car. We captured their needs and wants, key factors in making a purchase decision, trusted tools and resources to educate themselves, as well as their understanding of and interest in fuel economy. We conducted a detailed analysis of the current fueleconomy.gov site, as well as a competitive analysis to understand that landscape. These findings informed our approach to how we prioritize our users and their goals, phase 2. During the Describe phase, we created personas to represent these stakeholders. By understanding the user and the available data, we developed user flows that supported researching fuel economy and vehicle comparison. The team sketched new design iterations supporting user flows including browsing and searching, detailed research and comparison. We mapped out specific touchpoints and finalized our service vision and positioning statements. During Phase 3, Design, we were then able to iterate on wireframes and develop mock ups.  They focused on an MVP with a user experience that educates about fuel economy combining the website, the data and were visually reinforced by using elements of the environment label. By adding specific detailed views of the label along with matching live data visualizations as the user interacts with the app, our approach was to give the user an understanding of fuel economy data, how the ratings labels displays it, and how it might impact their overall buying decision . By using a responsive design, the site is a tool for research on any media, from mobile to desktop. We developed a visual language for the site that reflected a clean, environmentally friendly, and fresh design elements that would represent the user and that resonated the existing EPA branding. Tech components were applied and a working prototype was developed during Phase 4, Develop. Testing, reusable components, and a distributed coding model were key factors during this phase. Phase 5, Release focuses on metrics and measurement, refinement to the initial release to ensure the experience is maximized, enhanced, and relevant for the target users.
 
 ![alt img](https://raw.githubusercontent.com/afseparfi/afseparfi/master/docs/infographic.jpg)
 
 ### Discover
-Frame the problem and existing experience by gaining a full understanding of the context and potential constraints 
+Frame the problem and existing experience by gaining a full understanding of the context and potential constraints
 
 <a href="https://www.youtube.com/watch?v=jTeDlUynA4I">User Interviews</a>
 
@@ -171,7 +171,7 @@ Define the service by synthesizing research and producing high level concepts, i
 ![alt img](https://raw.githubusercontent.com/afseparfi/afseparfi/master/docs/user_flow.png)
 
 ### Design
-Bring the service to life by conceiving, prototyping, evaluating, and refining the service experience 
+Bring the service to life by conceiving, prototyping, evaluating, and refining the service experience
 
 <a href="http://txg483.axshare.com">Clickable Wireframes</a>
 
@@ -181,18 +181,33 @@ Bring the service to life by conceiving, prototyping, evaluating, and refining t
 Technical Components and Prototypes
 
 ### Release
-Go to market launch; iterate and improve after initial release 
+Go to market launch; iterate and improve after initial release
 
 
 
 ## CI/Testing/Deployment
 
-TBD
+### Continuous Integration
+
+To model standard DevOps behavior, the [Travis-CI](http://travis-ci.org) continous integration site was chosen due to the small amount of effort required to turn it on and its seamless integration with GitHub.
+
+![continuous integration loop](https://insights.sei.cmu.edu/assets/content/image%20for%20continuous%20integration%20and%20devops_01262015.jpg)
+
+Travis-CI monitors as many branches as are available in GitHub for the user account in question (afseparfi), except for the _gh-pages_ branch.  Each time one of the development team members committed a change, Travis-CI kicks off a build.  
+
+### Unit and Quality Testing
+
+The build was configured to perform unit tests and JSHint code-quality checks.  If any unit tests fail or if the JSHint check identifies JavaScript code that does not conform to the established best-practices (as codified in the .jshintrc file), the build fails and is not pushed to production.
+
+### Deployment
+
+One of the useful features of GitHub is that any files checked into a branch named _gh-pages_ is automatically hosted on the GitHub.io site.  When a build passes unit and quality tests, the final step pushes the production code into the _gh-pages_ branch, causing it to be deployed to GitHub.io.
+<br>
+<br>
 
 ## Team/Effort Expended
 
 ![alt img](https://raw.githubusercontent.com/afseparfi/afseparfi/master/docs/Team_Roles_Frame.png)
-
 
 
 ## Agile Methodology
