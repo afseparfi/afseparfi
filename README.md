@@ -159,12 +159,12 @@ The flow of code from initial authoring through testing, quality review and depl
 </table>
 <br><br>
 
-## Site Design and Implementation Approach
+## User Centered Design and Implementation Approach
 
-We follow a five phased approach: Discover, Describe, Design, Develop and Release.  
+As shown in the figure below, to implement the prototype site we followed a five phased approach: _**Discover, Describe, Design, Develop**_ and _**Release**_.
 
 
-![alt img](https://raw.githubusercontent.com/afseparfi/afseparfi/master/docs/infographic.jpg)
+![User Centered Design Methodology](https://raw.githubusercontent.com/afseparfi/afseparfi/master/docs/infographic.jpg)
 
 ### Discover Phase
 
@@ -194,11 +194,11 @@ In the _Design_ phase, we were then able to iterate on wireframes and develop mo
 
 ### Develop Phase
 
-Tech components were applied and a working prototype was developed during Phase 4, Develop. Testing, reusable components, and a distributed coding model were key factors during this phase.
+Tech components were applied and a working prototype was developed during this phase. Testing, reusable components, and a distributed coding model were key factors that enabled the team to create a working prototype rapidly.
 
 ### Release Phase
 
-Phase 5, _Release_, focuses on metrics and measurement, refinement to the initial release to ensure the experience is maximized, enhanced, and relevant for the target users.  As part of the release strategy, a DevOps framework and tools were used to automated the integration, testing and deployment as possible.  
+The last phase, _Release_, focuses on metrics and measurement, refinement to the initial release to ensure the experience is maximized, enhanced, and relevant for the target users.  As part of the release strategy, a DevOps framework and tools were used to automated the integration, testing and deployment as possible.  
 
 
 #### Continuous Integration
@@ -218,7 +218,7 @@ The build was configured to perform unit tests and JSHint code-quality checks.  
 
 #### Deployment
 
-One of the useful features of GitHub is that any files checked into a branch named _gh-pages_ is automatically hosted on the GitHub.io site.  When a build passes unit and quality tests, the final step pushes the production code into the _gh-pages_ branch, causing it to be deployed to GitHub.io.
+One of the useful features of GitHub is that any files checked into a branch named _gh-pages_ is automatically hosted on the **<span>GitHub</span>.io** site.  When a build passes unit and quality tests, the final step pushes the production code into the _gh-pages_ branch, causing it to be deployed to **<span>GitHub</span>.io**.
 <br>
 <br>
 
