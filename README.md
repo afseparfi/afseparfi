@@ -170,13 +170,11 @@ As shown in the figure below, to implement the prototype site we followed a five
 
 In the _Discover_ phase, we interviewed several consumers in the market for a new car. We captured their needs and wants, key factors in making a purchase decision, trusted tools and resources to educate themselves, as well as their understanding of and interest in fuel economy. We conducted a detailed analysis of the current fueleconomy.gov site, as well as a competitive analysis to understand that landscape. These findings informed our approach to how we prioritize our users and their goals in the next phase.
 
-<div style="text-align: center;">
-
-[![user interviews](http://img.youtube.com/vi/jTeDlUynA4I/0.jpg)](http://www.youtube.com/watch?v=jTeDlUynA4I "User Interviews") <br>
+<br>
+[![user interviews](http://img.youtube.com/vi/jTeDlUynA4I/0.jpg)](http://www.youtube.com/watch?v=jTeDlUynA4I "User Interviews") 
+<br>
 <a href="https://www.youtube.com/watch?v=jTeDlUynA4I">User Interviews</a>
-
-</div>
-
+<br>
 ### Describe Phase
 
 During the _Describe_ phase, we created personas to represent these stakeholders. By understanding the user and the available data, we developed user flows that supported researching fuel economy and vehicle comparison. The team sketched new design iterations supporting user flows including browsing and searching, detailed research and comparison. We mapped out specific touchpoints and finalized our service vision and positioning statements.
@@ -186,7 +184,7 @@ During the _Describe_ phase, we created personas to represent these stakeholders
 
 ### Design Phase
 
-In the _Design_ phase, we were then able to iterate on wireframes and develop mock ups.  They focused on an MVP with a user experience that educates about fuel economy combining the website, the data and were visually reinforced by using elements of the environment label. By adding specific detailed views of the label along with matching live data visualizations as the user interacts with the app, our approach was to give the user an understanding of fuel economy data, how the ratings labels displays it, and how it might impact their overall buying decision . By using a responsive design, the site is a tool for research on any media, from mobile to desktop. We developed a visual language for the site that reflected a clean, environmentally friendly, and fresh design elements that would represent the user and that resonated the existing EPA branding.
+In the _Design_ phase, we were then able to iterate on wireframes and develop mock ups. The resulting Minimum Viable Prototype (MVP) tests the hypothesis that an interactive experience combining Fuel Economy data and the Fuel Economy label can drive the user toward positive changes. The prototype features data visualizations, detailed views of specific car information and fuel savings comparison which are all visually reinforced with details of the Fuel Economy label.
 
 <a href="http://txg483.axshare.com">Clickable Wireframes</a>
 
@@ -229,8 +227,7 @@ One of the useful features of GitHub is that any files checked into a branch nam
 
 ## Agile Methodology
 
-Our lean, cross-functional team worked collaboratively every day to iterate on concepts for the prototype. We incorporated feedback from users, teammates, and feedback loops as we developed the prototype. Through the agile process, we worked efficiently to create a resource that helps users research the environmental impact and value of purchasing a new car.
+Our lean, cross-functional team worked collaboratively every day to iterate on concepts for the prototype. We used an agile process that incorporated daily stand-ups, sprint-style planning, a Kanban board (Trello), and collaborating in Github. We incorporated feedback from users, teammates, and feedback loops as we developed the prototype. Through this agile approach, we worked efficiently to create a resource that helps users research the environmental impact and value of purchasing a new car. 
 
 ![alt img](https://raw.githubusercontent.com/afseparfi/afseparfi/master/docs/agile_timeline_graphic.png)
 
-## Contacts
