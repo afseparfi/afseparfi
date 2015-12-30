@@ -62,14 +62,14 @@ The team identified open-source, reusable frameworks as the basic underpinning o
             <br><br>
         </td>
         <td>
-        Grunt provides a reusable build tool with a host of contributed compoments to allow multiple JavaScript-based technologies to be built and testing quickly without creating a series of homegrown scripts and configurations.
+        Grunt provides a reusable build tool with a host of contributed compoments to allow multiple JavaScript-based technologies to be built and tested quickly without creating a series of homegrown scripts and configurations.
         </td>
     </tr>
 </table>
 
 ### Distributed Coding
 
-Modern web projects are performed by many developers distributed across geographical regions, and this project is no exception.  To enable distributed-yet-controlled development, the team chose the following technologies.
+Modern web projects are performed by many developers distributed across geographical regions, and this project is no exception.  To enable distributed-yet-controlled development, the team chose the following technology:
 
 <table>
     <tr>
@@ -203,10 +203,7 @@ The last phase, _Release_, focuses on metrics and measurement, refinement to the
 
 To model standard DevOps behavior, the [Travis-CI](http://travis-ci.org) continous integration site was chosen due to the small amount of effort required to turn it on and its seamless integration with GitHub.
 
-<div style="text-align: center;">
-
 ![continuous integration loop](http://luizricardo.org/wordpress/wp-content/upload-files/2015/05/Continuous-Integration.png)
-</div>
 
 Travis-CI monitors as many branches as are available in GitHub for the user account in question (afseparfi), except for the _gh-pages_ branch.  Each time one of the development team members committed a change, Travis-CI kicks off a build.  
 
