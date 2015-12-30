@@ -418,9 +418,13 @@ afseparfiControllers.controller("VehicleCompareController", ['$scope', '$routePa
 	});
 }]);
 
-afseparfiControllers.controller("EPALabelController", ['$scope',
-  function($scope, $routeParams) {
-	$(document).ready(function() {
-	    $('map').imageMapResize();
-	});
-}]);
+// afseparfiControllers.controller("EPALabelController", ['$scope',
+//   function($scope, $routeParams) {
+
+    afseparfiControllers.controller("EPALabelController", ['$scope',
+        function() {
+            $(document).ready(function() {
+                $('map').imageMapResize();
+            });
+        }]
+    );
