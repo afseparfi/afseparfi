@@ -52,7 +52,6 @@ The team identified open-source, reusable frameworks as the basic underpinning o
     </tr>
 </table>
 
-<<<<<<< HEAD
 These technologies allow for the rapid creation of **_single-page application_** with dynamic response and a mobile-responsive design.
 
 The following technologies provided reusable components which allowed for the easy and fast creation of a DevOps infrastructure to build, test and deploy the code baseline:
