@@ -32,25 +32,25 @@ afseparfiControllers.controller("VehicleIndexController", ['$scope', '$filter', 
 	$scope.getModelOptions = function(modelIndex) {
         switch (modelIndex) {
             case 1:
-                $scope.vehicleModels1 = $.grep($scope.ratings, function(e){ return e.make == $scope.compare.vehicleMake1; });
+                $scope.vehicleModels1 = $.grep($scope.ratings, function(e){ return e.make === $scope.compare.vehicleMake1; });
                 $scope.vehicleModels1 = $filter('orderBy')($scope.vehicleModels1, 'model');
                 break;
             case 2:
-                $scope.vehicleModels2 = $.grep($scope.ratings, function(e){ return e.make == $scope.compare.vehicleMake2; });
+                $scope.vehicleModels2 = $.grep($scope.ratings, function(e){ return e.make === $scope.compare.vehicleMake2; });
                 $scope.vehicleModels2 = $filter('orderBy')($scope.vehicleModels2, 'model');
 	            if ($scope.thisVehicle && $scope.thisVehicle.VClass) {
                     $scope.vehicleModels2 = $filter('filter')($scope.vehicleModels2, { 'VClass': $scope.thisVehicle.VClass });
 	            }
                 break;
             case 3:
-                $scope.vehicleModels3 = $.grep($scope.ratings, function(e){ return e.make == $scope.compare.vehicleMake3; });
+                $scope.vehicleModels3 = $.grep($scope.ratings, function(e){ return e.make === $scope.compare.vehicleMake3; });
                 $scope.vehicleModels3 = $filter('orderBy')($scope.vehicleModels3, 'model');
 	            if ($scope.thisVehicle && $scope.thisVehicle.VClass) {
 	            	$scope.vehicleModels3 = $filter('filter')($scope.vehicleModels3, { 'VClass': $scope.thisVehicle.VClass });
 	            }
                 break;
         }
-	}
+	};
 
 	$scope.compareVehicles = function() {
 		var id1 = $scope.compare.vehicleModel1 ? $scope.compare.vehicleModel1.$id : $routeParams.vehicleId;
@@ -68,11 +68,11 @@ afseparfiControllers.controller("VehicleIndexController", ['$scope', '$filter', 
 		} else {
 			alert("Please select at least two options");
 		}
-	}
+	};
 
 	$scope.getImage = function(imageId) {
 		return vehicleDataService.getImage(imageId);
-	}
+	};
 
 }]);
 
@@ -385,8 +385,6 @@ afseparfiControllers.controller("VehicleCompareController", ['$scope', '$routePa
 		}
 
 		//build out charts data
-		var count = 0;
-
 		var allCitySum = 0;
 		var allHwySum = 0;
 		var allCombSum = 0;
