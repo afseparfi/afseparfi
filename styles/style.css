@@ -1,0 +1,220 @@
+body {
+	font-size: 1.2em;
+}
+footer {
+	padding: 20px 10px;
+	color: #ffffff;
+}
+footer a {
+	color: #ffffff;
+}
+
+footer a:focus, a:hover {
+	color: #96c93f;
+}
+
+button, .btn, .btn-default {
+	color: #ffffff;
+	background-color: #0678bc;
+	text-transform: capitalize;
+}
+
+.highlight-row {
+	background-color: #E4EBED;
+}
+
+.highlight-image {
+	width: 100%;
+	max-height: 120px;
+}
+.highlight-detail, .highlight-detail a {
+	background-color: #0678BC;
+	color: white;
+}
+
+.top-vehicle-info, .vehicle-title {
+	color: #0678BC;
+}
+
+dt {
+	color: #0678BC;
+}
+
+.top-vehicle-info .vehicle-info {
+	font-size: 1.2em;
+}
+.dashed-hr {
+	width: 75%;
+	margin: 80px auto;
+	display: block;
+	border-top: 2px dashed #0678BC;
+}
+
+.info-row {
+  background-color: #F7F7F7;
+}
+
+.light-text {
+	color: #5aa1b0;
+}
+
+footer .small-text {
+    font-size: 7pt;
+}
+
+.fuel-economy-label img {
+	padding-top: 10px;
+}
+.fuel-economy-label .mpgLabel {
+	font-size: 2em;
+	font-weight: bold;
+}
+
+.fuel-economy-label .mpgLabelSup {
+	line-height: 2.3em;
+  vertical-align: top;
+  font-weight: bold;
+}
+
+.fuel-economy-label .cityMpg {
+	top: -65px;
+  right: 50px;
+}
+
+.fuel-economy-label .hwyMpg {
+	top: -65px;
+  right: 20px;
+}
+
+.margin-top-zero {
+	margin-top: 0;
+}
+hr {
+	padding: 0;
+  margin: 0;
+  width: 100%;
+}
+input, button {
+    border-radius: 0px !important;
+}
+
+.ct-label {
+	color: #222a2e;
+	font-size: 0.8em;
+}
+
+.ct-bar-label {
+	font-size: 0.8em;
+	font-weight: bold;
+  fill: #fff;
+/*   text-shadow: 1px 2px #000000; */
+}
+.relative {
+	position: relative;
+}
+
+.absolute {
+	position: absolute;
+}
+
+.annualFuelCost h1, .annualFuelSavings h1 {
+	margin: 0;
+	font-size: 5em;
+}
+
+.annualFuelCost h2 strong, .annualFuelSavings h2 strong{
+	font-size: 1.7em;
+}
+
+.annualFuelSavings .subheading {
+	margin-left: 8em;
+}
+
+/** CUSTOMIZED NAVBAR STYLES **/
+
+.navbar {
+    margin-bottom: 0px;
+}
+.navbar-default {
+  background-color: #0678bc;
+  border-color: #0678bc;
+}
+.navbar-default .navbar-brand {
+  color: #ffffff;
+}
+.navbar-default .navbar-brand:hover, .navbar-default .navbar-brand:focus {
+  color: #ffffff;
+}
+.navbar-default .navbar-text {
+  color: #ffffff;
+}
+.navbar-default .navbar-nav > li > a {
+  color: #ffffff;
+}
+.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
+  color: #96c93f;
+}
+.navbar-default .navbar-nav > li > .dropdown-menu {
+  background-color: #0678bc;
+}
+.navbar-default .navbar-nav > li > .dropdown-menu > li > a {
+  color: #ffffff;
+}
+.navbar-default .navbar-nav > li > .dropdown-menu > li > a:hover,
+.navbar-default .navbar-nav > li > .dropdown-menu > li > a:focus {
+  color: #ffffff;
+  background-color: #0678bc;
+}
+.navbar-default .navbar-nav > li > .dropdown-menu > li > .divider {
+  background-color: #0678bc;
+}
+.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
+  color: #ffffff;
+  background-color: #0678bc;
+}
+.navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus {
+  color: #ffffff;
+  background-color: #0678bc;
+}
+.navbar-default .navbar-toggle {
+  border-color: #0678bc;
+}
+.navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus {
+  background-color: #0678bc;
+}
+.navbar-default .navbar-toggle .icon-bar {
+  background-color: #ffffff;
+}
+.navbar-default .navbar-collapse,
+.navbar-default .navbar-form {
+  border-color: #ffffff;
+}
+.navbar-default .navbar-link {
+  color: #ffffff;
+}
+.navbar-default .navbar-link:hover {
+  color: #ffffff;
+}
+
+@media (max-width: 767px) {
+  .navbar-default .navbar-nav .open .dropdown-menu > li > a {
+    color: #ffffff;
+  }
+  .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover, .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {
+    color: #ffffff;
+  }
+  .navbar-default .navbar-nav .open .dropdown-menu > .active > a, .navbar-default .navbar-nav .open .dropdown-menu > .active > a:hover, .navbar-default .navbar-nav .open .dropdown-menu > .active > a:focus {
+    color: #ffffff;
+    background-color: #0678bc;
+  }
+  
+  .nav-tabs > li, .nav-pills > li {
+	    float:none;
+	    display:inline-block;
+	}
+	
+	.nav-tabs {
+	    text-align:center;
+	}
+	  
+}

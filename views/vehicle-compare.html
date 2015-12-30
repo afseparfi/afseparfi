@@ -1,0 +1,68 @@
+<a name="carSearch"></a>
+<div class="container" >
+  <div data-ng-if="compare3" class="row highlight-row">
+    <div class="col-xs-4">
+      <a href="#/vehicles/{{vehicle1.$id}}">
+        <img class="img-responsive" data-ng-src="{{getImage(vehicle1.$id)}}">
+        <p>{{vehicle1.makeModel}}</p>
+      </a>
+    </div>
+    <div class="col-xs-4">
+      <a href="#/vehicles/{{vehicle2.$id}}">
+        <img class="img-responsive" data-ng-src="{{getImage(vehicle2.$id)}}">
+        <p>{{vehicle2.makeModel}}</p>
+      </a>
+    </div>
+    <div class="col-xs-4">
+      <a href="#/vehicles/{{vehicle3.$id}}">
+        <img class="img-responsive" data-ng-src="{{getImage(vehicle3.$id)}}">
+        <p>{{vehicle3.makeModel}}</p>
+      </a>
+    </div>
+  </div>
+  <div data-ng-if="compare3 == false" class="row highlight-row">
+    <div class="col-xs-6">
+      <a href="#/vehicles/{{vehicle1.$id}}">
+        <img class="img-responsive" data-ng-src="{{getImage(vehicle1.$id)}}">
+        <p>{{vehicle1.makeModel}}</p>
+      </a>
+    </div>
+    <div class="col-xs-6">
+      <a href="#/vehicles/{{vehicle2.$id}}">
+        <img class="img-responsive" data-ng-src="{{getImage(vehicle2.$id)}}">
+        <p>{{vehicle2.makeModel}}</p>
+      </a>
+    </div>
+  </div>
+
+  <div class="row info-row">
+    <div class="col-xs-12">
+      <h3 class="text-center">MILES PER GALLON (MPG) COMPARISONS</h3>
+      <h6 class="text-center">City</h6>
+      <chartist class="ct-chart ct-double-octave" chartist-data="cityChartData" chartist-chart-type="Bar" chartist-events="chartEvents" chartist-chart-options="chartOptions"></chartist>
+      <h6 class="text-center">Highway</h6>
+      <chartist class="ct-chart ct-double-octave" chartist-data="hwyChartData" chartist-chart-type="Bar" chartist-events="chartEvents" chartist-chart-options="chartOptions"></chartist>
+      <h6 class="text-center">Combined</h6>
+      <chartist class="ct-chart ct-double-octave" chartist-data="combChartData" chartist-chart-type="Bar" chartist-events="chartEvents" chartist-chart-options="chartOptions"></chartist>
+      <h6 class="small">*Based on 45% highway, 55% city driving, 15,000 annual miles and current fuel prices.</h6>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+      <h3 class="text-center">GHG COMPARISONS</h3>
+      <chartist class="ct-chart ct-double-octave" chartist-data="ghgChartData" chartist-chart-type="Bar" chartist-events="chartEvents" chartist-chart-options="ghgChartOptions"></chartist>      
+    </div>
+  </div>  
+  <div class="row">
+    <div class="col-xs-12">
+      <h3 class="text-center">FUEL COST COMPARISONS</h3>
+      <chartist class="ct-chart ct-double-octave" chartist-data="fuelCostsChartData" chartist-chart-type="Bar" chartist-events="chartEvents" chartist-chart-options="fuelChartOptions"></chartist>      
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+      <h3 class="text-center">FUEL SAVINGS COMPARISONS</h3>
+      <chartist class="ct-chart ct-double-octave" chartist-data="fuelSavingsChartData" chartist-chart-type="Bar" chartist-events="chartEvents" chartist-chart-options="fuelChartOptions"></chartist>      
+    </div>
+  </div>
+</div>

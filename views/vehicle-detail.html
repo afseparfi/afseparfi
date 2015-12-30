@@ -1,0 +1,169 @@
+<div class="container" >
+
+  <div class="row highlight-row">
+    <div class="col-xs-6 col-md-4 col-md-offset-1">
+      <img class="img-responsive" data-ng-src="{{getImage(thisVehicle.$id)}}">
+    </div>
+    <div class="col-xs-6">
+      <h3 class="vehicle-title">{{thisVehicle.makeModel}}</h3>
+      <dt>Transmission</dt><dd>{{thisVehicle.trany}}</dd>
+      <dt>Drive:</dt><dd>{{thisVehicle.drive}}</dd>
+      <dt>Fuel Usage:</dt><dd>{{thisVehicle.fuelType1}}</dd>
+    </div>
+  </div>
+
+  <!-- Nav tabs -->
+  <ul class="nav nav-tabs nav-justified" role="tablist">
+    <li role="presentation" class="active"><a data-target="#mpgTabContent" aria-controls="mpgTabContent" role="tab" data-toggle="tab">MPG</a></li>
+    <li role="presentation"><a data-target="#ghgTabContent" aria-controls="ghgTabContent" role="tab" data-toggle="tab">GHG</a></li>
+    <li role="presentation"><a data-target="#fuelCostTabContent" aria-controls="fuelCostTabContent" role="tab" data-toggle="tab">FUEL COST <span class="hidden-xs">AND SAVINGS</span></a></li>
+    <li role="presentation"><a data-target="#embeddedVehicleCompare" role="tab" data-toggle="tab">COMPARE</a></li>
+  </ul>
+
+  <!-- Tab panes -->
+  <div class="tab-content">
+    <div role="tabpanel" class="tab-pane active" id="mpgTabContent">
+      <div class="row info-row fuel-economy-label">
+        <h3 class="text-center">Miles Per Gallon (MPG)</h3>
+        <div class="panel panel-info info-row col-xs-offset-1 col-xs-10 col-md-offset-4 col-md-4">
+          <div class="panel-body">
+            <h5 class="text-center"><strong>Fuel Economy</strong></h5>
+            <div class="row">
+              <div class="col-xs-2"><img src="images/fuel-pump.png"></div>
+              <div class="col-xs-6">
+              <h1 class="margin-top-zero"><span class="mpgLabel">{{thisVehicle.comb08}}</span><sup class="mpgLabelSup">mpg</sup></h1>
+              <p class="text-nowrap">combined city/hwy</p>
+              </div>
+            </div>
+            <div class="row relative">
+              <div class="col-xs-offset-7 col-xs-2 absolute cityMpg"><h5><strong>{{thisVehicle.comb08}}</strong></h5>city</div>
+              <div class="col-xs-2 absolute hwyMpg"><h5><strong>{{thisVehicle.highway08}}</strong></h5>highway</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <hr />
+      <div class="row info-row">
+        <div class="col-xs-12">
+          <h3 class="text-center">MPG COMPARISONS</h3>
+          <h6 class="text-center">City</h6>
+          <chartist class="ct-chart ct-double-octave" chartist-data="cityChartData" chartist-chart-type="Bar" chartist-events="chartEvents" chartist-chart-options="chartOptions"></chartist>
+
+          <h6 class="text-center">Highway</h6>
+          <chartist class="ct-chart ct-double-octave" chartist-data="hwyChartData" chartist-chart-type="Bar" chartist-events="chartEvents" chartist-chart-options="chartOptions"></chartist>
+
+          <h6 class="text-center">Combined</h6>
+          <chartist class="ct-chart ct-double-octave" chartist-data="combChartData" chartist-chart-type="Bar" chartist-events="chartEvents" chartist-chart-options="chartOptions"></chartist>
+          <h6 class="small">*Based on 45% highway, 55% city driving, 15,000 annual miles and current fuel prices.</h6>
+        </div>
+      </div>
+    </div>
+
+    <div role="tabpanel" class="tab-pane" id="ghgTabContent">
+      <div class="row clearfix">
+        <h3 class="text-center">Greenhouse Gas (GHG)</h3>
+        <div class="panel panel-info col-xs-offset-1 col-xs-10 col-md-offset-3 col-md-6">
+          <div class="panel-body">
+            <h5 class="text-center">Greenhouse Gas Rating <span class="disabled">(tailpipe only)</span></h5>
+            <div class="row">
+              <div class="col-xs-12"><img class="img-responsive center-block" src="images/epaem{{thisVehicle.ghgScore}}.png"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row small-text text-center">Compares the tailpipe greenhouse gas emissions to those of other vehicles of the same model year on a scale of 1 (worst) to 10 (best)</div>
+      <hr />
+      <div class="row">
+        <div class="col-xs-12">
+          <h3 class="text-center">GHG COMPARISONS</h3>
+          <chartist class="ct-chart ct-double-octave" chartist-data="ghgChartData" chartist-chart-type="Bar" chartist-events="chartEvents" chartist-chart-options="ghgChartOptions"></chartist>
+        </div>
+      </div>
+    </div>
+    <div role="tabpanel" class="tab-pane clearfix" id="fuelCostTabContent">
+      <div class="row clearfix annualFuelCost">
+        <h3 class="text-center">ESTIMATED FUEL COST</h3>
+        <div class="panel panel-info col-xs-offset-1 col-xs-10 col-md-offset-4 col-md-4">
+          <div class="panel-body">
+            <h2 class="text-center text-nowrap">Annual fuel <strong>cost</strong></h2>
+            <div class="row">
+              <h1 class="text-center">${{thisVehicle.fuelCost08}}</h1>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row small-text text-center col-xs-offset-0 col-xs-12">Annual fuel cost is based on 15,000 miles, 55% city driving, and the price of fuel used by the vehicle.</div>
+      <br clear="all">
+      <hr />
+      <div class="row clearfix annualFuelSavings">
+        <h3 class="text-center">ESTIMATED FUEL SAVINGS</h3>
+        <div class="panel panel-info col-xs-offset-1 col-xs-10 col-md-offset-4 col-md-4">
+          <div class="panel-body">
+            <h2 class="text-center ">You <strong>save</strong></h2>
+            <div class="row">
+              <h1 class="text-center">${{thisVehicle.youSaveSpend}}</h1>
+            </div>
+            <div class="row subheading">
+              <h5><strong>in fuel costs</strong><br><strong>over five years</strong><br><small>compared to the average new vehicle</small></h5>
+
+            </div>
+
+          </div>
+        </div>
+      </div>
+      <div class="row small-text text-center col-xs-offset-0 col-xs-12 col-md-6 col-md-offset-3">
+        You save/spend over 5 years compared to an average car ($).
+        Savings are positive; a greater amount spent yields a negative number.
+        For dual fuel vehicles, this is the cost savings for gasoline.
+      </div>
+    </div>
+
+    <div role="tabpanel" class="tab-pane" id="embeddedVehicleCompare" data-ng-controller="VehicleIndexController" data-ng-init="compare.vehicleMake1 = thisVehicle.$id">
+      <div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-3"><h3 class="text-center">COMPARE SIMILAR VEHICLES</h3></div>
+      <br/>
+      <div class="row" ng-hide="true">
+        <div class="col-xs-5 col-xs-offset-1 col-md-3 col-md-offset-3">
+          <select data-ng-model="compare.vehicleMake1" class="form-control" data-ng-options="make for make in vehicleMakes | orderBy: make" data-ng-change="getModelOptions(1)">
+          <option value="">Make</option>
+          </select>
+        </div>
+        <div class="col-xs-5 col-md-3 ">
+          <select data-ng-model="compare.vehicleModel1" class="form-control" data-ng-options="auto.model + ' ' + auto.trany + ' ' +  auto.cylinders + 'cyl'  + ' ' +  auto.eng_dscr for auto in vehicleModels1">
+          <option value="">Model</option>
+          </select>
+        </div>
+      </div>
+  	  <div class="row">
+        <div class="col-xs-5 col-xs-offset-1 col-md-3 col-md-offset-3">
+          <select data-ng-model="compare.vehicleMake2" class="form-control" data-ng-options="make for make in vehicleMakes | orderBy: make" data-ng-change="getModelOptions(2)">
+          <option value="">Make</option>
+          </select>
+        </div>
+        <div class="col-xs-5 col-md-3 ">
+          <select data-ng-model="compare.vehicleModel2" class="form-control" data-ng-options="auto.model + ' ' + auto.trany + ' ' +  auto.cylinders + 'cyl'  + ' ' +  auto.eng_dscr for auto in vehicleModels2">
+          <option value="">Model</option>
+          </select>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-5 col-xs-offset-1 col-md-3 col-md-offset-3">
+          <select data-ng-model="compare.vehicleMake3" class="form-control" data-ng-options="make for make in vehicleMakes | orderBy: make" data-ng-change="getModelOptions(3)">
+          <option value="">Make</option>
+          </select>
+        </div>
+        <div class="col-xs-5 col-md-3 ">
+          <select data-ng-model="compare.vehicleModel3" class="form-control" data-ng-options="auto.model + ' ' + auto.trany + ' ' +  auto.cylinders + 'cyl'  + ' ' +  auto.eng_dscr for auto in vehicleModels3">
+          <option value="">Model</option>
+          </select>
+        </div>
+      </div>
+      <br clear="all"/>
+      <div class="row">
+  	    <div class="form-group">
+  	      <button class="btn btn-default col-xs-8 col-xs-offset-2 col-md-6 col-md-offset-3" data-ng-click="compareVehicles()">Compare</button>
+  	    </div>
+      </div>
+      <br/>
+    </div>
+  </div>
+</div>
