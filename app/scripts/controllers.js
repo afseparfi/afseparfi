@@ -50,6 +50,7 @@ afseparfiControllers.controller("VehicleIndexController", ['$scope', '$filter', 
 	            }
                 break;
         }
+	}
 
 	$scope.compareVehicles = function() {
 		var id1 = $scope.compare.vehicleModel1 ? $scope.compare.vehicleModel1.$id : $routeParams.vehicleId;
