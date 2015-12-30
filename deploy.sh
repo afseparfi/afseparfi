@@ -12,6 +12,7 @@ mkdir dist;
 #  controllers and services
 
 grunt jshint
+grunt test
 
 #  If you make it this far, you've passed the tests and quality
 #  gate and are ready to create a dist package for deployment to
