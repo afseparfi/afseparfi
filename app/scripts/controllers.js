@@ -28,25 +28,30 @@ afseparfiControllers.controller("VehicleIndexController", ['$scope', '$filter', 
 
 
 	$scope.getModelOptions = function(modelIndex) {
+        switch (modelIndex) {
+            case 1:
+                $scope.vehicleModels1 = $.grep($scope.ratings, function(e){ return e.make == $scope.compare.vehicleMake1; });
+                $scope.vehicleModels1 = $filter('orderBy')($scope.vehicleModels1, 'model');
+                break;
+            case 2:
+                $scope.vehicleModels2 = $.grep($scope.ratings, function(e){ return e.make == $scope.compare.vehicleMake2; });
+                $scope.vehicleModels2 = $filter('orderBy')($scope.vehicleModels2, 'model');
+	            if ($scope.thisVehicle && $scope.thisVehicle.VClass) {
+                    $scope.vehicleModels2 = $filter('filter')($scope.vehicleModels2, { 'VClass': $scope.thisVehicle.VClass });
+	            }
+                break;
+            case 3:
+                $scope.vehicleModels3 = $.grep($scope.ratings, function(e){ return e.make == $scope.compare.vehicleMake3; });
+                $scope.vehicleModels3 = $filter('orderBy')($scope.vehicleModels3, 'model');
+	            if ($scope.thisVehicle && $scope.thisVehicle.VClass) {
+	            	$scope.vehicleModels3 = $filter('filter')($scope.vehicleModels3, { 'VClass': $scope.thisVehicle.VClass });
+	            }
+                break;
+        }
 
-		switch (modelIndex) {
-			case 1:
-				$scope.vehicleModels1 = $.grep($scope.ratings, function(e){ return e.make == $scope.compare.vehicleMake1; });
-				$scope.vehicleModels1 = $filter('orderBy')($scope.vehicleModels1, 'model');
-				break;
-			case 2:
-				$scope.vehicleModels2 = $.grep($scope.ratings, function(e){ return e.make == $scope.compare.vehicleMake2; });
-				$scope.vehicleModels2 = $filter('orderBy')($scope.vehicleModels2, 'model');
-				break;
-			case 3:
-				$scope.vehicleModels3 = $.grep($scope.ratings, function(e){ return e.make == $scope.compare.vehicleMake3; });
-				$scope.vehicleModels3 = $filter('orderBy')($scope.vehicleModels3, 'model');
-				break;
-		}
-	}
 
 	$scope.compareVehicles = function() {
-    var id1 = $scope.compare.vehicleModel1 ? $scope.compare.vehicleModel1.$id : $routeParams.vehicleId;
+		var id1 = $scope.compare.vehicleModel1 ? $scope.compare.vehicleModel1.$id : $routeParams.vehicleId;
 
 		if (id1 && $scope.compare.vehicleModel2 && $scope.compare.vehicleModel3) {
 			$location.path('/compare/' + id1 + '/to/' + $scope.compare.vehicleModel2.$id + '/and/' + $scope.compare.vehicleModel3.$id);
@@ -56,8 +61,8 @@ afseparfiControllers.controller("VehicleIndexController", ['$scope', '$filter', 
 			$location.path('/compare/' + id1 + '/to/' + $scope.compare.vehicleModel3.$id);
 		} else if($scope.compare.vehicleModel2 && $scope.compare.vehicleModel3  && !$scope.compare.vehicleModel1) {
 			$location.path('/compare/' + $scope.compare.vehicleModel2.$id + '/to/' + $scope.compare.vehicleModel3.$id);
-    } else if (id1) {
-      alert("Please select at least one additional make and model for the comparison.");
+		} else if (id1) {
+			alert("Please select at least one additional make and model for the comparison.");
 		} else {
 			alert("Please select at least two options");
 		}
