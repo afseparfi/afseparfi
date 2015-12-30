@@ -27,6 +27,7 @@ scripts/angular-chartist.min.js
 scripts/angular-route.min.js
 scripts/chartist.min.js
 scripts/imageMapResizer.min.js
+scripts/chartist-bar-labels.js
 
 images/facebook.png
 images/twitter.png
