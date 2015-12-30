@@ -10,7 +10,11 @@
   "strict": true,
   "undef": true,
   "unused": true,
+  "devel": true,
   "globals": {
-    "angular": false
+    "angular": false,
+    "$": false,
+    "Chartist": false,
+    "Firebase": false
   }
 }

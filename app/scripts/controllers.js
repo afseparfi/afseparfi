@@ -1,3 +1,5 @@
+'use strict';
+
 var afseparfiControllers = angular.module('afseparfiControllers', []);
 
 afseparfiControllers.controller("VehicleIndexController", ['$scope', '$filter', '$routeParams', '$location', 'vehicleDataService',
@@ -10,8 +12,8 @@ afseparfiControllers.controller("VehicleIndexController", ['$scope', '$filter', 
       var unique = {};
 		var distinct = [];
 		for( var i in $scope.ratings ){
-			if( typeof(unique[$scope.ratings[i].make]) == "undefined"){
-				if (unique[$scope.ratings[i].make] != "") {
+			if( typeof(unique[$scope.ratings[i].make]) === "undefined"){
+				if (unique[$scope.ratings[i].make] !== "") {
 					distinct.push($scope.ratings[i].make);
 				}
 			}
@@ -49,7 +51,6 @@ afseparfiControllers.controller("VehicleIndexController", ['$scope', '$filter', 
                 break;
         }
 
-
 	$scope.compareVehicles = function() {
 		var id1 = $scope.compare.vehicleModel1 ? $scope.compare.vehicleModel1.$id : $routeParams.vehicleId;
 
@@ -71,6 +72,7 @@ afseparfiControllers.controller("VehicleIndexController", ['$scope', '$filter', 
 	$scope.getImage = function(imageId) {
 		return vehicleDataService.getImage(imageId);
 	}
+
 }]);
 
 
@@ -92,15 +94,15 @@ afseparfiControllers.controller("VehicleListController", ['$scope', 'vehicleData
 		},
 		plugins: [
 	    	Chartist.plugins.ctBarLabels({
-	    		 labelInterpolationFnc: function(text) { 
-	    			 return Math.round(text) + ' mpg' 
+	    		 labelInterpolationFnc: function(text) {
+	    			 return Math.round(text) + ' mpg';
 	    		 },
 	    		 labelOffset: {
 	    		        y: 3
 	    	     },
 	    	})
 	    ]
-		
+
 	};
 
 	$scope.chartEvents = {
@@ -120,7 +122,7 @@ afseparfiControllers.controller("VehicleListController", ['$scope', 'vehicleData
 
 	vehicleDataService.getData().then(function(data){
 		$scope.ratings = data;
-		$scope.topRatings;
+		// $scope.topRatings;
 		if ($scope.ratings.length > 0) {
 			$scope.topRatings = $filter('limitTo')($scope.ratings, 5);
 		}
@@ -133,7 +135,8 @@ afseparfiControllers.controller("VehicleListController", ['$scope', 'vehicleData
 
 	$scope.getImage = function(imageId) {
 		return vehicleDataService.getImage(imageId);
-	}
+	};
+
 }]);
 
 
@@ -157,8 +160,8 @@ afseparfiControllers.controller("VehicleDetailController", ['$scope', '$routePar
 		},
 		plugins: [
 	    	Chartist.plugins.ctBarLabels({
-	    		 labelInterpolationFnc: function(text) { 
-	    			 return Math.round(text) + ' mpg' 
+	    		 labelInterpolationFnc: function(text) {
+	    			 return Math.round(text) + ' mpg';
 	    		 },
 	    		 labelOffset: {
 	    		        y: 3
@@ -180,8 +183,8 @@ afseparfiControllers.controller("VehicleDetailController", ['$scope', '$routePar
 			},
 			plugins: [
 		    	Chartist.plugins.ctBarLabels({
-		    		 labelInterpolationFnc: function(text) { 
-		    			 return Math.round(text); 
+		    		 labelInterpolationFnc: function(text) {
+		    			 return Math.round(text);
 		    		 },
 		    		 labelOffset: {
 		    		        y: 3
@@ -213,7 +216,7 @@ afseparfiControllers.controller("VehicleDetailController", ['$scope', '$routePar
 		var count = 0;
 		var combSum = 0;
 		var citySum = 0;
-		var hwySum = 0;		
+		var hwySum = 0;
 		var allCitySum = 0;
 		var allHwySum = 0;
 		var allCombSum = 0;
@@ -221,7 +224,7 @@ afseparfiControllers.controller("VehicleDetailController", ['$scope', '$routePar
 		var allGhgSum = 0;
 
 		for( var i in $scope.ratings ){
-			if($scope.ratings[i].VClass == $scope.thisVehicle.VClass){
+			if($scope.ratings[i].VClass === $scope.thisVehicle.VClass){
 				combSum += $scope.ratings[i].comb08;
 				citySum += $scope.ratings[i].city08;
 				hwySum += $scope.ratings[i].highway08;
@@ -233,7 +236,7 @@ afseparfiControllers.controller("VehicleDetailController", ['$scope', '$routePar
 			allCombSum += $scope.ratings[i].comb08;
 			allCitySum += $scope.ratings[i].city08;
 			allHwySum += $scope.ratings[i].highway08;
-			allGhgSum += $scope.ratings[i].ghgScore;			
+			allGhgSum += $scope.ratings[i].ghgScore;
 		}
 
 		var vehicleClassAverageCity = citySum / count;
@@ -254,7 +257,7 @@ afseparfiControllers.controller("VehicleDetailController", ['$scope', '$routePar
 
 		$scope.getImage = function(imageId) {
 			return vehicleDataService.getImage(imageId);
-		}
+		};
 	});
 
 	//fix charts in hidden divs
@@ -291,8 +294,8 @@ afseparfiControllers.controller("VehicleCompareController", ['$scope', '$routePa
 		},
 		plugins: [
 	    	Chartist.plugins.ctBarLabels({
-	    		 labelInterpolationFnc: function(text) { 
-	    			 return Math.round(text) + ' mpg' 
+	    		 labelInterpolationFnc: function(text) {
+	    			 return Math.round(text) + ' mpg';
 	    		 },
 	    		 labelOffset: {
 	    		        y: 3
@@ -315,8 +318,8 @@ afseparfiControllers.controller("VehicleCompareController", ['$scope', '$routePa
 		},
 		plugins: [
 	    	Chartist.plugins.ctBarLabels({
-	    		 labelInterpolationFnc: function(text) { 
-	    			 return '$' + Math.round(text)
+	    		 labelInterpolationFnc: function(text) {
+	    			 return '$' + Math.round(text);
 	    		 },
 	    		 labelOffset: {
 	    		        y: 3
@@ -337,8 +340,8 @@ afseparfiControllers.controller("VehicleCompareController", ['$scope', '$routePa
 			seriesBarDistance: 35,
 			plugins: [
 		    	Chartist.plugins.ctBarLabels({
-		    		 labelInterpolationFnc: function(text) { 
-		    			 return Math.round(text); 
+		    		 labelInterpolationFnc: function(text) {
+		    			 return Math.round(text);
 		    		 },
 		    		 labelOffset: {
 		    		        y: 3
@@ -363,14 +366,13 @@ afseparfiControllers.controller("VehicleCompareController", ['$scope', '$routePa
 
 	$scope.getImage = function(imageId) {
 		return vehicleDataService.getImage(imageId);
-	}
+	};
 
 	$scope.compare3 = (vehicle3Id) ? true : false;
 
 	$scope.vehicle1 = {};
 	$scope.vehicle2 = {};
 	$scope.vehicle3 = {};
-//	$scope.similarVehicles = [];
 
 	vehicleDataService.getData().then(function(data){
 		$scope.ratings = data;
@@ -383,31 +385,17 @@ afseparfiControllers.controller("VehicleCompareController", ['$scope', '$routePa
 
 		//build out charts data
 		var count = 0;
-//		var combSum = 0;
-//		var citySum = 0;
-//		var hwySum = 0;
+
 		var allCitySum = 0;
 		var allHwySum = 0;
 		var allCombSum = 0;
-//		var ghgSum = 0;
 		var allGhgSum = 0;
-//		var fuelSavingsSum = 0;
+
 		var allFuelSavings = 0;
 		var allFuelCosts = 0;
 
 		//loop over vehicle records to calculate comparative chart data
 		for( var i in $scope.ratings ){
-			//only use this if we can compare vehicle classes. at this point just using all data
-//			if($scope.ratings[i].VClass == $scope.vehicle1.VClass){
-//				combSum += $scope.ratings[i].comb08;
-//				citySum += $scope.ratings[i].city08;
-//				hwySum += $scope.ratings[i].highway08;
-//				ghgSum += $scope.ratings[i].ghgScore;
-//				fuelSavingsSum += $scope.ratings[i].youSaveSpend;
-//				$scope.similarVehicles.push($scope.ratings[i]);
-//				count++;
-//			}
-
 			allCombSum += $scope.ratings[i].comb08;
 			allCitySum += $scope.ratings[i].city08;
 			allHwySum += $scope.ratings[i].highway08;
@@ -416,16 +404,11 @@ afseparfiControllers.controller("VehicleCompareController", ['$scope', '$routePa
 			allFuelCosts += $scope.ratings[i].fuelCost08;
 		}
 
-//		var vehicleClassAverageCity = citySum / count;
-//		var vehicleClassAverageHwy = hwySum / count;
-//		var vehicleClassAverageComb = combSum / count;
-//		var vehicleClassAverageGhg = ghgSum / count;
-
 		var allAverageCity = allCitySum / $scope.ratings.length;
 		var allAverageHwy = allHwySum / $scope.ratings.length;
 		var allAverageComb = allCombSum / $scope.ratings.length;
 		var allAverageGhg = allGhgSum / $scope.ratings.length;
-//		var vehicleClassAverageFuelSavings = fuelSavingsSum / count;
+
 		var allAverageFuelSavings = allFuelSavings / $scope.ratings.length;
 		var allAverageFuelCosts = allFuelCosts / $scope.ratings.length;
 
@@ -448,9 +431,11 @@ afseparfiControllers.controller("VehicleCompareController", ['$scope', '$routePa
 	});
 }]);
 
+
 afseparfiControllers.controller("EPALabelController", ['$scope',
-  function($scope, $routeParams) {
-	$(document).ready(function() {
-	    $('map').imageMapResize();
-	});
-}]);
+    function() {
+        $(document).ready(function() {
+            $('map').imageMapResize();
+        });
+    }]
+);

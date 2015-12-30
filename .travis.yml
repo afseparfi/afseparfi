@@ -1,9 +1,12 @@
 sudo: false
 language: node_js
 node_js:
-  - 'iojs'
-  - '0.12'
-  - '0.10'
+- '4'
 before_script:
-  - 'npm install -g bower grunt-cli'
-  - 'bower install'
+- npm install -g bower grunt-cli
+- bower install
+script: bash ./deploy.sh
+env:
+  global:
+  - GH_REF: github.com/afseparfi/afseparfi.git
+  - secure: VEyjHkAHrg/4IRkQzlgwbt/ysiOiyFOEXd9aX4aNyMKJU1Vqf5WBaqlPLwSE7Brsx4cNQWb0vNCbvCCIhcUrU6JI01xDGTEqAdOLD5MoLCJznWVyPfROwK8cluJ5ro+X2pqRvODUSY1JF7DW9dJvRY5UMWM+RFL/7gbzQrnZHdg6ZvILFdFvEZa9Dz4quKtFH8/p6aBdEthBZS47XoWEJf/ZU2ovhS2FNGp3zkXk3h9MbXouINrKnAHSpglVPyijbJIsBu/XBrqMdnMZJ19iIKp+564KkKEo18wdAwKzPINUupq3IYL0yrnOxClSsTKig1x6kzpEywtznnd+m1vLIpMjBkuNy3Uppf3dABnC3WLOxkNRqwek2QMIP88p0d8Wo8xnRimfotMofO65wWRPc92G/DY8HGeI8aitSYCTgsLKSbLQBy17Kzh3p7o+DZBn6HBCphwgInH2NhxzAG530pG5moCsL11al/3SDaahl6bSsyiu0bpFei2rZ71b+MA0q8J3pKSkEm0mW+fX/azsVFbwzsrmCm7POeh9Ba/MZs2IssAt10cDSIoVLn9XdY/CY2oxdquexQM82NW6icZNnUIZ3N72+KBsl15Yk9us/wuAOSCXPva9OQH3mZPpkQ+S33shYnNkgjtsZCXoC7jjKTEB9IRwiD89zfkLy685lWw=
