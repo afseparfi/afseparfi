@@ -2,7 +2,7 @@
 ## Introduction
 This repo serves as an RFI response for the EPA. It is a working prototype based on a public environmental dataset, specifically, Fuel Economy Mileage Ratings for 2016.
 
-Link to Prototype
+<a href="http://afseparfi.github.io/afseparfi/">Link to Prototype</a>
 
 ## Technologies
 
