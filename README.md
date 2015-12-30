@@ -210,11 +210,12 @@ One of the useful features of GitHub is that any files checked into a branch nam
 ## Team/Effort Expended
 
 ![alt img](https://raw.githubusercontent.com/afseparfi/afseparfi/master/docs/Team_Roles_Frame.png)
-
+![alt img](https://raw.githubusercontent.com/afseparfi/afseparfi/master/docs/hours.png)
 
 ## Agile Methodology
 
 Our lean, cross-functional team worked collaboratively every day to iterate on concepts for the prototype. We incorporated feedback from users, teammates, and feedback loops as we developed the prototype. Through the agile process, we worked efficiently to create a resource that helps users research the environmental impact and value of purchasing a new car.
 
+![alt img](https://raw.githubusercontent.com/afseparfi/afseparfi/master/docs/agile_timeline_graphic.png)
 
 ## Contacts
