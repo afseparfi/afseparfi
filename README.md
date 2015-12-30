@@ -1,8 +1,13 @@
 
 ## Introduction
-This repo serves as an RFI response for the EPA. It is a working prototype based on a public environmental dataset, specifically, Fuel Economy Mileage Ratings for 2016.
+This repository contains a prototype web application that leverages the fuel economy public environmental dataset that allows consumers to view and compare fuel efficiency and greenhouse-gas information for automobiles back to 2005.  
 
-<a href="http://afseparfi.github.io/afseparfi/">Link to Prototype</a>
+The public dataset used is http://www.fueleconomy.gov/feg/epadata/vehicles.csv.zip, which contains all of the fuel efficiency and greenhouse-gas emissions data for vehicles from the present day back to 1984.  For the purposes of the prototype, the data was limited to a 10-year span, back to 2005.  
+
+The consumer is able to access this prototype application at http://afseparfi.github.io/afseparfi/.  The site is a responsive, single-page application that, once loaded into a browser, can be used whether a network connection exists or not.  It allows the consumer to review fuel efficiency and greenhouse-gas information for any model car, and to compare up to three vehicles against one another.  
+
+The current EPA site, www.fueleconomy.gov, already features a similar capability, but the development team has reimagined the feature with a focus on supporting mobile platforms such as smartphones and tablets, since the likely use of the site would be while shopping for a new or used vehicle at a dealer location, rather than at home from a desktop computer.
+<br><br>
 
 ## Technologies
 
@@ -154,54 +159,64 @@ The flow of code from initial authoring through testing, quality review and depl
 </table>
 <br><br>
 
-## Site Design Approach
+## Site Design and Implementation Approach
 
-We follow a five phased approach beginning with Discovery. Through user research, we interviewed several consumers in the market for a new car. We captured their needs and wants, key factors in making a purchase decision, trusted tools and resources to educate themselves, as well as their understanding of and interest in fuel economy. We conducted a detailed analysis of the current fueleconomy.gov site, as well as a competitive analysis to understand that landscape. These findings informed our approach to how we prioritize our users and their goals, phase 2. During the Describe phase, we created personas to represent these stakeholders. By understanding the user and the available data, we developed user flows that supported researching fuel economy and vehicle comparison. The team sketched new design iterations supporting user flows including browsing and searching, detailed research and comparison. We mapped out specific touchpoints and finalized our service vision and positioning statements. During Phase 3, Design, we were then able to iterate on wireframes and develop mock ups.  They focused on an MVP with a user experience that educates about fuel economy combining the website, the data and were visually reinforced by using elements of the environment label. By adding specific detailed views of the label along with matching live data visualizations as the user interacts with the app, our approach was to give the user an understanding of fuel economy data, how the ratings labels displays it, and how it might impact their overall buying decision . By using a responsive design, the site is a tool for research on any media, from mobile to desktop. We developed a visual language for the site that reflected a clean, environmentally friendly, and fresh design elements that would represent the user and that resonated the existing EPA branding. Tech components were applied and a working prototype was developed during Phase 4, Develop. Testing, reusable components, and a distributed coding model were key factors during this phase. Phase 5, Release focuses on metrics and measurement, refinement to the initial release to ensure the experience is maximized, enhanced, and relevant for the target users.
+We follow a five phased approach: Discover, Describe, Design, Develop and Release.  
+
 
 ![alt img](https://raw.githubusercontent.com/afseparfi/afseparfi/master/docs/infographic.jpg)
 
-### Discover
-Frame the problem and existing experience by gaining a full understanding of the context and potential constraints
+### Discover Phase
 
+In the _Discover_ phase, we interviewed several consumers in the market for a new car. We captured their needs and wants, key factors in making a purchase decision, trusted tools and resources to educate themselves, as well as their understanding of and interest in fuel economy. We conducted a detailed analysis of the current fueleconomy.gov site, as well as a competitive analysis to understand that landscape. These findings informed our approach to how we prioritize our users and their goals in the next phase.
+
+<div style="text-align: center;">
+
+[![user interviews](http://img.youtube.com/vi/jTeDlUynA4I/0.jpg)](http://www.youtube.com/watch?v=jTeDlUynA4I "User Interviews") <br>
 <a href="https://www.youtube.com/watch?v=jTeDlUynA4I">User Interviews</a>
 
-[![user interviews](http://img.youtube.com/vi/jTeDlUynA4I/0.jpg)](http://www.youtube.com/watch?v=jTeDlUynA4I "User Interviews")
+</div>
 
-### Describe
-Define the service by synthesizing research and producing high level concepts, including differentiating ideas and key indicators for success
+### Describe Phase
+
+During the _Describe_ phase, we created personas to represent these stakeholders. By understanding the user and the available data, we developed user flows that supported researching fuel economy and vehicle comparison. The team sketched new design iterations supporting user flows including browsing and searching, detailed research and comparison. We mapped out specific touchpoints and finalized our service vision and positioning statements.
+
 
 ![alt img](https://raw.githubusercontent.com/afseparfi/afseparfi/master/docs/user_flow.png)
 
-### Design
-Bring the service to life by conceiving, prototyping, evaluating, and refining the service experience
+### Design Phase
+
+In the _Design_ phase, we were then able to iterate on wireframes and develop mock ups.  They focused on an MVP with a user experience that educates about fuel economy combining the website, the data and were visually reinforced by using elements of the environment label. By adding specific detailed views of the label along with matching live data visualizations as the user interacts with the app, our approach was to give the user an understanding of fuel economy data, how the ratings labels displays it, and how it might impact their overall buying decision . By using a responsive design, the site is a tool for research on any media, from mobile to desktop. We developed a visual language for the site that reflected a clean, environmentally friendly, and fresh design elements that would represent the user and that resonated the existing EPA branding.
 
 <a href="http://txg483.axshare.com">Clickable Wireframes</a>
 
 <a href="https://raw.githubusercontent.com/afseparfi/afseparfi/master/docs/epa_highfidelity.pdf">High Fidelity Mockups</a>
 
-### Develop
-Technical Components and Prototypes
+### Develop Phase
 
-### Release
-Go to market launch; iterate and improve after initial release
+Tech components were applied and a working prototype was developed during Phase 4, Develop. Testing, reusable components, and a distributed coding model were key factors during this phase.
+
+### Release Phase
+
+Phase 5, _Release_, focuses on metrics and measurement, refinement to the initial release to ensure the experience is maximized, enhanced, and relevant for the target users.  As part of the release strategy, a DevOps framework and tools were used to automated the integration, testing and deployment as possible.  
 
 
-
-## CI/Testing/Deployment
-
-### Continuous Integration
+#### Continuous Integration
 
 To model standard DevOps behavior, the [Travis-CI](http://travis-ci.org) continous integration site was chosen due to the small amount of effort required to turn it on and its seamless integration with GitHub.
 
-![continuous integration loop](https://insights.sei.cmu.edu/assets/content/image%20for%20continuous%20integration%20and%20devops_01262015.jpg)
+<div style="text-align: center;">
+
+![continuous integration loop](http://luizricardo.org/wordpress/wp-content/upload-files/2015/05/Continuous-Integration.png)
+</div>
 
 Travis-CI monitors as many branches as are available in GitHub for the user account in question (afseparfi), except for the _gh-pages_ branch.  Each time one of the development team members committed a change, Travis-CI kicks off a build.  
 
-### Unit and Quality Testing
+#### Unit and Quality Testing
 
 The build was configured to perform unit tests and JSHint code-quality checks.  If any unit tests fail or if the JSHint check identifies JavaScript code that does not conform to the established best-practices (as codified in the .jshintrc file), the build fails and is not pushed to production.
 
-### Deployment
+#### Deployment
 
 One of the useful features of GitHub is that any files checked into a branch named _gh-pages_ is automatically hosted on the GitHub.io site.  When a build passes unit and quality tests, the final step pushes the production code into the _gh-pages_ branch, causing it to be deployed to GitHub.io.
 <br>
