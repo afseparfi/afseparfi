@@ -250,9 +250,9 @@ afseparfiControllers.controller("VehicleDetailController", ['$scope', '$routePar
 		var allAverageComb = allCombSum / $scope.ratings.length;
 		var allAverageGhg = allGhgSum / $scope.ratings.length;
 
-		$scope.cityChartData = {'series':[[$scope.thisVehicle.city08, vehicleClassAverageCity, allAverageCity]],'labels': [$scope.thisVehicle.makeModel, 'All ' + $scope.thisVehicle.VClass, 'All MPG Data']};
-		$scope.hwyChartData = {'series':[[$scope.thisVehicle.highway08, vehicleClassAverageHwy, allAverageHwy]],'labels': [$scope.thisVehicle.makeModel, 'All ' + $scope.thisVehicle.VClass, 'All MPG Data']};
-		$scope.combChartData = {'series':[[$scope.thisVehicle.comb08, vehicleClassAverageComb, allAverageComb]],'labels': [$scope.thisVehicle.makeModel, 'All ' + $scope.thisVehicle.VClass, 'All MPG Data']};
+		$scope.cityChartData = {'series':[[$scope.thisVehicle.city08, vehicleClassAverageCity, allAverageCity]],'labels': [$scope.thisVehicle.makeModel, 'All ' + $scope.thisVehicle.VClass, 'All MPG Data*']};
+		$scope.hwyChartData = {'series':[[$scope.thisVehicle.highway08, vehicleClassAverageHwy, allAverageHwy]],'labels': [$scope.thisVehicle.makeModel, 'All ' + $scope.thisVehicle.VClass, 'All MPG Data*']};
+		$scope.combChartData = {'series':[[$scope.thisVehicle.comb08, vehicleClassAverageComb, allAverageComb]],'labels': [$scope.thisVehicle.makeModel, 'All ' + $scope.thisVehicle.VClass, 'All MPG Data*']};
 		$scope.ghgChartData = {'series':[[$scope.thisVehicle.ghgScore, vehicleClassAverageGhg, allAverageGhg]],'labels': [$scope.thisVehicle.makeModel, 'All ' + $scope.thisVehicle.VClass, 'All GHG Data']};
 
 
@@ -412,17 +412,17 @@ afseparfiControllers.controller("VehicleCompareController", ['$scope', '$routePa
 		var allAverageFuelCosts = allFuelCosts / $scope.ratings.length;
 
 		if ($scope.compare3) {
-			$scope.cityChartData = {'series':[[$scope.vehicle1.city08, $scope.vehicle2.city08, $scope.vehicle3.city08, allAverageCity]],'labels': [$scope.vehicle1.makeModel, $scope.vehicle2.makeModel, $scope.vehicle3.makeModel,'All MPG Data']};
-			$scope.hwyChartData = {'series':[[$scope.vehicle1.highway08, $scope.vehicle2.highway08, $scope.vehicle3.highway08,allAverageHwy]],'labels': [$scope.vehicle1.makeModel, $scope.vehicle2.makeModel, $scope.vehicle3.makeModel,'All MPG Data']};
-			$scope.combChartData = {'series':[[$scope.vehicle1.comb08, $scope.vehicle2.comb08, $scope.vehicle3.comb08,allAverageComb]],'labels': [$scope.vehicle1.makeModel, $scope.vehicle2.makeModel, $scope.vehicle3.makeModel,'All MPG Data']};
+			$scope.cityChartData = {'series':[[$scope.vehicle1.city08, $scope.vehicle2.city08, $scope.vehicle3.city08, allAverageCity]],'labels': [$scope.vehicle1.makeModel, $scope.vehicle2.makeModel, $scope.vehicle3.makeModel,'All MPG Data*']};
+			$scope.hwyChartData = {'series':[[$scope.vehicle1.highway08, $scope.vehicle2.highway08, $scope.vehicle3.highway08,allAverageHwy]],'labels': [$scope.vehicle1.makeModel, $scope.vehicle2.makeModel, $scope.vehicle3.makeModel,'All MPG Data*']};
+			$scope.combChartData = {'series':[[$scope.vehicle1.comb08, $scope.vehicle2.comb08, $scope.vehicle3.comb08,allAverageComb]],'labels': [$scope.vehicle1.makeModel, $scope.vehicle2.makeModel, $scope.vehicle3.makeModel,'All MPG Data*']};
 			$scope.ghgChartData = {'series':[[$scope.vehicle1.ghgScore, $scope.vehicle2.ghgScore, $scope.vehicle3.ghgScore,allAverageGhg]],'labels': [$scope.vehicle1.makeModel, $scope.vehicle2.makeModel, $scope.vehicle3.makeModel,'All GHG Data']};
 			$scope.fuelSavingsChartData = {'series':[[$scope.vehicle1.youSaveSpend, $scope.vehicle2.youSaveSpend, $scope.vehicle3.youSaveSpend, allAverageFuelSavings]],'labels': [$scope.vehicle1.makeModel, $scope.vehicle2.makeModel, $scope.vehicle3.makeModel,'Average Fuel Saving']};
 			$scope.fuelCostsChartData = {'series':[[$scope.vehicle1.fuelCost08, $scope.vehicle2.fuelCost08, $scope.vehicle3.fuelCost08, allAverageFuelCosts]],'labels': [$scope.vehicle1.makeModel, $scope.vehicle2.makeModel, $scope.vehicle3.makeModel,'Average Fuel Cost']};
 
 		} else {
-			$scope.cityChartData = {'series':[[$scope.vehicle1.city08, $scope.vehicle2.city08, allAverageCity]],'labels': [$scope.vehicle1.makeModel, $scope.vehicle2.makeModel, 'All MPG Data']};
-			$scope.hwyChartData = {'series':[[$scope.vehicle1.highway08, $scope.vehicle2.highway08, allAverageHwy]],'labels': [$scope.vehicle1.makeModel, $scope.vehicle2.makeModel, 'All MPG Data']};
-			$scope.combChartData = {'series':[[$scope.vehicle1.comb08, $scope.vehicle2.comb08, allAverageComb]],'labels': [$scope.vehicle1.makeModel, $scope.vehicle2.makeModel, 'All MPG Data']};
+			$scope.cityChartData = {'series':[[$scope.vehicle1.city08, $scope.vehicle2.city08, allAverageCity]],'labels': [$scope.vehicle1.makeModel, $scope.vehicle2.makeModel, 'All MPG Data*']};
+			$scope.hwyChartData = {'series':[[$scope.vehicle1.highway08, $scope.vehicle2.highway08, allAverageHwy]],'labels': [$scope.vehicle1.makeModel, $scope.vehicle2.makeModel, 'All MPG Data*']};
+			$scope.combChartData = {'series':[[$scope.vehicle1.comb08, $scope.vehicle2.comb08, allAverageComb]],'labels': [$scope.vehicle1.makeModel, $scope.vehicle2.makeModel, 'All MPG Data*']};
 			$scope.ghgChartData = {'series':[[$scope.vehicle1.ghgScore, $scope.vehicle2.ghgScore, allAverageGhg]],'labels': [$scope.vehicle1.makeModel, $scope.vehicle2.makeModel, 'All GHG Data']};
 			$scope.fuelSavingsChartData = {'series':[[$scope.vehicle1.youSaveSpend, $scope.vehicle2.youSaveSpend, allAverageFuelSavings]],'labels': [$scope.vehicle1.makeModel, $scope.vehicle2.makeModel, 'Average Fuel Saving']};
 			$scope.fuelCostsChartData = {'series':[[$scope.vehicle1.fuelCost08, $scope.vehicle2.fuelCost08, allAverageFuelCosts]],'labels': [$scope.vehicle1.makeModel, $scope.vehicle2.makeModel, 'Average Fuel Cost']};
