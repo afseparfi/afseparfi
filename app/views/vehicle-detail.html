@@ -16,7 +16,7 @@
   <ul class="nav nav-tabs nav-justified" role="tablist">
     <li role="presentation" class="active"><a data-target="#mpgTabContent" aria-controls="mpgTabContent" role="tab" data-toggle="tab">MPG</a></li>
     <li role="presentation"><a data-target="#ghgTabContent" aria-controls="ghgTabContent" role="tab" data-toggle="tab">GHG</a></li>
-    <li role="presentation"><a data-target="#fuelCostTabContent" aria-controls="fuelCostTabContent" role="tab" data-toggle="tab">FUEL COST</a></li>
+    <li role="presentation"><a data-target="#fuelCostTabContent" aria-controls="fuelCostTabContent" role="tab" data-toggle="tab">FUEL COST <span class="hidden-xs">AND SAVINGS</span></a></li>
     <li role="presentation"><a data-target="#embeddedVehicleCompare" role="tab" data-toggle="tab">COMPARE</a></li>
   </ul>
 
@@ -48,17 +48,20 @@
           <h3 class="text-center">MPG COMPARISONS</h3>
           <h6 class="text-center">City</h6>
           <chartist class="ct-chart ct-double-octave" chartist-data="cityChartData" chartist-chart-type="Bar" chartist-events="chartEvents" chartist-chart-options="chartOptions"></chartist>
+
           <h6 class="text-center">Highway</h6>
           <chartist class="ct-chart ct-double-octave" chartist-data="hwyChartData" chartist-chart-type="Bar" chartist-events="chartEvents" chartist-chart-options="chartOptions"></chartist>
+
           <h6 class="text-center">Combined</h6>
           <chartist class="ct-chart ct-double-octave" chartist-data="combChartData" chartist-chart-type="Bar" chartist-events="chartEvents" chartist-chart-options="chartOptions"></chartist>
+          <h6 class="small">*Based on 45% highway, 55% city driving, 15,000 annual miles and current fuel prices.</h6>
         </div>
       </div>
     </div>
 
     <div role="tabpanel" class="tab-pane" id="ghgTabContent">
       <div class="row clearfix">
-        <h3 class="text-center">GREENHOUSE GAS (GHG)</h3>
+        <h3 class="text-center">Greenhouse Gas (GHG)</h3>
         <div class="panel panel-info col-xs-offset-1 col-xs-10 col-md-offset-3 col-md-6">
           <div class="panel-body">
             <h5 class="text-center">Greenhouse Gas Rating <span class="disabled">(tailpipe only)</span></h5>
@@ -77,7 +80,7 @@
         </div>
       </div>
     </div>
-    <div role="tabpanel" class="tab-pane" id="fuelCostTabContent">
+    <div role="tabpanel" class="tab-pane clearfix" id="fuelCostTabContent">
       <div class="row clearfix annualFuelCost">
         <h3 class="text-center">ESTIMATED FUEL COST</h3>
         <div class="panel panel-info col-xs-offset-1 col-xs-10 col-md-offset-4 col-md-4">
@@ -90,6 +93,7 @@
         </div>
       </div>
       <div class="row small-text text-center col-xs-offset-0 col-xs-12">Annual fuel cost is based on 15,000 miles, 55% city driving, and the price of fuel used by the vehicle.</div>
+      <br clear="all">
       <hr />
       <div class="row clearfix annualFuelSavings">
         <h3 class="text-center">ESTIMATED FUEL SAVINGS</h3>
@@ -161,9 +165,5 @@
       </div>
       <br/>
     </div>
-
   </div>
-
-    <hr/>
-
 </div>
