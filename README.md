@@ -212,5 +212,7 @@ One of the useful features of GitHub is that any files checked into a branch nam
 
 ## Agile Methodology
 
+Our lean, cross-functional team worked collaboratively every day to iterate on concepts for the prototype. We incorporated feedback from users, teammates, and feedback loops as we developed the prototype. Through the agile process, we worked efficiently to create a resource that helps users research the environmental impact and value of purchasing a new car. 
+
 
 ## Contacts
